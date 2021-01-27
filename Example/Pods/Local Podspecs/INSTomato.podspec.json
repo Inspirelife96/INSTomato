@@ -1,0 +1,22 @@
+{
+  "name": "INSTomato",
+  "version": "0.1.0",
+  "summary": "A short description of INSTomato.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/inspirelife@hotmail.com/INSTomato",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "inspirelife@hotmail.com": "inspirelife@hotmail.com"
+  },
+  "source": {
+    "git": "https://github.com/inspirelife@hotmail.com/INSTomato.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "INSTomato/Classes/**/*"
+}

@@ -1,0 +1,6 @@
+framework module INSTomato {
+  umbrella header "INSTomato-umbrella.h"
+
+  export *
+  module * { export * }
+}
