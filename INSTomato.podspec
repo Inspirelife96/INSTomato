@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'INSTomato'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of INSTomato.'
+  s.version          = '0.0.1'
+  s.summary          = '番茄时钟'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,26 +17,32 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+s.description      = <<-DESC
+番茄时钟的具体说明：
+                     DESC
 
-  s.homepage         = 'https://github.com/inspirelife@hotmail.com/INSTomato'
+  s.homepage         = 'https://github.com/Inspirelife96/INSTomato'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'inspirelife@hotmail.com' => 'inspirelife@hotmail.com' }
-  s.source           = { :git => 'https://github.com/inspirelife@hotmail.com/INSTomato.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/Inspirelife96/INSTomato.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'INSTomato/Classes/**/*'
   
+  s.swift_version = '4.0'
+  
   # s.resource_bundles = {
   #   'INSTomato' => ['INSTomato/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'UIKit'
+  s.dependency 'ChameleonFramework'
+  s.dependency 'Masonry'
+  s.dependency 'Charts'
+  s.dependency 'PulsingHalo'
+  s.dependency 'SVProgressHUD'
 end
