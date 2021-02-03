@@ -8,7 +8,7 @@
 
 #import "INSAppDelegate.h"
 
-#import <INSTomato/INSPersistenceConstants.h>
+#import <INSTomato/INSTomato-umbrella.h>
 
 @implementation INSAppDelegate
 
@@ -19,33 +19,25 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    ILDTaskConfiguration *taskConfig1 = [[ILDTaskConfiguration alloc] initWithTaskName:@"自由"];
-
-    ILDTaskConfiguration *taskConfig2 = [[ILDTaskConfiguration alloc] initWithTaskName:@"专题"];
-
-    ILDTaskConfiguration *taskConfig3 = [[ILDTaskConfiguration alloc] initWithTaskName:@"酷文"];
     
-    ILDTaskConfiguration *taskConfig4 = [[ILDTaskConfiguration alloc] initWithTaskName:@"奇题"];
-
-    ILDDiligenceConfiguration *diligenceConfig = [[ILDDiligenceConfiguration alloc] init];
+    INSTaskModel *taskModel = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"学习" color:@"红色" music:@"纯然"];
     
-    diligenceConfig.taskConfigurationArray = @[taskConfig1, taskConfig2, taskConfig3, taskConfig4];
-    diligenceConfig.topLeftPluginType = ILDSupportedPluginTypeTask;
-    diligenceConfig.topRightPluginType = ILDSupportedPluginTypeStatistics;
-    diligenceConfig.bottomLeftPluginType = ILDSupportedPluginTypeStory;
-    diligenceConfig.bottomRightPluginType = ILDSupportedPluginTypeSetting;
+    [INSTaskTableManager createTaskTable:@[taskModel]];
+    [INSTomatoTableManager createTomatoTable];
     
-    ILDDiligenceViewController *diligenceVC = [[ILDDiligenceViewController alloc] initWithDiliganceConfiguration:diligenceConfig];
+    INSTomatoConfiguration *tomatoConfiguration = [[INSTomatoConfiguration alloc] init];
     
-//    UITabBarController *viewController = [[CLTabBarViewController alloc]init];
+    tomatoConfiguration.topLeftPluginType = INSSupportedPluginTypeNone;
+    tomatoConfiguration.topRightPluginType = INSSupportedPluginTypeNone;
+    tomatoConfiguration.bottomLeftPluginType = INSSupportedPluginTypeNone;
+    tomatoConfiguration.bottomRightPluginType = INSSupportedPluginTypeNone;
     
-    self.window.rootViewController = diligenceVC;
+    
+    INSTomatoViewController *tomatoVC = [[INSTomatoViewController alloc] initWithTomatoConfiguration:tomatoConfiguration];
+    
+    self.window.rootViewController = tomatoVC;
 
     [self.window makeKeyAndVisible];
-    
-    
-    
-    
     
     
     return YES;

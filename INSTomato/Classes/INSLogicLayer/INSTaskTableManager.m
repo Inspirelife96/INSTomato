@@ -48,6 +48,8 @@ static INSTaskTableManager *sharedInstance = nil;
         return;
     }
     
+    [INSTaskTablePersistence createTaskTable];
+    
     NSMutableDictionary *taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
     NSMutableDictionary *configurationDictionary = [taskTableDictionary[kTaskTableConfiguration] mutableCopy];
     NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
@@ -110,7 +112,7 @@ static INSTaskTableManager *sharedInstance = nil;
 }
 
 - (INSTaskModel *)taskModelByTaskId:(NSString *)taskId {
-    return [[INSTaskModel alloc] initWithTaskDictionary:self.taskTableDictionary[taskId]];
+    return [[INSTaskModel alloc] initWithTaskDictionary:self.coreDictionary[taskId]];
 }
 
 - (void)addTask:(INSTaskModel *)taskModel {

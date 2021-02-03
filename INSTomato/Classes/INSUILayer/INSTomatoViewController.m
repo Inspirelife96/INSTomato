@@ -26,6 +26,8 @@
 
 #import "INSTaskListViewController.h"
 
+#import <Masonry/Masonry.h>
+
 @interface INSTomatoViewController () <UIScrollViewDelegate, AVAudioPlayerDelegate>
 
 // 背景图片视图，用来展示必应每日图片
