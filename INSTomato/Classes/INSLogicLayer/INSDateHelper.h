@@ -20,20 +20,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)minutesFormatBySeconds:(CGFloat)seconds;
 
-+ (NSArray *)weekDaysList;
-+ (NSArray *)monthList;
-+ (NSArray *)hourList;
++ (NSArray *)weekDaysArray;
++ (NSArray *)monthArray;
++ (NSArray *)hourArray;
 
 + (NSString *)weekDayName:(NSInteger)index;
 
-+ (NSArray *)tomatoMinuteList;
-+ (NSArray *)tomatoMinuteType;
++ (NSArray *)tomatoMinuteArray;
++ (NSArray *)tomatoMinuteTypeArray;
 
-+ (NSArray *)restMinuteList;
-+ (NSArray *)restMinuteType;
++ (NSArray *)restMinuteArray;
++ (NSArray *)restMinuteTypeArray;
 
-+ (NSArray *)alertHourList;
-+ (NSArray *)alertMinuteList;
++ (NSArray *)alertHourArray;
++ (NSArray *)alertMinuteArray;
 
 + (NSString *)dateToString:(NSDate *)date withForamt:(NSString *)format;
 + (NSDate *)stringToDate:(NSString *)dateString withForamt:(NSString *)format;

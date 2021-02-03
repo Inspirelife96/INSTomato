@@ -11,10 +11,17 @@
 #import "INSTaskModel.h"
 
 #import "INSTomatoTableManager.h"
+#import "INSPersistenceConstants.h"
+
+NSString *const kNotificationTaskTableSaved = @"task.table.saved";
 
 @interface INSTaskTableManager ()
 
+@property (strong, nonatomic) NSMutableArray *taskTableArray;
+
 @property (strong, nonatomic) NSMutableDictionary *taskTableDictionary;
+@property (strong, nonatomic) NSMutableDictionary *configurationDictionary;
+@property (strong, nonatomic) NSMutableDictionary *coreDictionary;
 
 @end
 
@@ -23,6 +30,43 @@
 static INSTaskTableManager *sharedInstance = nil;
 
 #pragma mark - singleton init
+
++ (BOOL)isTaskTableExists {
+    if ([INSTaskTablePersistence readTaskTable]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
++ (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray {
+    if ([INSTaskTablePersistence readTaskTable]) {
+        return;
+    }
+    
+    if (!taskModelArray || taskModelArray.count <= 0) {
+        return;
+    }
+    
+    NSMutableDictionary *taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
+    NSMutableDictionary *configurationDictionary = [taskTableDictionary[kTaskTableConfiguration] mutableCopy];
+    NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
+    
+    [taskModelArray enumerateObjectsUsingBlock:^(INSTaskModel * _Nonnull taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
+        taskModel.identifier = identifier;
+        [coreDictionary setObject:[taskModel convertToDictionary] forKey:identifier];
+    }];
+    
+    NSNumber *maxRowId = [NSNumber numberWithInteger:(taskModelArray.count - 1)];
+    
+    [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
+    
+    taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
+    taskTableDictionary[kTaskTableCore] = coreDictionary;
+    
+    [INSTaskTablePersistence saveTaskTable:taskTableDictionary];
+}
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
@@ -44,6 +88,8 @@ static INSTaskTableManager *sharedInstance = nil;
 - (INSTaskTableManager *)init {
     if (self = [super init]) {
         _taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
+        _configurationDictionary = [_taskTableDictionary[kTaskTableConfiguration] mutableCopy];
+        _coreDictionary = [_taskTableDictionary[kTaskTableCore] mutableCopy];
     }
     
     return self;
@@ -52,8 +98,10 @@ static INSTaskTableManager *sharedInstance = nil;
 #pragma mark - Public Method
 
 - (NSArray *)taskIds {
-    return [[self.taskTableDictionary allKeys] sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull taskId1String, NSString *  _Nonnull taskId2String) {
-        if ([taskId1String integerValue] < [taskId2String integerValue]){
+    return [[self.coreDictionary allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSInteger taskId1 = [(NSString *)obj1 integerValue];
+        NSInteger taskId2 = [(NSString *)obj2 integerValue];
+        if (taskId1 < taskId2){
             return NSOrderedAscending;
         } else {
             return NSOrderedDescending;
@@ -66,8 +114,14 @@ static INSTaskTableManager *sharedInstance = nil;
 }
 
 - (void)addTask:(INSTaskModel *)taskModel {
-    NSString *taskId = [self generateTaskId];
-    self.taskTableDictionary[taskId] = [taskModel convertToDictionary];
+    NSNumber *maxRowIdNumber = self.configurationDictionary[kTaskTableConfigurationMaxRowId];
+    NSNumber *newRowIdNumber = [NSNumber numberWithInteger:([maxRowIdNumber integerValue] + 1)];
+    NSString *taskRowId = [newRowIdNumber stringValue];
+    
+    taskModel.identifier = taskRowId;
+    self.taskTableDictionary[taskRowId] = [taskModel convertToDictionary];
+    self.configurationDictionary[kTaskTableConfigurationMaxRowId] = newRowIdNumber;
+    
     [self saveTaskTable];
 }
 
@@ -84,18 +138,13 @@ static INSTaskTableManager *sharedInstance = nil;
 
 #pragma mark - Private Method
 
-- (NSString *)generateTaskId {
-    NSArray *taskIds = [self taskIds];
-    if (!taskIds || taskIds.count == 0) {
-        return @"0";
-    }
-    
-    NSInteger maxNumber = [taskIds[taskIds.count - 1] integerValue];
-    return [NSString stringWithFormat:@"%ld", (long)(maxNumber + 1)];
-}
-
 - (void)saveTaskTable {
+    self.taskTableDictionary[kTaskTableConfiguration] = self.configurationDictionary;
+    self.taskTableDictionary[kTaskTableCore] = self.coreDictionary;
+    
     [INSTaskTablePersistence saveTaskTable:self.taskTableDictionary];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTaskTableSaved object:nil];
 }
 
 @end

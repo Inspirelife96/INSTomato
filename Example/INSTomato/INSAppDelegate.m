@@ -8,11 +8,46 @@
 
 #import "INSAppDelegate.h"
 
+#import <INSTomato/INSPersistenceConstants.h>
+
 @implementation INSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    ILDTaskConfiguration *taskConfig1 = [[ILDTaskConfiguration alloc] initWithTaskName:@"自由"];
+
+    ILDTaskConfiguration *taskConfig2 = [[ILDTaskConfiguration alloc] initWithTaskName:@"专题"];
+
+    ILDTaskConfiguration *taskConfig3 = [[ILDTaskConfiguration alloc] initWithTaskName:@"酷文"];
+    
+    ILDTaskConfiguration *taskConfig4 = [[ILDTaskConfiguration alloc] initWithTaskName:@"奇题"];
+
+    ILDDiligenceConfiguration *diligenceConfig = [[ILDDiligenceConfiguration alloc] init];
+    
+    diligenceConfig.taskConfigurationArray = @[taskConfig1, taskConfig2, taskConfig3, taskConfig4];
+    diligenceConfig.topLeftPluginType = ILDSupportedPluginTypeTask;
+    diligenceConfig.topRightPluginType = ILDSupportedPluginTypeStatistics;
+    diligenceConfig.bottomLeftPluginType = ILDSupportedPluginTypeStory;
+    diligenceConfig.bottomRightPluginType = ILDSupportedPluginTypeSetting;
+    
+    ILDDiligenceViewController *diligenceVC = [[ILDDiligenceViewController alloc] initWithDiliganceConfiguration:diligenceConfig];
+    
+//    UITabBarController *viewController = [[CLTabBarViewController alloc]init];
+    
+    self.window.rootViewController = diligenceVC;
+
+    [self.window makeKeyAndVisible];
+    
+    
+    
+    
+    
+    
     return YES;
 }
 

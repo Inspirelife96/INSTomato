@@ -22,7 +22,7 @@
 }
 
 
-+ (NSArray *)weekDaysList {
++ (NSArray *)weekDaysArray {
     return @[
              @"星期日",
              @"星期一",
@@ -34,7 +34,7 @@
              ];
 }
 
-+ (NSArray *)hourList {
++ (NSArray *)hourArray {
     return @[
              @"凌晨00:00",
              @"凌晨10:00",
@@ -64,7 +64,7 @@
              ];
 }
 
-+ (NSArray *)monthList {
++ (NSArray *)monthArray {
     return @[
              @"1 月",
              @"2 月",
@@ -85,29 +85,29 @@
     NSCalendar* calendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay | NSCalendarUnitWeekday;
     NSDateComponents* comp = [calendar components:unitFlags fromDate:date];
-    NSString *monthString = [INSDateHelper monthList][[comp month] - 1];
+    NSString *monthString = [INSDateHelper monthArray][[comp month] - 1];
     return [NSString stringWithFormat:@"%ld %@ %ld 日", (long)[comp year] , monthString, [comp day]];
 }
 
 + (NSString *)stringOfHour:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSCalendarUnitHour fromDate:date];
-    return [[INSDateHelper hourList] objectAtIndex:[components hour]];
+    return [[INSDateHelper hourArray] objectAtIndex:[components hour]];
     
 }
 
 + (NSString *)stringOfWeekday:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:date];
-    return [[INSDateHelper weekDaysList] objectAtIndex:([components weekday] - 1)];
+    return [[INSDateHelper weekDaysArray] objectAtIndex:([components weekday] - 1)];
 }
 
 + (NSString *)stringOfDayWithWeekDay:(NSDate *)date {
     NSCalendar* calendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay | NSCalendarUnitWeekday;
     NSDateComponents* comp = [calendar components:unitFlags fromDate:date];
-    NSString *monthString = [INSDateHelper monthList][[comp month] - 1];
-    NSString *weekdayString = [INSDateHelper weekDaysList][[comp weekday] - 1];
+    NSString *monthString = [INSDateHelper monthArray][[comp month] - 1];
+    NSString *weekdayString = [INSDateHelper weekDaysArray][[comp weekday] - 1];
     return [NSString stringWithFormat:@"%@ %ld %@ %ld", monthString, (long)[comp day], weekdayString, [comp year]];
 }
 
@@ -118,10 +118,10 @@
 }
 
 + (NSString *)weekDayName:(NSInteger)index {
-    return [[INSDateHelper weekDaysList] objectAtIndex:index];
+    return [[INSDateHelper weekDaysArray] objectAtIndex:index];
 }
 
-+ (NSArray *)tomatoMinuteList {
++ (NSArray *)tomatoMinuteArray {
     return @[
              @"5",
              @"10",
@@ -140,13 +140,13 @@
              ];
 }
 
-+ (NSArray *)tomatoMinuteType {
++ (NSArray *)tomatoMinuteTypeArray {
     return @[
              @"分钟"
              ];
 }
 
-+ (NSArray *)restMinuteList {
++ (NSArray *)restMinuteArray {
     return @[
              @"5",
              @"10",
@@ -157,13 +157,13 @@
              ];
 }
 
-+ (NSArray *)restMinuteType {
++ (NSArray *)restMinuteTypeArray {
     return @[
              @"分钟"
              ];
 }
 
-+ (NSArray *)alertHourList {
++ (NSArray *)alertHourArray {
     return @[
              @"00",
              @"01",
@@ -192,7 +192,7 @@
              ];
 }
 
-+ (NSArray *)alertMinuteList {
++ (NSArray *)alertMinuteArray {
     return @[
              @"00",
              @"05",

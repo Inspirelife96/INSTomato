@@ -11,11 +11,11 @@
 
 @implementation INSTomatoModel
 
-- (instancetype)initTaskId:(NSString *)taskId
-                 startDate:(NSDate *)startDate
-                   endDate:(NSDate *)endDate
-                breakTimes:(NSNumber *)breakTimes
-             tomatoMinutes:(NSNumber *)tomatoMinutes {
+- (instancetype)initWithTaskId:(NSString *)taskId
+                     startDate:(NSDate *)startDate
+                       endDate:(NSDate *)endDate
+                    breakTimes:(NSNumber *)breakTimes
+                 tomatoMinutes:(NSNumber *)tomatoMinutes {
     if (self = [super init]) {
         self.taskId = taskId;
         self.startDate = startDate;

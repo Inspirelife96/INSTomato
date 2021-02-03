@@ -10,16 +10,23 @@
 
 #pragma mark - task table column
 
-extern NSString *const kTaskTableName;
-extern NSString *const kTaskTableColor;
-extern NSString *const kTaskTableMusic;
-extern NSString *const kTaskTableTomatoMinutes;
-extern NSString *const kTaskTableRestMinutes;
-extern NSString *const kTaskTableIsFocusModeEnabled;
-extern NSString *const kTaskTableIsRestModeEnabled;
-extern NSString *const kTaskTableIsMusicModeEnabled;
-extern NSString *const kTaskTableIsAlertModeEnabled;
-extern NSString *const kTaskTableAlertDate;
+extern NSString *const kTaskTableConfiguration;
+extern NSString *const kTaskTableCore;
+
+extern NSString *const kTaskTableConfigurationMaxRowId;
+extern NSString *const kTaskTableConfigurationVersion;
+
+extern NSString *const kTaskTableCoreIdentifier;
+extern NSString *const kTaskTableCoreName;
+extern NSString *const kTaskTableCoreColor;
+extern NSString *const kTaskTableCoreMusic;
+extern NSString *const kTaskTableCoreTomatoMinutes;
+extern NSString *const kTaskTableCoreRestMinutes;
+extern NSString *const kTaskTableCoreIsFocusModeEnabled;
+extern NSString *const kTaskTableCoreIsRestModeEnabled;
+extern NSString *const kTaskTableCoreIsMusicModeEnabled;
+extern NSString *const kTaskTableCoreIsAlertModeEnabled;
+extern NSString *const kTaskTableCoreAlertDate;
 
 #pragma mark - tomato table column
 

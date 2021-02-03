@@ -23,9 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 // 删
 // 改
 
+extern NSString *const kNotificationTaskTableSaved;
+
 @interface INSTaskTableManager : NSObject
 
++ (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray;
 + (instancetype)sharedInstance;
+
++ (BOOL)isTaskTableExists;
 
 - (NSArray<NSString *> *)taskIds;
 - (INSTaskModel *)taskModelByTaskId:(NSString *)taskId;
@@ -33,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addTask:(INSTaskModel *)taskModel;
 - (void)removeTask:(NSString *)taskId;
 - (void)updateTask:(NSString *)taskId taskModel:(INSTaskModel *)taskModel;
+
+//- (NSString *)generateIdentifier;
 
 @end
 

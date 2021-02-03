@@ -9,12 +9,22 @@
 
 #import "INSPersistenceFilePathHelper.h"
 
+#import "INSPersistenceConstants.h"
+
 NSString *const kTaskTablePersistanceFile = @"taskTable.plist";
 
 @implementation INSTaskTablePersistence
 
 + (void)createTaskTable {
+    NSDictionary *taskTableDictionary = @{
+                                kTaskTableConfiguration:@{
+                                        kTaskTableConfigurationMaxRowId:@0,
+                                        kTaskTableConfigurationVersion:@"1.0"
+                                },
+                                kTaskTableCore:@{}
+                                };
     
+    [INSTaskTablePersistence saveTaskTable:taskTableDictionary];
 }
 
 + (NSDictionary *)readTaskTable {

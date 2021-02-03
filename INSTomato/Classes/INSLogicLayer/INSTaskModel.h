@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface INSTaskModel : NSObject
 
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *color;
 @property (nonatomic, copy) NSString *music;
@@ -23,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDate *alertDate;
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithName:(NSString *)name color:(NSString *)color music:(NSString *)music NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithIdentifier:(NSString *)identifier name:(NSString *)name color:(NSString *)color music:(NSString *)music NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithTaskDictionary:(NSDictionary *)taskDictionary NS_DESIGNATED_INITIALIZER;
 - (NSDictionary *)convertToDictionary;
 

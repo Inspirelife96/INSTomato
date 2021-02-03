@@ -7,16 +7,24 @@
 
 #import <Foundation/Foundation.h>
 
-NSString *const kTaskTableName = @"name";
-NSString *const kTaskTableColor = @"color";
-NSString *const kTaskTableMusic = @"music";
-NSString *const kTaskTableTomatoMinutes = @"tomatoMinutes";
-NSString *const kTaskTableRestMinutes = @"restMinutes";
-NSString *const kTaskTableIsFocusModeEnabled = @"isFocusModeEnabled";
-NSString *const kTaskTableIsRestModeEnabled = @"isRestModeEnabled";
-NSString *const kTaskTableIsMusicModeEnabled = @"isMusicModeEnabled";
-NSString *const kTaskTableIsAlertModeEnabled = @"isAlertModeEnabled";
-NSString *const kTaskTableAlertDate = @"alertDate";
+
+NSString *const kTaskTableConfiguration = @"configuration";
+NSString *const kTaskTableCore = @"core";
+
+NSString *const kTaskTableConfigurationMaxRowId = @"maxRowId";
+NSString *const kTaskTableConfigurationVersion = @"version";
+
+NSString *const kTaskTableCoreIdentifier = @"identifier";
+NSString *const kTaskTableCoreName = @"name";
+NSString *const kTaskTableCoreColor = @"color";
+NSString *const kTaskTableCoreMusic = @"music";
+NSString *const kTaskTableCoreTomatoMinutes = @"tomatoMinutes";
+NSString *const kTaskTableCoreRestMinutes = @"restMinutes";
+NSString *const kTaskTableCoreIsFocusModeEnabled = @"isFocusModeEnabled";
+NSString *const kTaskTableCoreIsRestModeEnabled = @"isRestModeEnabled";
+NSString *const kTaskTableCoreIsMusicModeEnabled = @"isMusicModeEnabled";
+NSString *const kTaskTableCoreIsAlertModeEnabled = @"isAlertModeEnabled";
+NSString *const kTaskTableCoreAlertDate = @"alertDate";
 
 #pragma mark - tomato table column
 

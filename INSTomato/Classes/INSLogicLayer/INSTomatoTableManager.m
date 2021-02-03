@@ -37,6 +37,14 @@ static INSTomatoTableManager *sharedInstance = nil;
 
 #pragma mark - singleton init
 
++ (void)createTomatoTable {
+    if ([INSTomatoTablePersistence readTomatoTable]) {
+        return;
+    }
+    
+    [INSTomatoTablePersistence createTomatoTable];
+}
+
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -86,7 +94,7 @@ static INSTomatoTableManager *sharedInstance = nil;
     [self.tomatoTableDictionary setObject:[tomatoModel convertToDictionary] forKey:tomatoRowId];
 
     // 更新最大RowId
-    self.configurationDictionary[kTomatoTableConfigurationMaxRowId] = tomatoRowId;
+    self.configurationDictionary[kTomatoTableConfigurationMaxRowId] = newRowIdNumber;
 
     // 更新索引
     NSString *stringOfDay = [INSDateHelper stringOfDay:tomatoModel.startDate];

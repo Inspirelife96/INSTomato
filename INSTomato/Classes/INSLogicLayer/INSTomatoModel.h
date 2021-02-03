@@ -19,11 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initTaskId:(NSString *)taskId
-                 startDate:(NSDate *)startDate
-                   endDate:(NSDate *)endDate
-                breakTimes:(NSNumber *)breakTimes
-             tomatoMinutes:(NSNumber *)tomatoMinutes NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithTaskId:(NSString *)taskId
+                     startDate:(NSDate *)startDate
+                       endDate:(NSDate *)endDate
+                    breakTimes:(NSNumber *)breakTimes
+                 tomatoMinutes:(NSNumber *)tomatoMinutes NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithTomatoDictionary:(NSDictionary *)tomatoDictionary NS_DESIGNATED_INITIALIZER;
 - (NSDictionary *)convertToDictionary;

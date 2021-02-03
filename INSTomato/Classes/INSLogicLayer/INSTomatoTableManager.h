@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface INSTomatoTableManager : NSObject
 
++ (void)createTomatoTable;
 + (instancetype)sharedInstance;
 
 - (void)addTomato:(INSTomatoModel *)tomatoModel;

@@ -11,8 +11,9 @@
 
 @implementation INSTaskModel
 
-- (instancetype)initWithName:(NSString *)name color:(NSString *)color music:(NSString *)music {
+- (instancetype)initWithIdentifier:(NSString *)identifier name:(NSString *)name color:(NSString *)color music:(NSString *)music {
     if (self = [super init]) {
+        self.identifier = identifier;
         self.name = name;
         self.color = color;
         self.music = music;
@@ -30,16 +31,17 @@
 
 - (instancetype)initWithTaskDictionary:(NSDictionary *)taskDictionary {
     if (self = [super init]) {
-        self.name = taskDictionary[kTaskTableName];
-        self.color = taskDictionary[kTaskTableColor];
-        self.music = taskDictionary[kTaskTableMusic];
-        self.tomatoMinutes = taskDictionary[kTaskTableTomatoMinutes];
-        self.restMinutes = taskDictionary[kTaskTableRestMinutes];
-        self.isFocusModeEnabled = [taskDictionary[kTaskTableIsFocusModeEnabled] boolValue];
-        self.isRestModeEnabled = [taskDictionary[kTaskTableIsRestModeEnabled] boolValue];
-        self.isMusicModeEnabled = [taskDictionary[kTaskTableIsMusicModeEnabled] boolValue];
-        self.isAlertModeEnabled = [taskDictionary[kTaskTableIsAlertModeEnabled] boolValue];
-        self.alertDate = taskDictionary[kTaskTableAlertDate];
+        self.identifier = taskDictionary[kTaskTableCoreIdentifier];
+        self.name = taskDictionary[kTaskTableCoreName];
+        self.color = taskDictionary[kTaskTableCoreColor];
+        self.music = taskDictionary[kTaskTableCoreMusic];
+        self.tomatoMinutes = taskDictionary[kTaskTableCoreTomatoMinutes];
+        self.restMinutes = taskDictionary[kTaskTableCoreRestMinutes];
+        self.isFocusModeEnabled = [taskDictionary[kTaskTableCoreIsFocusModeEnabled] boolValue];
+        self.isRestModeEnabled = [taskDictionary[kTaskTableCoreIsRestModeEnabled] boolValue];
+        self.isMusicModeEnabled = [taskDictionary[kTaskTableCoreIsMusicModeEnabled] boolValue];
+        self.isAlertModeEnabled = [taskDictionary[kTaskTableCoreIsAlertModeEnabled] boolValue];
+        self.alertDate = taskDictionary[kTaskTableCoreAlertDate];
     }
     
     return self;
@@ -47,16 +49,17 @@
 
 - (NSDictionary *)convertToDictionary {
     NSDictionary *taskDictionary = @{
-        kTaskTableName: self.name,
-        kTaskTableColor: self.color,
-        kTaskTableMusic: self.music,
-        kTaskTableTomatoMinutes: self.tomatoMinutes,
-        kTaskTableRestMinutes: self.restMinutes,
-        kTaskTableIsFocusModeEnabled: [NSNumber numberWithBool:self.isRestModeEnabled],
-        kTaskTableIsRestModeEnabled: [NSNumber numberWithBool:self.isFocusModeEnabled],
-        kTaskTableIsMusicModeEnabled: [NSNumber numberWithBool:self.isMusicModeEnabled],
-        kTaskTableIsAlertModeEnabled: [NSNumber numberWithBool:self.isAlertModeEnabled],
-        kTaskTableAlertDate: self.alertDate
+        kTaskTableCoreIdentifier: self.identifier,
+        kTaskTableCoreName: self.name,
+        kTaskTableCoreColor: self.color,
+        kTaskTableCoreMusic: self.music,
+        kTaskTableCoreTomatoMinutes: self.tomatoMinutes,
+        kTaskTableCoreRestMinutes: self.restMinutes,
+        kTaskTableCoreIsFocusModeEnabled: [NSNumber numberWithBool:self.isRestModeEnabled],
+        kTaskTableCoreIsRestModeEnabled: [NSNumber numberWithBool:self.isFocusModeEnabled],
+        kTaskTableCoreIsMusicModeEnabled: [NSNumber numberWithBool:self.isMusicModeEnabled],
+        kTaskTableCoreIsAlertModeEnabled: [NSNumber numberWithBool:self.isAlertModeEnabled],
+        kTaskTableCoreAlertDate: self.alertDate
     };
     
     return taskDictionary;
@@ -64,6 +67,7 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone {
     INSTaskModel *taskModel = [[[self class] allocWithZone:zone] init];
+    taskModel.identifier = [self.identifier copy];
     taskModel.name = [self.name copy];
     taskModel.color = [self.color copy];
     taskModel.music = [self.music copy];
@@ -83,7 +87,8 @@
         return YES;
     }
     
-    if ([self.name isEqualToString:taskModel.name] &&
+    if ([self.identifier isEqualToString:taskModel.identifier] &&
+        [self.name isEqualToString:taskModel.name] &&
         [self.color isEqualToString:taskModel.color] &&
         [self.music isEqualToString:taskModel.music] &&
         [self.tomatoMinutes isEqualToNumber:taskModel.tomatoMinutes] &&
