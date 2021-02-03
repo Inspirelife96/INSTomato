@@ -174,16 +174,6 @@
 		7D605E2EF1E737244832E3329AE89746 /* BarChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588C7762164CF03AC1C0323F1693A979 /* BarChartRenderer.swift */; };
 		7E1C14151759CAF5CFA9B59DF4360E18 /* UINavigationController+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1DC9AB08621E6DAC5996F3A37A2A21 /* UINavigationController+Chameleon.m */; };
 		7EA6B81624538BCC292467DC0E7832D0 /* BubbleChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676751144DAA9CBF1ABBB30795E0EE47 /* BubbleChartData.swift */; };
-		7F7A58F325CAD7C10081DD2B /* 纯然.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58EE25CAD7C00081DD2B /* 纯然.m4a */; };
-		7F7A58F425CAD7C10081DD2B /* 心灵.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58EF25CAD7C00081DD2B /* 心灵.m4a */; };
-		7F7A58F525CAD7C10081DD2B /* 星夜.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58F025CAD7C00081DD2B /* 星夜.m4a */; };
-		7F7A58F625CAD7C10081DD2B /* 森林.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58F125CAD7C00081DD2B /* 森林.m4a */; };
-		7F7A58F725CAD7C10081DD2B /* 云端.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58F225CAD7C00081DD2B /* 云端.m4a */; };
-		7F7A590025CAD7EC0081DD2B /* 纯然.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58EE25CAD7C00081DD2B /* 纯然.m4a */; };
-		7F7A590125CAD7EC0081DD2B /* 森林.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58F125CAD7C00081DD2B /* 森林.m4a */; };
-		7F7A590225CAD7EC0081DD2B /* 心灵.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58EF25CAD7C00081DD2B /* 心灵.m4a */; };
-		7F7A590325CAD7EC0081DD2B /* 星夜.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58F025CAD7C00081DD2B /* 星夜.m4a */; };
-		7F7A590425CAD7EC0081DD2B /* 云端.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7F7A58F225CAD7C00081DD2B /* 云端.m4a */; };
 		801A64AA48623E4B15EDBB77DD7E0072 /* INSMusicHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F11B33E4DF7DC08D624BB415AFC36364 /* INSMusicHelper.m */; };
 		806F470FD85DB877DD116CBE659D2F0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E55D990372CE371BD5DF5E7AD65100D /* Foundation.framework */; };
 		807C65955C0AF5A51E8ACBBAAA227783 /* ChameleonFramework-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AFAACA07853C638F218B99135ACF401C /* ChameleonFramework-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -440,19 +430,19 @@
 		01A04269DCDE2EB456769707555D2335 /* Platform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Platform.swift; path = Source/Charts/Utils/Platform.swift; sourceTree = "<group>"; };
 		02BB1FD8BC184EFA9615003312CE28BF /* INSLogoConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSLogoConfiguration.m; sourceTree = "<group>"; };
 		037F10C9D6516D9CC23D3F9EBC34A75D /* INSTomatoTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = INSTomatoTimer.h; sourceTree = "<group>"; };
-		0383903D05EDD5C442C682C1F7A1752D /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0383903D05EDD5C442C682C1F7A1752D /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ChameleonFramework.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03CA06EF96891611C30218FD038B336A /* UINavigationController+Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Chameleon.h"; path = "Pod/Classes/Objective-C/UINavigationController+Chameleon.h"; sourceTree = "<group>"; };
 		042F5CCAA286CDD6EAEEC5134D671C85 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		04BBC35A9ECD68F724D1B82EB22D1C88 /* Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Chameleon.h; path = "Pod/Classes/Objective-C/Chameleon.h"; sourceTree = "<group>"; };
 		04D6E7B2B752759950518328A54EDAEA /* ChameleonConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ChameleonConstants.h; path = "Pod/Classes/Objective-C/ChameleonConstants.h"; sourceTree = "<group>"; };
-		0541836F1C030439B745381B162DB2D1 /* Pods_INSTomato_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_INSTomato_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0541836F1C030439B745381B162DB2D1 /* Pods_INSTomato_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_INSTomato_Example.framework; path = "Pods-INSTomato_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EF65F7B9FC57D708C5C0184C5A4FD4 /* ScatterChartDataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScatterChartDataProvider.swift; path = Source/Charts/Interfaces/ScatterChartDataProvider.swift; sourceTree = "<group>"; };
 		065388FC7DC247EAD405C802EE4040E2 /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
 		06C2743615E00C5674A54D648AA84DD8 /* INSTaskListCellViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTaskListCellViewModel.m; sourceTree = "<group>"; };
 		0706AF87F169E2499565F62708D239E6 /* INSTomatoTablePersistence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTomatoTablePersistence.m; sourceTree = "<group>"; };
-		0885529EEF6231F0B9E52BE4E59BB343 /* INSTomato.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = INSTomato.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0885529EEF6231F0B9E52BE4E59BB343 /* INSTomato.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = INSTomato.framework; path = INSTomato.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A565BA3BC78C6A687E8CBE4E835789 /* ComponentBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComponentBase.swift; path = Source/Charts/Components/ComponentBase.swift; sourceTree = "<group>"; };
-		090AF28A18120E1FC8E8BCBBA030E863 /* Pods_INSTomato_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_INSTomato_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		090AF28A18120E1FC8E8BCBBA030E863 /* Pods_INSTomato_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_INSTomato_Tests.framework; path = "Pods-INSTomato_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A6F47E29AC44B78C5A9EAD1A176176D /* ChartDataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartDataProvider.swift; path = Source/Charts/Interfaces/ChartDataProvider.swift; sourceTree = "<group>"; };
 		0A727A718D2904DBBF1C0BC4B69FD6CB /* Masonry-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Masonry-Info.plist"; sourceTree = "<group>"; };
 		0AA7C75FFB922984C6D84D62094A23EF /* Pods-INSTomato_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-INSTomato_Example-Info.plist"; sourceTree = "<group>"; };
@@ -482,7 +472,7 @@
 		1D3C8811FAD320A3888D56C036CD70C7 /* INSDateHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = INSDateHelper.h; sourceTree = "<group>"; };
 		1D6C150C266823A05045CA16478F8523 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FBE4F978ACDC1A3BA89552DBA90C589 /* Animator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = Source/Charts/Animation/Animator.swift; sourceTree = "<group>"; };
-		1FFED36A657123030ABB700256D73F15 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FFED36A657123030ABB700256D73F15 /* Masonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Masonry.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CBFA883C221015125ED3B51C1BA1C5 /* RadarHighlighter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RadarHighlighter.swift; path = Source/Charts/Highlight/RadarHighlighter.swift; sourceTree = "<group>"; };
 		21B3CEFE494365854BED32C69AB7EE3E /* PulsingHaloLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PulsingHaloLayer.m; path = PulsingHalo/PulsingHaloLayer.m; sourceTree = "<group>"; };
 		21C5E5298C6A763B815E8A7EB03CADC4 /* UIColor+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Chameleon.m"; path = "Pod/Classes/Objective-C/UIColor+Chameleon.m"; sourceTree = "<group>"; };
@@ -615,11 +605,6 @@
 		7E4B9B154472C17FFE03599B2BE748D2 /* INSTomato-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "INSTomato-umbrella.h"; sourceTree = "<group>"; };
 		7F4C866C35FEFBFB6A62AB590B6ECFCA /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
 		7F66E940A5DFAAF4CD4A1052F09A5A5B /* Transformer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Transformer.swift; path = Source/Charts/Utils/Transformer.swift; sourceTree = "<group>"; };
-		7F7A58EE25CAD7C00081DD2B /* 纯然.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "纯然.m4a"; path = "INSTomato/Assets/纯然.m4a"; sourceTree = "<group>"; };
-		7F7A58EF25CAD7C00081DD2B /* 心灵.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "心灵.m4a"; path = "INSTomato/Assets/心灵.m4a"; sourceTree = "<group>"; };
-		7F7A58F025CAD7C00081DD2B /* 星夜.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "星夜.m4a"; path = "INSTomato/Assets/星夜.m4a"; sourceTree = "<group>"; };
-		7F7A58F125CAD7C00081DD2B /* 森林.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "森林.m4a"; path = "INSTomato/Assets/森林.m4a"; sourceTree = "<group>"; };
-		7F7A58F225CAD7C00081DD2B /* 云端.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "云端.m4a"; path = "INSTomato/Assets/云端.m4a"; sourceTree = "<group>"; };
 		8000228BA452858D3807B0BC9F153127 /* IBarLineScatterCandleBubbleChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IBarLineScatterCandleBubbleChartDataSet.swift; path = Source/Charts/Data/Interfaces/IBarLineScatterCandleBubbleChartDataSet.swift; sourceTree = "<group>"; };
 		806D393F7F4950C45A592F54B667B214 /* INSLogoView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSLogoView.m; sourceTree = "<group>"; };
 		808D99CE3129FD48614E5383997EB6FF /* INSTaskPageViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTaskPageViewController.m; sourceTree = "<group>"; };
@@ -660,7 +645,7 @@
 		94D1D780C9E124319D1A60C01C2EE402 /* LineRadarChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineRadarChartDataSet.swift; path = Source/Charts/Data/Implementations/Standard/LineRadarChartDataSet.swift; sourceTree = "<group>"; };
 		955FEA2A3EFAF5483A0618E0A487CDBB /* INSPersistenceConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSPersistenceConstants.m; sourceTree = "<group>"; };
 		95B24A3B5E51594B765777A530B3A555 /* INSPieChartDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSPieChartDataModel.m; sourceTree = "<group>"; };
-		971EC53FE0D7D117952387B525EAED25 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		971EC53FE0D7D117952387B525EAED25 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		98230EB8CFF80C966197C22501AD760C /* INSNotificationConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = INSNotificationConstants.h; sourceTree = "<group>"; };
 		98F8034F4A714E2168902EB131A36DDE /* BubbleChartView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BubbleChartView.swift; path = Source/Charts/Charts/BubbleChartView.swift; sourceTree = "<group>"; };
 		9901F88C496B49361D423E1B816E67C2 /* YAxisRendererHorizontalBarChart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YAxisRendererHorizontalBarChart.swift; path = Source/Charts/Renderers/YAxisRendererHorizontalBarChart.swift; sourceTree = "<group>"; };
@@ -674,7 +659,7 @@
 		9C2A787B36956EED54C62D0516CFA8A4 /* Fill.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fill.swift; path = Source/Charts/Utils/Fill.swift; sourceTree = "<group>"; };
 		9C90C3D78A53E1BC2B06D5CF40B05CCA /* INSStatisticsTodayModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = INSStatisticsTodayModel.h; sourceTree = "<group>"; };
 		9CAD0304633D12FC1319D8BCD15BA960 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9EA37DBD30467930A87C584F81C30DAD /* INSTomatoClockView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTomatoClockView.m; sourceTree = "<group>"; };
 		9F2F103591AE8EB6A211F3D661EA85A5 /* ChameleonFramework-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ChameleonFramework-prefix.pch"; sourceTree = "<group>"; };
 		9F59180BA2BAD3C0CFA149C11C399460 /* INSTomatoMinutesViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTomatoMinutesViewController.m; sourceTree = "<group>"; };
@@ -682,7 +667,7 @@
 		9FC06A8D3E43A9F61C40CE5CB3AAE3C5 /* UIButton+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Chameleon.m"; path = "Pod/Classes/Objective-C/UIButton+Chameleon.m"; sourceTree = "<group>"; };
 		A10E2214DBB3DC3CEE8F4E1CA0FBCDED /* AxisRendererBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AxisRendererBase.swift; path = Source/Charts/Renderers/AxisRendererBase.swift; sourceTree = "<group>"; };
 		A194F578672175614EF8F922AD710E12 /* Masonry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.debug.xcconfig; sourceTree = "<group>"; };
-		A1C1B977ED8804E8AEEC884E7359EE58 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1C1B977ED8804E8AEEC884E7359EE58 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Charts.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2152B95B58B9006BFB858B085C56574 /* INSPieChartDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = INSPieChartDataModel.h; sourceTree = "<group>"; };
 		A21CF7C97DE3C2FC6D55EB68D35DB245 /* INSTaskTableManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTaskTableManager.m; sourceTree = "<group>"; };
 		A46C28AE8F7B025DE8B673B5C0A6BF2B /* PulsingHalo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PulsingHalo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -775,7 +760,7 @@
 		E8BECC86A5327E97DB44D4844BECFFA2 /* INSMusicHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = INSMusicHelper.h; sourceTree = "<group>"; };
 		E8DA065E09CC787956F2270F7CC3D84F /* INSMusicViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = INSMusicViewController.h; sourceTree = "<group>"; };
 		E91B2C2E051479C64CC592A467E9D0D2 /* LegendRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegendRenderer.swift; path = Source/Charts/Renderers/LegendRenderer.swift; sourceTree = "<group>"; };
-		E97D43C46A45EE515A4DA3AF94398441 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E97D43C46A45EE515A4DA3AF94398441 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9DD13A95F0887D4FE7315D2A4A1DC27 /* LegendEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegendEntry.swift; path = Source/Charts/Components/LegendEntry.swift; sourceTree = "<group>"; };
 		EA1B83591BA529447CB7D6FC1623A938 /* RadarChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RadarChartDataSet.swift; path = Source/Charts/Data/Implementations/Standard/RadarChartDataSet.swift; sourceTree = "<group>"; };
 		EA58BFD6F439065E8EF174A983B0323E /* Platform+Gestures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Platform+Gestures.swift"; path = "Source/Charts/Utils/Platform+Gestures.swift"; sourceTree = "<group>"; };
@@ -783,7 +768,7 @@
 		EB68454772C2B2D69454B86D2FAD9CDA /* BarHighlighter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarHighlighter.swift; path = Source/Charts/Highlight/BarHighlighter.swift; sourceTree = "<group>"; };
 		EBA52A54ED989F7896CB62D486DB7DFE /* ChameleonMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ChameleonMacros.h; path = "Pod/Classes/Objective-C/ChameleonMacros.h"; sourceTree = "<group>"; };
 		EBC36A9754ADAE17437867B2B6832013 /* MASConstraintMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraintMaker.h; path = Masonry/MASConstraintMaker.h; sourceTree = "<group>"; };
-		EF0E79CFB8A6B0E9D03379D270CC089F /* PulsingHalo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PulsingHalo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF0E79CFB8A6B0E9D03379D270CC089F /* PulsingHalo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PulsingHalo.framework; path = PulsingHalo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF59F4511F3962F3CB374AC17818FA2E /* Platform+Accessibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Platform+Accessibility.swift"; path = "Source/Charts/Utils/Platform+Accessibility.swift"; sourceTree = "<group>"; };
 		EF5D69F9CFF20036DD5DC6C03D7CAE01 /* YAxis.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YAxis.swift; path = Source/Charts/Components/YAxis.swift; sourceTree = "<group>"; };
 		F11B33E4DF7DC08D624BB415AFC36364 /* INSMusicHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSMusicHelper.m; sourceTree = "<group>"; };
@@ -798,7 +783,7 @@
 		F91087B936A03DFA6ED6672ED09DD750 /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
 		F97F202614E1C88A068FAA584AEF09BC /* ViewPortHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewPortHandler.swift; path = Source/Charts/Utils/ViewPortHandler.swift; sourceTree = "<group>"; };
 		F98F5A7CC7F33F1904DE05512FDA61A9 /* DefaultValueFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultValueFormatter.swift; path = Source/Charts/Formatters/DefaultValueFormatter.swift; sourceTree = "<group>"; };
-		FA1DBC4CE0D0A744AAADE8768B06CDCB /* INSTomato.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = INSTomato.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FA1DBC4CE0D0A744AAADE8768B06CDCB /* INSTomato.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = INSTomato.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FA73CCA7EAFFD0D961313C494660AE7C /* ChameleonFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ChameleonFramework.debug.xcconfig; sourceTree = "<group>"; };
 		FAC555AA9A629DB15E4222B26931EA02 /* PulsingHalo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PulsingHalo-umbrella.h"; sourceTree = "<group>"; };
 		FB31C837A7DE31210C5B9F8B8D1052B0 /* INSTaskConfigurationViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTaskConfigurationViewController.m; sourceTree = "<group>"; };
@@ -808,7 +793,7 @@
 		FD646A6E0FC1F2D3EAAECF4FADD09FBA /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
 		FDDA9F6F4E2AAB59FCCEDC3D2807ED71 /* DataApproximator+N.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DataApproximator+N.swift"; path = "Source/Charts/Filters/DataApproximator+N.swift"; sourceTree = "<group>"; };
 		FF380B2F5144B66420F0B9C3E72316AE /* INSTaskConfigurationDefaultCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = INSTaskConfigurationDefaultCell.m; sourceTree = "<group>"; };
-		FF775B3C8595EC4F3D3B89002CF7D514 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FF775B3C8595EC4F3D3B89002CF7D514 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		FFD23F60D16A9EB19CBDA595BBA5FD00 /* BarLineScatterCandleBubbleRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarLineScatterCandleBubbleRenderer.swift; path = Source/Charts/Renderers/BarLineScatterCandleBubbleRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -994,6 +979,7 @@
 				0D13DE8947E0A14A799F6103608189EB /* ViewController+MASAdditions.m */,
 				DB50928FA8CB11EA5BEAE6803E53F1DB /* Support Files */,
 			);
+			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -1185,6 +1171,7 @@
 				21B3CEFE494365854BED32C69AB7EE3E /* PulsingHaloLayer.m */,
 				F645489C6B8CB14F37DE682407CD4B61 /* Support Files */,
 			);
+			name = PulsingHalo;
 			path = PulsingHalo;
 			sourceTree = "<group>";
 		};
@@ -1202,6 +1189,7 @@
 				4D0584DFDDFFC6EDEB428AEBFE26EFD9 /* Resources */,
 				D3A14F0C51F1719074201C6361106238 /* Support Files */,
 			);
+			name = SVProgressHUD;
 			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -1315,6 +1303,7 @@
 				30D926E1481EC4A303A430B839317424 /* Core */,
 				24F7816AD4A43A3408E74C70DF09160A /* Support Files */,
 			);
+			name = Charts;
 			path = Charts;
 			sourceTree = "<group>";
 		};
@@ -1467,6 +1456,7 @@
 				A012907DC168A436A260BCABB653D3ED /* Default */,
 				4197B90109D174ADBF281816335554DC /* Support Files */,
 			);
+			name = ChameleonFramework;
 			path = ChameleonFramework;
 			sourceTree = "<group>";
 		};
@@ -1488,11 +1478,6 @@
 		FCDDA694786FA291CB1F371158BA96EB /* INSTomato */ = {
 			isa = PBXGroup;
 			children = (
-				7F7A58EE25CAD7C00081DD2B /* 纯然.m4a */,
-				7F7A58F125CAD7C00081DD2B /* 森林.m4a */,
-				7F7A58EF25CAD7C00081DD2B /* 心灵.m4a */,
-				7F7A58F025CAD7C00081DD2B /* 星夜.m4a */,
-				7F7A58F225CAD7C00081DD2B /* 云端.m4a */,
 				9A38E812D7666EE510B3CF7B5C1F15A9 /* INSLogicLayer */,
 				A1ECECC10D13E407D819BE44F36268CC /* INSPersistenceLayer */,
 				DB1F914BD71D4C60D4FBC2CDDD04C2B1 /* INSUILayer */,
@@ -1883,11 +1868,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F7A58F725CAD7C10081DD2B /* 云端.m4a in Resources */,
-				7F7A58F425CAD7C10081DD2B /* 心灵.m4a in Resources */,
-				7F7A58F325CAD7C10081DD2B /* 纯然.m4a in Resources */,
-				7F7A58F525CAD7C10081DD2B /* 星夜.m4a in Resources */,
-				7F7A58F625CAD7C10081DD2B /* 森林.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1902,11 +1882,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F7A590025CAD7EC0081DD2B /* 纯然.m4a in Resources */,
-				7F7A590125CAD7EC0081DD2B /* 森林.m4a in Resources */,
-				7F7A590225CAD7EC0081DD2B /* 心灵.m4a in Resources */,
-				7F7A590325CAD7EC0081DD2B /* 星夜.m4a in Resources */,
-				7F7A590425CAD7EC0081DD2B /* 云端.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2790,7 +2765,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
