@@ -9,16 +9,10 @@
 
 @implementation INSTomatoBundle
 
-+ (NSBundle *)imageBundle {
-    NSString *imageBundlePath = [[NSBundle bundleForClass:[self class]].resourcePath
-                                stringByAppendingPathComponent:@"/INSTomatoImage.bundle"];
-    return [NSBundle bundleWithPath:imageBundlePath];
-}
-
-+ (NSBundle *)musicBundle {
-    NSString *musicBundlePath = [[NSBundle bundleForClass:[self class]].resourcePath
-                                stringByAppendingPathComponent:@"/INSTomatoMusic.bundle"];
-    return [NSBundle bundleWithPath:musicBundlePath];
++ (NSBundle *)bundle {
+    NSString *bundlePath = [[NSBundle bundleForClass:[self class]].resourcePath
+                                stringByAppendingPathComponent:@"/INSTomato.bundle"];
+    return [NSBundle bundleWithPath:bundlePath];
 }
 
 @end
