@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'INSTomato'
-  s.version          = '0.0.6'
+  s.version          = '0.0.7'
   s.summary          = '番茄时钟'
 
 # This description is used to generate tags and improve search results.
@@ -35,7 +35,8 @@ s.description      = <<-DESC
   s.swift_version = '4.0'
   
   s.resource_bundles = {
-     'INSTomato' => ['INSTomato/Assets/*.*']
+     'INSTomatoImage' => ['INSTomato/Assets/*.png']
+     'INSTomatoMusic' => ['INSTomato/Assets/*.m4a']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

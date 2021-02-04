@@ -23,7 +23,11 @@
     NSString *musicFileName = musicDict[musicName];
     NSString *musicFileType = @"m4a";
     
-    return [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:musicFileName ofType:musicFileType]];
+    NSString *frameworkBundlePath = [[NSBundle bundleForClass:[self class]].resourcePath
+                                stringByAppendingPathComponent:@"/INSTomato.bundle"];
+    NSBundle *INSTomatoBundle = [NSBundle bundleWithPath:frameworkBundlePath];
+    
+    return [NSURL fileURLWithPath:[INSTomatoBundle pathForResource:musicFileName ofType:musicFileType]];
 }
 
 + (NSArray *)musicNameArray {

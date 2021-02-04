@@ -19,19 +19,23 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    INSTaskModel *taskModel1 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"学习" color:@"赤色" music:@"纯然"];
     
-    INSTaskModel *taskModel = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"学习" color:@"红色" music:@"纯然"];
+    INSTaskModel *taskModel2 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"工作" color:@"蓝色" music:@"纯然"];
     
-    [INSTaskTableManager createTaskTable:@[taskModel]];
+    INSTaskModel *taskModel3 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"冥想" color:@"绿色" music:@"纯然"];
+    
+    INSTaskModel *taskModel4 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"锻炼" color:@"橙色" music:@"纯然"];
+    
+    [INSTaskTableManager createTaskTable:@[taskModel1, taskModel2,taskModel3, taskModel4]];
     [INSTomatoTableManager createTomatoTable];
     
     INSTomatoConfiguration *tomatoConfiguration = [[INSTomatoConfiguration alloc] init];
     
-    tomatoConfiguration.topLeftPluginType = INSSupportedPluginTypeNone;
+    tomatoConfiguration.topLeftPluginType = INSSupportedPluginTypeTask;
     tomatoConfiguration.topRightPluginType = INSSupportedPluginTypeNone;
     tomatoConfiguration.bottomLeftPluginType = INSSupportedPluginTypeNone;
     tomatoConfiguration.bottomRightPluginType = INSSupportedPluginTypeNone;
-    
     
     INSTomatoViewController *tomatoVC = [[INSTomatoViewController alloc] initWithTomatoConfiguration:tomatoConfiguration];
     

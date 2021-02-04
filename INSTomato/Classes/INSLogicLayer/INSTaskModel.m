@@ -55,8 +55,8 @@
         kTaskTableCoreMusic: self.music,
         kTaskTableCoreTomatoMinutes: self.tomatoMinutes,
         kTaskTableCoreRestMinutes: self.restMinutes,
-        kTaskTableCoreIsFocusModeEnabled: [NSNumber numberWithBool:self.isRestModeEnabled],
-        kTaskTableCoreIsRestModeEnabled: [NSNumber numberWithBool:self.isFocusModeEnabled],
+        kTaskTableCoreIsFocusModeEnabled: [NSNumber numberWithBool:self.isFocusModeEnabled],
+        kTaskTableCoreIsRestModeEnabled: [NSNumber numberWithBool:self.isRestModeEnabled],
         kTaskTableCoreIsMusicModeEnabled: [NSNumber numberWithBool:self.isMusicModeEnabled],
         kTaskTableCoreIsAlertModeEnabled: [NSNumber numberWithBool:self.isAlertModeEnabled],
         kTaskTableCoreAlertDate: self.alertDate
