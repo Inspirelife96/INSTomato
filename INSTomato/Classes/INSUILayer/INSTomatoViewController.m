@@ -28,6 +28,8 @@
 
 #import <Masonry/Masonry.h>
 
+#import "INSTomatoBundle.h"
+
 @interface INSTomatoViewController () <UIScrollViewDelegate, AVAudioPlayerDelegate>
 
 // 背景图片视图，用来展示必应每日图片
@@ -647,7 +649,12 @@
 - (UIButton *)taskButton {
     if (!_taskButton) {
         _taskButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_taskButton setImage:[UIImage imageNamed:@"menu_task_28x28_"] forState:UIControlStateNormal];
+        if (@available(iOS 13.0, *)) {
+            UIImage *taskButtonImage = [UIImage imageNamed:@"menu_task_28x28_" inBundle:[INSTomatoBundle bundle] withConfiguration:nil];
+            [_taskButton setImage:taskButtonImage forState:UIControlStateNormal];
+        } else {
+            // Fallback on earlier versions
+        }
         [_taskButton addTarget:self action:@selector(clickTaskButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     

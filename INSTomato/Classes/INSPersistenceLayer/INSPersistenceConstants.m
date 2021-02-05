@@ -47,3 +47,10 @@ NSString *const kTomatoTableCoreStartDate = @"startDate";
 NSString *const kTomatoTableCoreEndDate = @"endDate";
 NSString *const kTomatoTableCoreBreakTimes = @"breakTimes";
 NSString *const kTomatoTableCoreTomatoMinutes = @"tomatoMinutes";
+
+#pragma mark - book mark table column
+
+NSString *const kBookMarkDate = @"date";
+NSString *const kBookMarkTitle = @"title";
+NSString *const kBookMarkWords = @"words";
+NSString *const kBookMarkImageData = @"imageData";

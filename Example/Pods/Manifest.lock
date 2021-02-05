@@ -5,7 +5,7 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
-  - INSTomato (0.0.6):
+  - INSTomato (0.0.8):
     - ChameleonFramework
     - Charts
     - Masonry
@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
-  INSTomato: 210d853df478cd015ccaa7616abe26c44bbb2156
+  INSTomato: fff6b0a693102bb697ecf586e1951560fcb2a676
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   PulsingHalo: 1a9c6b65a8e12ac9eee1627fc8476efcce8e1918
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6

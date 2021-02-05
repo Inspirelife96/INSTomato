@@ -46,6 +46,7 @@
 #import "INSTaskListViewController.h"
 #import "INSTaskNameViewController.h"
 #import "INSTaskPageViewController.h"
+#import "INSTomatoBundle.h"
 #import "INSTomatoClockView.h"
 #import "INSTomatoConfiguration.h"
 #import "INSTomatoMinutesViewController.h"

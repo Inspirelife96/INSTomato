@@ -50,4 +50,12 @@ extern NSString *const kTomatoTableCoreEndDate;
 extern NSString *const kTomatoTableCoreBreakTimes;
 extern NSString *const kTomatoTableCoreTomatoMinutes;
 
+
+#pragma mark - book mark table column
+
+extern NSString *const kBookMarkDate;
+extern NSString *const kBookMarkTitle;
+extern NSString *const kBookMarkWords;
+extern NSString *const kBookMarkImageData;
+
 #endif /* INSPersistenceConstants_h */

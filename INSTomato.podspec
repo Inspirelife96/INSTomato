@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'INSTomato'
-  s.version          = '0.0.8'
+  s.version          = '0.0.9'
   s.summary          = '番茄时钟'
 
 # This description is used to generate tags and improve search results.
@@ -45,4 +45,5 @@ s.description      = <<-DESC
   s.dependency 'Charts'
   s.dependency 'PulsingHalo'
   s.dependency 'SVProgressHUD'
+  s.dependency 'AFNetworking', '~> 4.0'
 end
