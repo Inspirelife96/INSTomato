@@ -26,6 +26,9 @@
 
 #import "INSTaskListViewController.h"
 
+#import "INSBookmarkTableManager.h"
+#import "INSBookmarkModel.h"
+
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
@@ -134,6 +137,11 @@
 }
 
 - (void)buildUI {
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlack];
+    [[UINavigationBar appearance] setTintColor:FlatWhite];
+    
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
     
@@ -545,6 +553,11 @@
 
 - (void)clickCloseButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:nil];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
+    [[UINavigationBar appearance] setTintColor:nil];
 }
 
 - (void)clickStartButton:(id)sender {
@@ -615,8 +628,8 @@
         _backgroundImageView = [[UIImageView alloc] init];
         _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         
-//        ILDStoryModel *storyModel = [[ILDStoryDataCenter sharedInstance] prepareStoryModel];
-//        _backgroundImageView.image = [UIImage imageWithData:storyModel.imageData];
+        INSBookmarkModel *bookmarkModel = [[INSBookmarkTableManager sharedInstance] prepareBookmarkModel];
+        _backgroundImageView.image = bookmarkModel.image;
     }
     
     return _backgroundImageView;

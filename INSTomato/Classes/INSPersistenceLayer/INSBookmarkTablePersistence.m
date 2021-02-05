@@ -21,9 +21,11 @@ NSString *const kBookMarkTablePersistanceFile = @"bookmarkTable.plist";
     
     UIImage *bookMarkImage = nil;
     if (@available(iOS 13.0, *)) {
-        bookMarkImage = [UIImage imageNamed:@"default_book_mark_image_1080x1920" inBundle:[INSTomatoBundle bundle] withConfiguration:nil];
+        NSBundle *bundle = [INSTomatoBundle bundle];
+        
+        bookMarkImage = [UIImage imageNamed:@"default_book_mark_image_1080x1920.jpg" inBundle:[INSTomatoBundle bundle] withConfiguration:nil];
     } else {
-        bookMarkImage = [UIImage imageNamed:@"default_book_mark_image_1080x1920" inBundle:[INSTomatoBundle bundle] compatibleWithTraitCollection:nil];
+        bookMarkImage = [UIImage imageNamed:@"default_book_mark_image_1080x1920.jpg" inBundle:[INSTomatoBundle bundle] compatibleWithTraitCollection:nil];
     }
     
     NSData *imageData = UIImageJPEGRepresentation(bookMarkImage, 0.5);

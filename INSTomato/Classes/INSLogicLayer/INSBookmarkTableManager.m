@@ -40,8 +40,14 @@ static INSBookmarkTableManager *sharedInstance = nil;
     INSNetworkOperation *networkOperation = [[INSNetworkOperation alloc] init];
     
     [networkOperation downloadBookmarkData:^(INSBookmarkModel * _Nonnull bookmarkModel, NSError * _Nullable error) {
-        NSDictionary *bookMarkDataDictionary = [bookmarkModel toDictionary];
-        [INSBookmarkTablePersistence saveBookmarkTable:bookMarkDataDictionary];
+        if (error) {
+            
+        } else {
+            if (bookmarkModel.image && bookmarkModel.title && bookmarkModel.words) {
+                NSDictionary *bookMarkDataDictionary = [bookmarkModel toDictionary];
+                [INSBookmarkTablePersistence saveBookmarkTable:bookMarkDataDictionary];
+            }
+        }
     }];
 }
 

@@ -13,6 +13,7 @@
 #import "INSBookmarkModel.h"
 #import "INSBookmarkTableManager.h"
 #import "INSDateHelper.h"
+#import "INSNetworkOperation.h"
 #import "INSPieChartDataModel.h"
 #import "INSStatisticsHistoryModel.h"
 #import "INSStatisticsTodayModel.h"

@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface INSBookmarkModel : NSObject
 
-@property (nonatomic, copy) NSString *date;
+@property (nonatomic, copy) NSDate *date;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *words;
 @property (nonatomic, copy) UIImage *image;

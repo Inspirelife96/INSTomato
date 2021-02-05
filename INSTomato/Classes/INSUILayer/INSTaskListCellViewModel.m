@@ -16,6 +16,7 @@
 
 - (instancetype)initWithTaskModel:(INSTaskModel *)taskModel {
     if (self = [super init]) {
+        _taskModel = taskModel;
         _taskName = taskModel.name;
         _taskTomatoMinutes = [NSString stringWithFormat:@"%@分钟", taskModel.tomatoMinutes];
         _taskColorImage = [[UIImage imageNamed:@"menu_slider_thumb_16x16_"] ins_contentWithColor:[INSColorHelper colorByName:taskModel.color]];

@@ -37,7 +37,7 @@ NSString *const kICIBAWordsNote = @"note";
 
 
 - (dispatch_group_t)downloadBookMarkDataDispatchGroup {
-    if (_downloadBookMarkDataDispatchGroup) {
+    if (!_downloadBookMarkDataDispatchGroup) {
         _downloadBookMarkDataDispatchGroup = dispatch_group_create();
     }
     
@@ -45,8 +45,9 @@ NSString *const kICIBAWordsNote = @"note";
 }
 
 - (INSBookmarkModel *)bookmarkModel {
-    if (_bookmarkModel) {
+    if (!_bookmarkModel) {
         _bookmarkModel = [[INSBookmarkModel alloc] init];
+        _bookmarkModel.date = [NSDate date];
     }
     
     return _bookmarkModel;
@@ -62,13 +63,13 @@ NSString *const kICIBAWordsNote = @"note";
 }
 
 - (void)downloadBingImageDataDictionary {
-    dispatch_group_enter(self.downloadBookMarkDataDispatchGroup);
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSURL *URL = [NSURL URLWithString:kBingImageURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    
+
+    dispatch_group_enter(self.downloadBookMarkDataDispatchGroup);
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
             self.error = error;
@@ -95,7 +96,6 @@ NSString *const kICIBAWordsNote = @"note";
 }
 
 - (void)downloadBingImage:(NSString *)imageURLString {
-    dispatch_group_enter(self.downloadBookMarkDataDispatchGroup);
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     manager.responseSerializer = [AFImageResponseSerializer serializer];
@@ -103,6 +103,7 @@ NSString *const kICIBAWordsNote = @"note";
     NSURL *URL = [NSURL URLWithString:imageURLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
+    dispatch_group_enter(self.downloadBookMarkDataDispatchGroup);
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
             self.error = error;
@@ -119,18 +120,21 @@ NSString *const kICIBAWordsNote = @"note";
 }
 
 - (void)downloadICIBAWords {
-    dispatch_group_enter(self.downloadBookMarkDataDispatchGroup);
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     NSURL *URL = [NSURL URLWithString:kICIBAWordsURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
+    dispatch_group_enter(self.downloadBookMarkDataDispatchGroup);
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
             self.error = error;
         } else {
-            NSDictionary *ICIBADictionary = (NSDictionary *)responseObject;
+            //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            
+            NSDictionary *ICIBADictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
             if (ICIBADictionary[kICIBAWordsNote]) {
                 self.bookmarkModel.words = ICIBADictionary[kICIBAWordsNote];
             }

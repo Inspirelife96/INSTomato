@@ -9,6 +9,11 @@
 
 #import "INSBackgroundImageManager.h"
 
+#import "INSBookmarkTableManager.h"
+#import "INSBookmarkModel.h"
+
+#import "UIImageEffects.h"
+
 #import <Masonry/Masonry.h>
 
 @interface INSBaseViewController ()
@@ -35,7 +40,9 @@
 - (UIImageView *)backgroundImageView {
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc] init];
-        _backgroundImageView.image = [INSBackgroundImageManager sharedInstance].backgroundImage;
+        
+        INSBookmarkModel *bookmarkModel = [[INSBookmarkTableManager sharedInstance] prepareBookmarkModel];
+        _backgroundImageView.image = [UIImageEffects imageByApplyingDarkEffectToImage:bookmarkModel.image];
     }
     
     return _backgroundImageView;

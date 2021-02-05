@@ -25,7 +25,7 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if (self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier]) {
         [self buildUI];
     }
     return self;
@@ -42,7 +42,7 @@
 - (void)buildUI {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    self.backgroundColor = ClearColor;
+    //self.backgroundColor = ClearColor;
     self.textLabel.font = [UIFont fontWithName:@"Avenir Next" size:16];
     self.textLabel.textColor = FlatWhite;
     self.detailTextLabel.font = [UIFont fontWithName:@"Avenir Next" size:16];
