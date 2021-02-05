@@ -13,6 +13,8 @@
 
 #import "INSMusicHelper.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSMusicViewController () <AVAudioPlayerDelegate>
 
 @property(nonatomic, strong) NSArray *musicNameArray;

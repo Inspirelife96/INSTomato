@@ -9,6 +9,9 @@
 
 #import "INSLogoConfiguration.h"
 
+#import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSLogoView()
 
 @property (nonatomic, strong) UIImageView *appIconImageView;

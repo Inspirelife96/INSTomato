@@ -11,6 +11,8 @@
 
 #import "INSDateHelper.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSAlertDateViewController ()
 
 @property (nonatomic, strong) NSArray *alertHourArray;

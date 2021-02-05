@@ -13,6 +13,10 @@
 
 #import "INSPersistenceConstants.h"
 
+#import "INSNetworkOperation.h"
+
+#import "INSNetworkOperation.h"
+
 static INSBookmarkTableManager *sharedInstance = nil;
 
 @interface INSBookmarkTableManager ()
@@ -33,27 +37,12 @@ static INSBookmarkTableManager *sharedInstance = nil;
 
 
 + (void)updateBookmarkTable {
-//    dispatch_group_t downloadDataGroup = dispatch_group_create();
-//    
-//    dispatch_group_enter(downloadDataGroup);
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    manager.responseSerializer = [AFImageResponseSerializer serializer];
-//    
-//    NSURL *URL = [NSURL URLWithString:imageUrlString];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-//    
-//    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//        if (error) {
-//            self.error = error;
-//        } else {
-//            self.storyImage = responseObject;
-//        }
-//        dispatch_group_leave(self.requestGroup);
-//    }];
-//    
-//    [dataTask resume];
+    INSNetworkOperation *networkOperation = [[INSNetworkOperation alloc] init];
     
+    [networkOperation downloadBookmarkData:^(INSBookmarkModel * _Nonnull bookmarkModel, NSError * _Nullable error) {
+        NSDictionary *bookMarkDataDictionary = [bookmarkModel toDictionary];
+        [INSBookmarkTablePersistence saveBookmarkTable:bookMarkDataDictionary];
+    }];
 }
 
 

@@ -7,6 +7,9 @@
 
 #import "INSTaskConfigurationSwitchCell.h"
 
+#import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskConfigurationSwitchCell ()
 
 @end

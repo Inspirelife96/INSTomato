@@ -1,11 +1,27 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
-  - INSTomato (0.0.8):
+  - INSTomato (0.0.9):
+    - AFNetworking (~> 4.0)
     - ChameleonFramework
     - Charts
     - Masonry
@@ -20,6 +36,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - ChameleonFramework
     - Charts
     - Masonry
@@ -31,9 +48,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
-  INSTomato: fff6b0a693102bb697ecf586e1951560fcb2a676
+  INSTomato: 91186b41e654052f9cdd2fb8d002c93318a8fad7
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   PulsingHalo: 1a9c6b65a8e12ac9eee1627fc8476efcce8e1918
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6

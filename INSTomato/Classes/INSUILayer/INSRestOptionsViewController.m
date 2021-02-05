@@ -13,6 +13,8 @@
 
 #import "INSTaskModel.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSRestOptionsViewController()
 
 @property (nonatomic, strong) INSTaskConfigurationSwitchCell *restModeEnableCell;

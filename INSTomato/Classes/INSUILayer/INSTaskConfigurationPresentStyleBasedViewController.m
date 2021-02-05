@@ -7,6 +7,9 @@
 
 #import "INSTaskConfigurationPresentStyleBasedViewController.h"
 
+#import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskConfigurationPresentStyleBasedViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIButton *closeButton;

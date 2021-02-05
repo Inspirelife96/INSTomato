@@ -23,6 +23,8 @@
 
 #import "INSTaskTableManager.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskConfigurationViewController ()
 
 @property (strong, nonatomic) INSTaskModel *taskModelCopy;

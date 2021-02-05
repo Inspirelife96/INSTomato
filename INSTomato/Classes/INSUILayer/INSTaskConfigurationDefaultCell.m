@@ -7,6 +7,8 @@
 
 #import "INSTaskConfigurationDefaultCell.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskConfigurationDefaultCell ()
 
 @end

@@ -12,6 +12,8 @@
 
 #import "INSColorHelper.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSColorPickerViewController ()
 
 @property (nonatomic, strong) NSArray *colorNameArray;

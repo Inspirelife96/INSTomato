@@ -30,6 +30,9 @@
     [INSTaskTableManager createTaskTable:@[taskModel1, taskModel2,taskModel3, taskModel4]];
     [INSTomatoTableManager createTomatoTable];
     
+    [INSBookmarkTableManager createBookmarkTable];
+    [INSBookmarkTableManager updateBookmarkTable];
+    
     INSTomatoConfiguration *tomatoConfiguration = [[INSTomatoConfiguration alloc] init];
     
     tomatoConfiguration.topLeftPluginType = INSSupportedPluginTypeTask;

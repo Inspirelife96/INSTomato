@@ -10,6 +10,8 @@
 #import "INSTaskModel.h"
 #import "INSDateHelper.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSRestMinutesViewController ()
 
 @property (nonatomic, strong) NSArray *restMinutesArray;

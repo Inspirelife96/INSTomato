@@ -9,6 +9,9 @@
 
 #import "INSTaskModel.h"
 
+#import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskNameViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *taskNameTextField;

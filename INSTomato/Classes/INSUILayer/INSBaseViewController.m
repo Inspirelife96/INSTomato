@@ -9,7 +9,7 @@
 
 #import "INSBackgroundImageManager.h"
 
-
+#import <Masonry/Masonry.h>
 
 @interface INSBaseViewController ()
 

@@ -15,6 +15,8 @@
 
 #import "INSColorHelper.h"
 
+#import <Masonry/Masonry.h>
+
 @interface INSTaskPageViewController ()
 
 @property(nonatomic, strong) UIView *backgroundView;

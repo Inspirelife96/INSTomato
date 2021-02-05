@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "INSBookmarkModel.h"
+#import "INSBookmarkTableManager.h"
 #import "INSDateHelper.h"
 #import "INSPieChartDataModel.h"
 #import "INSStatisticsHistoryModel.h"
@@ -18,6 +20,7 @@
 #import "INSTaskTableManager.h"
 #import "INSTomatoModel.h"
 #import "INSTomatoTableManager.h"
+#import "INSBookmarkTablePersistence.h"
 #import "INSPersistenceConstants.h"
 #import "INSPersistenceFilePathHelper.h"
 #import "INSTaskTablePersistence.h"

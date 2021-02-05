@@ -7,6 +7,8 @@
 
 #import "INSColorHelper.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @implementation INSColorHelper
 
 + (UIColor *)colorByName:(NSString *)colorName {

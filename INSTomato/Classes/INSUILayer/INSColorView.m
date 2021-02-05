@@ -9,6 +9,9 @@
 
 #import "UIImage+INS_ContentWithColor.h"
 
+#import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSColorView()
 
 @property (nonatomic, strong) UILabel *colorNameLabel;

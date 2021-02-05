@@ -12,6 +12,8 @@
 #import "INSTomatoTimer.h"
 #import "INSDateHelper.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 #define RADIUS 80
 #define POINT_RADIUS 8
 #define CIRCLE_WIDTH 4

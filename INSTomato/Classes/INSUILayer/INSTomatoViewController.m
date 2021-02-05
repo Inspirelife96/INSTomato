@@ -27,6 +27,7 @@
 #import "INSTaskListViewController.h"
 
 #import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
 
 #import "INSTomatoBundle.h"
 

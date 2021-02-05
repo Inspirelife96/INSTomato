@@ -9,6 +9,8 @@
 
 #import "INSTaskListCellViewModel.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskListCell ()
 
 @property (nonatomic, strong) INSTaskListCellViewModel *taskListCellVM;

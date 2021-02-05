@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *words;
 @property (nonatomic, copy) UIImage *image;
 
+- (NSDictionary *)toDictionary;
+
 @end
 
 NS_ASSUME_NONNULL_END

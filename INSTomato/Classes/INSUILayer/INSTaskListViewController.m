@@ -14,6 +14,9 @@
 
 #import "INSTaskTableManager.h"
 
+#import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) INSLogoView *logoView;

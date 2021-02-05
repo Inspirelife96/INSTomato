@@ -13,6 +13,8 @@
 
 #import "INSTaskModel.h"
 
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSAlertOptionsViewController ()
 
 @property (nonatomic, strong) INSTaskConfigurationSwitchCell *alertModeEnableCell;

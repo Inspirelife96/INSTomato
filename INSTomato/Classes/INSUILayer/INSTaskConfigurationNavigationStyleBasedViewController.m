@@ -7,6 +7,9 @@
 
 #import "INSTaskConfigurationNavigationStyleBasedViewController.h"
 
+#import <Masonry/Masonry.h>
+#import <ChameleonFramework/Chameleon.h>
+
 @interface INSTaskConfigurationNavigationStyleBasedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
