@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)createBookmarkTable;
 
+//
 + (void)updateBookmarkTable;
 
 + (instancetype)sharedInstance;

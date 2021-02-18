@@ -50,7 +50,7 @@
 @property(nonatomic, strong) UIButton *taskButton;
 @property(nonatomic, strong) UIButton *statisticsButton;
 @property(nonatomic, strong) UIButton *bookmarkButton;
-@property(nonatomic, strong) UIButton *settingButton;
+//@property(nonatomic, strong) UIButton *settingButton;
 @property(nonatomic, strong) UIButton *closeButton;
 
 //
@@ -102,8 +102,8 @@
         case INSSupportedPluginTypeStatistics:
             return self.statisticsButton;
 
-        case INSSupportedPluginTypeSetting:
-            return self.settingButton;
+//        case INSSupportedPluginTypeSetting:
+//            return self.settingButton;
 
         case INSSupportedPluginTypeBookmark:
             return self.bookmarkButton;
@@ -364,12 +364,10 @@
         [self.taskButton setHidden:NO];
         [self.statisticsButton setHidden:NO];
         [self.bookmarkButton setHidden:NO];
-        [self.settingButton setHidden:NO];
     } else {
         [self.taskButton setHidden:YES];
         [self.statisticsButton setHidden:YES];
         [self.bookmarkButton setHidden:YES];
-        [self.settingButton setHidden:YES];
     }
 }
 
@@ -524,7 +522,7 @@
     [[INSCopyScreenManager sharedInstance] copyScreen:self.view];
     
     INSTaskListViewController *taskListVC = [[INSTaskListViewController alloc] init];
-    taskListVC.isAddTaskEnabled = self.tomatoConfiguration.isAddTaskEnabled;
+    taskListVC.isAddTaskEnabled = [[INSTaskTableManager sharedInstance] isAddTaskEnabled];
     UINavigationController *taskListNC = [[UINavigationController alloc] initWithRootViewController:taskListVC];
     taskListNC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:taskListNC animated:YES completion:nil];
@@ -683,15 +681,15 @@
     return _bookmarkButton;
 }
 
-- (UIButton *)settingButton {
-    if (!_settingButton) {
-        _settingButton = [[UIButton alloc] init];
-        [_settingButton setBackgroundImage:[INSTomatoBundle imageNamed:@"menu_settings_26x26_"] forState:UIControlStateNormal];
-        [_settingButton addTarget:self action:@selector(clickSettingButton:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
-    return _settingButton;
-}
+//- (UIButton *)settingButton {
+//    if (!_settingButton) {
+//        _settingButton = [[UIButton alloc] init];
+//        [_settingButton setBackgroundImage:[INSTomatoBundle imageNamed:@"menu_settings_26x26_"] forState:UIControlStateNormal];
+//        [_settingButton addTarget:self action:@selector(clickSettingButton:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//
+//    return _settingButton;
+//}
 
 - (UIButton *)startButton {
     if (!_startButton) {

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 //
 @property (nonatomic, copy) NSString *taskTableTitle;
 @property (nonatomic, copy) NSString *taskTableDescription;
-@property (nonatomic, strong) NSData *taskTableIconData;
+@property (nonatomic, strong) UIImage *taskTableIcon;
 
 - (instancetype)init NS_UNAVAILABLE;
 

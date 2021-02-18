@@ -94,7 +94,7 @@
 #pragma mark - Event
 
 - (void)clickAddButton:(id)sender {
-    INSTaskModel *taskModel = [[INSTaskModel alloc] initWithIdentifier:@"" name:@"请修改" color:@"赤色" music:@"纯然"];
+    INSTaskModel *taskModel = [[INSTaskModel alloc] initWithTaskName:@"请修改"];
     
     INSTaskConfigurationViewController *taskConfigurationVC = [[INSTaskConfigurationViewController alloc] initWithTaskModel:taskModel];
     taskConfigurationVC.configurationType = INSTaskConfigurationTypeAdd;

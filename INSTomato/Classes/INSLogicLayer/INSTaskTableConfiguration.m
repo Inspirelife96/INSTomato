@@ -7,6 +7,8 @@
 
 #import "INSTaskTableConfiguration.h"
 
+#import "INSTomatoBundle.h"
+
 @implementation INSTaskTableConfiguration
 
 //- (instancetype)init {
@@ -17,9 +19,9 @@
     if (self = [super init]) {
         _taskModelArray = taskModelArray;
         _isAddTaskEnabled = NO;
-        _taskTableTitle = @"";
-        _taskTableDescription = @"";
-        _taskTableIconData = [[NSData alloc] init];
+        _taskTableTitle = @"勤之时";
+        _taskTableDescription = @"美好的励志时光";
+        _taskTableIcon = [INSTomatoBundle imageNamed:@"iphone app 60"];
     }
     
     return self;

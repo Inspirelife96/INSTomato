@@ -9,16 +9,28 @@
 
 #import "INSPersistenceConstants.h"
 
+#import "INSColorHelper.h"
+#import "INSMusicHelper.h"
+
 @implementation INSTaskModel
 
-- (instancetype)initWithIdentifier:(NSString *)identifier name:(NSString *)name color:(NSString *)color music:(NSString *)music {
+
+- (instancetype)initWithTaskName:(NSString *)name {
+    return [self initWithTaskName:name colorEnum:INSSupportedColorRed musicEnum:INSSupportedMusicSenlin tomatoMinutesEnum:INSSupportedTomatoMinutes25 restMinutesEnum:INSSupportedRestMinutes5];
+}
+
+- (instancetype)initWithTaskName:(NSString *)name colorEnum:(INSSupportedColor)colorEnum {
+    return [self initWithTaskName:name colorEnum:colorEnum musicEnum:INSSupportedMusicSenlin tomatoMinutesEnum:INSSupportedTomatoMinutes25 restMinutesEnum:INSSupportedRestMinutes5];
+}
+
+- (instancetype)initWithTaskName:(NSString *)name colorEnum:(INSSupportedColor)colorEnum musicEnum:(INSSupportedMusic)musicEnum tomatoMinutesEnum:(INSSupportedTomatoMinutes)tomatoMinutesEnum restMinutesEnum:(INSSupportedRestMinutes)restMinutesEnum {
     if (self = [super init]) {
-        self.identifier = identifier;
+        self.identifier = @"";
         self.name = name;
-        self.color = color;
-        self.music = music;
-        self.tomatoMinutes = @25;
-        self.restMinutes = @5;
+        self.color = [INSColorHelper colorNameList][colorEnum];
+        self.music = [INSMusicHelper musicNameArray][musicEnum];
+        self.tomatoMinutes = @(tomatoMinutesEnum);
+        self.restMinutes = @(restMinutesEnum);
         self.isFocusModeEnabled = NO;
         self.isRestModeEnabled = YES;
         self.isMusicModeEnabled = YES;
@@ -28,6 +40,24 @@
     
     return self;
 }
+
+//- (instancetype)initWithIdentifier:(NSString *)identifier name:(NSString *)name color:(NSString *)color music:(NSString *)music {
+//    if (self = [super init]) {
+//        self.identifier = identifier;
+//        self.name = name;
+//        self.color = color;
+//        self.music = music;
+//        self.tomatoMinutes = @25;
+//        self.restMinutes = @5;
+//        self.isFocusModeEnabled = NO;
+//        self.isRestModeEnabled = YES;
+//        self.isMusicModeEnabled = YES;
+//        self.isAlertModeEnabled = NO;
+//        self.alertDate = [NSDate dateWithTimeIntervalSince1970:10 * 3600];
+//    }
+//
+//    return self;
+//}
 
 - (instancetype)initWithTaskDictionary:(NSDictionary *)taskDictionary {
     if (self = [super init]) {

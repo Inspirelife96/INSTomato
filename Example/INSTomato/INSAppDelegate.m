@@ -17,42 +17,42 @@
     // Override point for customization after application launch.
     
     
-    // 关于INTomato的配置，需要做如下四点：
+    // 关于INTomato的配置，需要做如下五点：
     
-    //  - 任务表的配置
-    INSTaskModel *taskModel1 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"学习" color:@"赤色" music:@"纯然"];
-    INSTaskModel *taskModel2 = [[INSTaskModel alloc] initWithIdentifier:@"1" name:@"工作" color:@"蓝色" music:@"纯然"];
-    INSTaskModel *taskModel3 = [[INSTaskModel alloc] initWithIdentifier:@"2" name:@"冥想" color:@"绿色" music:@"纯然"];
-    INSTaskModel *taskModel4 = [[INSTaskModel alloc] initWithIdentifier:@"3" name:@"锻炼" color:@"橙色" music:@"纯然"];
+    // 1. 任务表的配置
     
+    // 1.1 定义任务模型
+    INSTaskModel *taskModel1 = [[INSTaskModel alloc] initWithTaskName:@"学习" colorEnum:INSSupportedColorRed];
+    INSTaskModel *taskModel2 = [[INSTaskModel alloc] initWithTaskName:@"工作" colorEnum:INSSupportedColorOrange];
+    INSTaskModel *taskModel3 = [[INSTaskModel alloc] initWithTaskName:@"冥想" colorEnum:INSSupportedColorYellow];
+    INSTaskModel *taskModel4 = [[INSTaskModel alloc] initWithTaskName:@"锻炼" colorEnum:INSSupportedColorGreen];
+
+    // 1.2 任务表配置INSTaskTableConfiguration，必须以任务数组来初始化。
     INSTaskTableConfiguration *taskTableConfiguration = [[INSTaskTableConfiguration alloc] initWithTaskModelArray:@[taskModel1, taskModel2, taskModel3, taskModel4]];
     
+    // 1.3 配置其他选项, 不配置就是使用系统默认的
+    //taskTableConfiguration.taskTableTitle = @"勤之时"; // 默认值为 勤之时
+    //taskTableConfiguration.taskTableDescription = @"美好的励志时光";// 默认值为美好的励志时光
+    //taskTableConfiguration.taskTableIcon = [UIImage imageNamed:@"xxxx"]; 建议60x60 默认值为勤之时的App Icon
+    
+    // 2. 根据任务表的配置，创建任务表
     [INSTaskTableManager createTaskTableWithConfigration:taskTableConfiguration];
     
-    
-    
-    //  - 统计表的配置
+    // 3. 统计表的配置
     [INSTomatoTableManager createTomatoTable];
     
-    //  - 书签表的配置
+    // 4. 书签表的配置
+    // 创建书签表
+    // 更新书签表
     [INSBookmarkTableManager createBookmarkTable];
     [INSBookmarkTableManager updateBookmarkTable];
     
-    //  - 番茄的配置
-    
-    
-    
-    
-    
-
-    
-
-
-    
-
-    
+    // 5. TomatoBundle配置，因需要加载特殊字体。
     [INSTomatoBundle loadSpecialFont];
     
+    // 6. 番茄的配置
+    // 上下左右四个角标的内容定义
+    // 背景图片的定义
     INSTomatoConfiguration *tomatoConfiguration = [[INSTomatoConfiguration alloc] init];
     
     tomatoConfiguration.topLeftPluginType = INSSupportedPluginTypeTask;
@@ -60,8 +60,10 @@
     tomatoConfiguration.bottomLeftPluginType = INSSupportedPluginTypeBookmark;
     tomatoConfiguration.bottomRightPluginType = INSSupportedPluginTypeNone;
     
-    INSTomatoViewController *tomatoVC = [[INSTomatoViewController alloc] initWithTomatoConfiguration:tomatoConfiguration];
+    //tomatoConfiguration.backgrondImage = [UIImage imageNamed:@"xxxx"]; // 背景图片，默认使用书签表的背景图片。
     
+    // 生成番茄视图
+    INSTomatoViewController *tomatoVC = [[INSTomatoViewController alloc] initWithTomatoConfiguration:tomatoConfiguration];
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

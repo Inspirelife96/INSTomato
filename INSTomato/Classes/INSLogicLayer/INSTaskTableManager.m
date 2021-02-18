@@ -62,10 +62,12 @@ static INSTaskTableManager *sharedInstance = nil;
     
     [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
     
-    [configurationDictionary setObject:taskTableConfiguration.isAddTaskEnabled forKey:kTaskTableConfigurationIsAddTaskEnabled];
+    [configurationDictionary setObject:@(taskTableConfiguration.isAddTaskEnabled) forKey:kTaskTableConfigurationIsAddTaskEnabled];
     [configurationDictionary setObject:taskTableConfiguration.taskTableTitle forKey:kTaskTableConfigurationTitle];
     [configurationDictionary setObject:taskTableConfiguration.taskTableDescription forKey:kTaskTableConfigurationDescription];
-    [configurationDictionary setObject:taskTableConfiguration.taskTableIconData forKey:kTaskTableConfigurationIconData];
+    
+    NSData *iconData = UIImagePNGRepresentation(taskTableConfiguration.taskTableIcon);
+    [configurationDictionary setObject:iconData forKey:kTaskTableConfigurationIconData];
     
     taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
     taskTableDictionary[kTaskTableCore] = coreDictionary;
@@ -170,6 +172,22 @@ static INSTaskTableManager *sharedInstance = nil;
     [self.taskTableDictionary removeObjectForKey:taskId];
     [self saveTaskTable];
     [[INSTomatoTableManager sharedInstance] removeTomatoByTaskId:taskId];
+}
+
+- (BOOL)isAddTaskEnabled {
+    return [self.configurationDictionary[kTaskTableConfigurationIsAddTaskEnabled] boolValue];
+}
+
+- (NSString *)taskTableTitle {
+    return self.configurationDictionary[kTaskTableConfigurationTitle];
+}
+
+- (NSString *)taskTableDescription {
+    return self.configurationDictionary[kTaskTableConfigurationDescription];
+}
+
+- (UIImage *)taskTableIcon {
+    return [UIImage imageWithData:self.configurationDictionary[kTaskTableConfigurationIconData]];
 }
 
 #pragma mark - Private Method

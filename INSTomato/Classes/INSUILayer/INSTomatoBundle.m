@@ -26,19 +26,27 @@
     }
 }
 
+// 加载 叶根友蚕燕隶书 字体
+// 如果已经加载了，则直接返回。
 + (void)loadSpecialFont {
-    NSString *fontPath = [[INSTomatoBundle bundle] pathForResource:@"叶根友蚕燕隶书" ofType:@"ttf"];
-    NSData *inData = [NSData dataWithContentsOfFile:fontPath];
-    CFErrorRef error;
-    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)inData);
-    CGFontRef font = CGFontCreateWithDataProvider(provider);
-    if (! CTFontManagerRegisterGraphicsFont(font, &error)) {
-        CFStringRef errorDescription = CFErrorCopyDescription(error);
-        NSLog(@"Failed to load font: %@", errorDescription);
-        CFRelease(errorDescription);
+    UIFont* specialFont = [UIFont fontWithName:@"-" size:12.0];
+    
+    if (specialFont && [specialFont.fontName compare:@"-"] == NSOrderedSame) {
+        return;
+    } else {
+        NSString *fontPath = [[INSTomatoBundle bundle] pathForResource:@"叶根友蚕燕隶书" ofType:@"ttf"];
+        NSData *inData = [NSData dataWithContentsOfFile:fontPath];
+        CFErrorRef error;
+        CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)inData);
+        CGFontRef font = CGFontCreateWithDataProvider(provider);
+        if (! CTFontManagerRegisterGraphicsFont(font, &error)) {
+            CFStringRef errorDescription = CFErrorCopyDescription(error);
+            NSLog(@"Failed to load font: %@", errorDescription);
+            CFRelease(errorDescription);
+        }
+        CFRelease(font);
+        CFRelease(provider);
     }
-    CFRelease(font);
-    CFRelease(provider);
 }
 
 @end

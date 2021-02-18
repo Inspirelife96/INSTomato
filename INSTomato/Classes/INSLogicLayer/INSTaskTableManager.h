@@ -30,9 +30,15 @@ extern NSString *const kNotificationTaskTableSaved;
 
 + (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray;
 + (void)createTaskTableWithConfigration:(INSTaskTableConfiguration *)taskTableConfiguration;
+
 + (instancetype)sharedInstance;
 
 + (BOOL)isTaskTableExists;
+
+- (BOOL)isAddTaskEnabled;
+- (NSString *)taskTableTitle;
+- (NSString *)taskTableDescription;
+- (UIImage *)taskTableIcon;
 
 - (NSArray<NSString *> *)taskIds;
 - (INSTaskModel *)taskModelByTaskId:(NSString *)taskId;

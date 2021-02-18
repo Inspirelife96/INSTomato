@@ -13,6 +13,8 @@
 
 #import "INSPersistenceConstants.h"
 
+#import "INSDateHelper.h"
+
 #import "INSNetworkOperation.h"
 
 #import "INSNetworkOperation.h"
@@ -35,8 +37,18 @@ static INSBookmarkTableManager *sharedInstance = nil;
     [INSBookmarkTablePersistence createBookmarkTable];
 }
 
-
 + (void)updateBookmarkTable {
+    // 先判断是不是同一天
+    NSDictionary *bookmarkTableDictionary = [INSBookmarkTablePersistence readBookmarkTable];
+    NSDate *bookmarkDate = bookmarkTableDictionary[kBookMarkDate];
+    NSDate *today = [NSDate date];
+
+    // 是，则什么都不做，今日图片已经更新完毕
+    if ([INSDateHelper isSameDay:today date2:bookmarkDate]) {
+        return;
+    }
+    
+    // 不是，则下载今日的图片
     INSNetworkOperation *networkOperation = [[INSNetworkOperation alloc] init];
     
     [networkOperation downloadBookmarkData:^(INSBookmarkModel * _Nonnull bookmarkModel, NSError * _Nullable error) {
@@ -72,6 +84,10 @@ static INSBookmarkTableManager *sharedInstance = nil;
 - (instancetype)init {
     if (self = [super init]) {
         _bookmarkTableDictionary = [INSBookmarkTablePersistence readBookmarkTable];
+        if (!_bookmarkTableDictionary) {
+            [INSBookmarkTablePersistence createBookmarkTable];
+            _bookmarkTableDictionary = [INSBookmarkTablePersistence readBookmarkTable];
+        }
     }
     
     return self;
