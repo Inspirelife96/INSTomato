@@ -9,8 +9,7 @@
 
 #import "INSBackgroundImageManager.h"
 
-#import "INSBookmarkTableManager.h"
-#import "INSBookmarkModel.h"
+#import "INSCopyScreenManager.h"
 
 #import "UIImageEffects.h"
 
@@ -41,8 +40,7 @@
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc] init];
         
-        INSBookmarkModel *bookmarkModel = [[INSBookmarkTableManager sharedInstance] prepareBookmarkModel];
-        _backgroundImageView.image = [UIImageEffects imageByApplyingDarkEffectToImage:bookmarkModel.image];
+        _backgroundImageView.image = [INSCopyScreenManager sharedInstance].copiedScreenImage;
     }
     
     return _backgroundImageView;

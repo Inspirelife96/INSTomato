@@ -7,6 +7,8 @@
 
 #import "INSTaskConfigurationPresentStyleBasedViewController.h"
 
+#import "INSTomatoBundle.h"
+
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
@@ -81,7 +83,7 @@
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [[UIButton alloc] init];
-        [_closeButton setBackgroundImage:[UIImage imageNamed:@"global_close_icon_28x28_"] forState:UIControlStateNormal];
+        [_closeButton setBackgroundImage:[INSTomatoBundle imageNamed:@"global_close_icon_28x28_"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(clickCloseButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     

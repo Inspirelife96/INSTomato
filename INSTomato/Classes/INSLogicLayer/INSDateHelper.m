@@ -108,7 +108,7 @@
     NSDateComponents* comp = [calendar components:unitFlags fromDate:date];
     NSString *monthString = [INSDateHelper monthArray][[comp month] - 1];
     NSString *weekdayString = [INSDateHelper weekDaysArray][[comp weekday] - 1];
-    return [NSString stringWithFormat:@"%@ %ld %@ %ld", monthString, (long)[comp day], weekdayString, [comp year]];
+    return [NSString stringWithFormat:@"%ld年 %@ %ld日 %@ ", [comp year], monthString, (long)[comp day], weekdayString];
 }
 
 + (NSString *)minutesFormatBySeconds:(CGFloat)seconds {

@@ -7,6 +7,8 @@
 
 #import "INSTaskConfigurationNavigationStyleBasedViewController.h"
 
+#import "INSTomatoBundle.h"
+
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
@@ -60,7 +62,7 @@
 
 - (UIBarButtonItem *)backBarButtonItem {
     if (!_backBarButtonItem) {
-        _backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu_back_icon_28x28_"] style:UIBarButtonItemStylePlain target:self action:@selector(clickBackBarButtonItem:)];
+        _backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[INSTomatoBundle imageNamed:@"menu_back_icon_28x28_"] style:UIBarButtonItemStylePlain target:self action:@selector(clickBackBarButtonItem:)];
     }
     
     return _backBarButtonItem;

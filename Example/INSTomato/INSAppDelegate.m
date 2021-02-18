@@ -17,30 +17,54 @@
     // Override point for customization after application launch.
     
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // 关于INTomato的配置，需要做如下四点：
     
+    //  - 任务表的配置
     INSTaskModel *taskModel1 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"学习" color:@"赤色" music:@"纯然"];
+    INSTaskModel *taskModel2 = [[INSTaskModel alloc] initWithIdentifier:@"1" name:@"工作" color:@"蓝色" music:@"纯然"];
+    INSTaskModel *taskModel3 = [[INSTaskModel alloc] initWithIdentifier:@"2" name:@"冥想" color:@"绿色" music:@"纯然"];
+    INSTaskModel *taskModel4 = [[INSTaskModel alloc] initWithIdentifier:@"3" name:@"锻炼" color:@"橙色" music:@"纯然"];
     
-    INSTaskModel *taskModel2 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"工作" color:@"蓝色" music:@"纯然"];
+    INSTaskTableConfiguration *taskTableConfiguration = [[INSTaskTableConfiguration alloc] initWithTaskModelArray:@[taskModel1, taskModel2, taskModel3, taskModel4]];
     
-    INSTaskModel *taskModel3 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"冥想" color:@"绿色" music:@"纯然"];
+    [INSTaskTableManager createTaskTableWithConfigration:taskTableConfiguration];
     
-    INSTaskModel *taskModel4 = [[INSTaskModel alloc] initWithIdentifier:@"0" name:@"锻炼" color:@"橙色" music:@"纯然"];
     
-    [INSTaskTableManager createTaskTable:@[taskModel1, taskModel2,taskModel3, taskModel4]];
+    
+    //  - 统计表的配置
     [INSTomatoTableManager createTomatoTable];
     
+    //  - 书签表的配置
     [INSBookmarkTableManager createBookmarkTable];
     [INSBookmarkTableManager updateBookmarkTable];
+    
+    //  - 番茄的配置
+    
+    
+    
+    
+    
+
+    
+
+
+    
+
+    
+    [INSTomatoBundle loadSpecialFont];
     
     INSTomatoConfiguration *tomatoConfiguration = [[INSTomatoConfiguration alloc] init];
     
     tomatoConfiguration.topLeftPluginType = INSSupportedPluginTypeTask;
-    tomatoConfiguration.topRightPluginType = INSSupportedPluginTypeNone;
-    tomatoConfiguration.bottomLeftPluginType = INSSupportedPluginTypeNone;
+    tomatoConfiguration.topRightPluginType = INSSupportedPluginTypeStatistics;
+    tomatoConfiguration.bottomLeftPluginType = INSSupportedPluginTypeBookmark;
     tomatoConfiguration.bottomRightPluginType = INSSupportedPluginTypeNone;
     
     INSTomatoViewController *tomatoVC = [[INSTomatoViewController alloc] initWithTomatoConfiguration:tomatoConfiguration];
+    
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.window.rootViewController = tomatoVC;
 

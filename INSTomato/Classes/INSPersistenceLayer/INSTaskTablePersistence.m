@@ -19,7 +19,10 @@ NSString *const kTaskTablePersistanceFile = @"taskTable.plist";
     NSDictionary *taskTableDictionary = @{
                                 kTaskTableConfiguration:@{
                                         kTaskTableConfigurationMaxRowId:@0,
-                                        kTaskTableConfigurationVersion:@"1.0"
+                                        kTaskTableConfigurationVersion:@"1.0",
+                                        kTaskTableConfigurationTitle:@"",
+                                        kTaskTableConfigurationDescription:@"",
+                                        kTaskTableConfigurationIconData:[[NSData alloc] init],
                                 },
                                 kTaskTableCore:@{}
                                 };

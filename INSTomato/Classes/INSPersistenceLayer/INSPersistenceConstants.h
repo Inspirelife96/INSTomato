@@ -15,6 +15,10 @@ extern NSString *const kTaskTableCore;
 
 extern NSString *const kTaskTableConfigurationMaxRowId;
 extern NSString *const kTaskTableConfigurationVersion;
+extern NSString *const kTaskTableConfigurationIsAddTaskEnabled;
+extern NSString *const kTaskTableConfigurationTitle;
+extern NSString *const kTaskTableConfigurationDescription;
+extern NSString *const kTaskTableConfigurationIconData;
 
 extern NSString *const kTaskTableCoreIdentifier;
 extern NSString *const kTaskTableCoreName;

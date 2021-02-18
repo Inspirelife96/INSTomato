@@ -23,6 +23,8 @@
 
 #import "INSTaskTableManager.h"
 
+#import "INSTomatoBundle.h"
+
 #import <ChameleonFramework/Chameleon.h>
 
 @interface INSTaskConfigurationViewController ()
@@ -48,12 +50,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"任务设置";
-    self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
-
-    if (self.configurationType == TaskConfigurationTypeAdd) {
-        [self.backBarButtonItem setImage:[UIImage imageNamed:@"global_close_icon_28x28_"]];
-        self.navigationItem.title = @"添加任务";
+    switch (self.configurationType) {
+            // 添加任务，左侧按钮变为关闭，右侧按钮为添加
+        case INSTaskConfigurationTypeAdd:
+            self.navigationItem.title = @"添加任务";
+            [self.backBarButtonItem setImage:[INSTomatoBundle imageNamed:@"global_close_icon_28x28_"]];
+            self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
+            break;
+            
+            // 修改并允许删除任务，左侧按钮保持为返回，右侧按钮为删除
+        case INSTaskConfigurationTypeModify:
+            self.navigationItem.title = @"任务设置";
+            self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
+            break;
+            
+            // 仅允许修改任务，左侧按钮保持为返回，无右侧按钮
+        case INSTaskConfigurationTypeModifyOnly:
+            self.navigationItem.title = @"任务设置";
+            break;
     }
 }
 
@@ -146,7 +160,7 @@
             // do nothing
         }
     } else {
-        INSAlertOptionsViewController *alertOptionVC = [[INSAlertOptionsViewController alloc] init];
+        INSAlertOptionsViewController *alertOptionVC = [[INSAlertOptionsViewController alloc] initWithTaskModel:self.taskModel];
         alertOptionVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:alertOptionVC animated:YES];
     }
@@ -193,7 +207,7 @@
 }
 
 - (void)clickBackBarButtonItem:(id)sender {
-    if (self.configurationType == TaskConfigurationTypeModify) {
+    if (self.configurationType == INSTaskConfigurationTypeModifyOnly) {
         if ([self.taskModel.name isEqualToString:@""]) {
             UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"警告" message:@"任务名称不能为空，请设置" preferredStyle:UIAlertControllerStyleAlert];
             
@@ -213,37 +227,38 @@
     }
 }
 
-- (void)clickRightButtonItem:(id)sender {
-    if (self.configurationType == TaskConfigurationTypeAdd) {
-        [[INSTaskTableManager sharedInstance] addTask:self.taskModel];
-        [self dismissViewControllerAnimated:YES completion:nil];
+- (void)saveTask:(id)sender {
+    [[INSTaskTableManager sharedInstance] addTask:self.taskModel];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)deleteTask:(id)sender {
+    if ([[[INSTaskTableManager sharedInstance] taskIds] count] <= 1) {
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"通知" message:@"这是最后一个任务，无法被删除" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            //
+        }];
+        
+        [alertVC addAction:cancelAction];
+        
+        [self presentViewController:alertVC animated:YES completion:nil];
     } else {
-        if ( [[[INSTaskTableManager sharedInstance] taskIds] count] <= 1) {
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"通知" message:@"这是最后一个任务，无法被删除" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                //
-            }];
-            
-            [alertVC addAction:cancelAction];
-            
-            [self presentViewController:alertVC animated:YES completion:nil];
-        } else {
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"警告" message:@"该操作会删除当前任务以及所有的和任务相关的统计记录，确认删除吗？" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-                [[INSTaskTableManager sharedInstance] removeTask:self.taskModel.identifier];
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                //
-            }];
-            
-            [alertVC addAction:cancelAction];
-            [alertVC addAction:okAction];
-            
-            [self presentViewController:alertVC animated:YES completion:nil];
-        }
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"警告" message:@"该操作会删除当前任务以及所有的和任务相关的统计记录，确认删除吗？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [[INSTaskTableManager sharedInstance] removeTask:self.taskModel.identifier];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            //
+        }];
+        
+        [alertVC addAction:cancelAction];
+        [alertVC addAction:okAction];
+        
+        [self presentViewController:alertVC animated:YES completion:nil];
     }
 }
 
@@ -252,7 +267,7 @@
 - (void)updataDataAndTableView {
     [self.tableView reloadData];
     
-    if (self.configurationType == TaskConfigurationTypeAdd) {
+    if (self.configurationType == INSTaskConfigurationTypeAdd) {
         if ([self.taskModel.name isEqualToString:@""]) {
             [self.rightBarButtonItem setEnabled:NO];
         } else {
@@ -265,10 +280,10 @@
 
 - (UIBarButtonItem *)rightBarButtonItem {
     if (!_rightBarButtonItem) {
-        if (self.configurationType == TaskConfigurationTypeAdd) {
-            _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightButtonItem:)];
-        } else {
-            _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightButtonItem:)];
+        if (self.configurationType == INSTaskConfigurationTypeAdd) {
+            _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveTask:)];
+        } else if (self.configurationType == INSTaskConfigurationTypeModify){
+            _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(deleteTask:)];
             _rightBarButtonItem.tintColor = FlatRed;
         }
     }
@@ -277,34 +292,37 @@
 }
 
 - (INSTaskConfigurationDefaultCell *)nameCell {
-    if (_nameCell) {
+    if (!_nameCell) {
         _nameCell = [[INSTaskConfigurationDefaultCell alloc] init];
         _nameCell.textLabel.text = @"任务名字";
+        _nameCell.detailTextLabel.text = self.taskModel.name;
     }
     
     return _nameCell;
 }
 
 - (INSTaskConfigurationDefaultCell *)colorCell {
-    if (_colorCell) {
+    if (!_colorCell) {
         _colorCell = [[INSTaskConfigurationDefaultCell alloc] init];
         _colorCell.textLabel.text = @"任务配色";
+        _colorCell.detailTextLabel.text = self.taskModel.color;
     }
     
     return _colorCell;
 }
 
 - (INSTaskConfigurationDefaultCell *)tomatoMinutesCell {
-    if (_tomatoMinutesCell) {
+    if (!_tomatoMinutesCell) {
         _tomatoMinutesCell = [[INSTaskConfigurationDefaultCell alloc] init];
         _tomatoMinutesCell.textLabel.text = @"专注时长";
+        _tomatoMinutesCell.detailTextLabel.text = [NSString stringWithFormat:@"%@", self.taskModel.tomatoMinutes];
     }
     
     return _tomatoMinutesCell;
 }
 
 - (INSTaskConfigurationDefaultCell *)restOptionsCell {
-    if (_restOptionsCell) {
+    if (!_restOptionsCell) {
         _restOptionsCell = [[INSTaskConfigurationDefaultCell alloc] init];
         _restOptionsCell.textLabel.text = @"休息";
     }
@@ -318,15 +336,17 @@
         _focusModeCell.textLabel.text = @"沉浸模式";
         _focusModeCell.detailTextLabel.text = @"退出应用会导致专注失败且不允许暂停";
         [_focusModeCell.configurationSwitch addTarget:self action:@selector(enableFocusMode:) forControlEvents:UIControlEventValueChanged];
+        [_focusModeCell.configurationSwitch setOn:self.taskModel.isFocusModeEnabled];
     }
     
     return _focusModeCell;
 }
 
 - (INSTaskConfigurationDefaultCell *)musicCell {
-    if (_musicCell) {
+    if (!_musicCell) {
         _musicCell = [[INSTaskConfigurationDefaultCell alloc] init];
         _musicCell.textLabel.text = @"背景音乐";
+        _musicCell.detailTextLabel.text = self.taskModel.music;
     }
     
     return _musicCell;
@@ -337,13 +357,15 @@
         _musicEnableCell = [[INSTaskConfigurationSwitchCell alloc] init];
         _musicEnableCell.textLabel.text = @"白噪音";
         [_musicEnableCell.configurationSwitch addTarget:self action:@selector(enableMusicMode:) forControlEvents:UIControlEventValueChanged];
+        [_musicEnableCell.configurationSwitch setOn:self.taskModel.isMusicModeEnabled];
+
     }
     
     return _musicEnableCell;
 }
 
 - (INSTaskConfigurationDefaultCell *)alertOptionsCell {
-    if (_alertOptionsCell) {
+    if (!_alertOptionsCell) {
         _alertOptionsCell = [[INSTaskConfigurationDefaultCell alloc] init];
         _alertOptionsCell.textLabel.text = @"专注提醒";
     }

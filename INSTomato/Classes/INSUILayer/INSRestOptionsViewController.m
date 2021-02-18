@@ -63,6 +63,7 @@
         //
     } else {
         INSRestMinutesViewController *restMinutesVC = [[INSRestMinutesViewController alloc] initWithTaskModel:self.taskModel];
+        restMinutesVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:restMinutesVC animated:YES completion:nil];
     }
 }

@@ -9,14 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, TaskConfigurationType) {
-    TaskConfigurationTypeAdd,
-    TaskConfigurationTypeModify
+typedef NS_ENUM(NSInteger, INSTaskConfigurationType) {
+    INSTaskConfigurationTypeAdd,
+    INSTaskConfigurationTypeModify,
+    INSTaskConfigurationTypeModifyOnly,
 };
 
 @interface INSTaskConfigurationViewController : INSTaskConfigurationNavigationStyleBasedViewController
 
-@property(nonatomic, assign) TaskConfigurationType configurationType;
+@property(nonatomic, assign) INSTaskConfigurationType configurationType;
 
 @end
 

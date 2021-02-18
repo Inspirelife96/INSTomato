@@ -9,6 +9,8 @@
 
 #import "INSTaskModel.h"
 
+#import "INSTomatoBundle.h"
+
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
@@ -41,7 +43,7 @@
     [self.view addSubview:self.descriptionLabel];
     [self.descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.centerY.equalTo(self.view).with.offset(100.0f);
+        make.centerY.equalTo(self.view).with.offset(-100.0f);
         make.height.mas_equalTo(21);
     }];
 
@@ -121,7 +123,7 @@
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [[UIButton alloc] init];
-        [_closeButton setBackgroundImage:[UIImage imageNamed:@"global_close_icon_28x28_"] forState:UIControlStateNormal];
+        [_closeButton setBackgroundImage:[INSTomatoBundle imageNamed:@"global_close_icon_28x28_"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(clickCloseButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -151,7 +153,7 @@
 }
 
 - (UITapGestureRecognizer *)singleTap {
-    if (_singleTap) {
+    if (!_singleTap) {
         _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapped:)];
     }
     

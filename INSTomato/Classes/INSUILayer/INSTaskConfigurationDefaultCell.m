@@ -28,7 +28,7 @@
 }
 
 - (instancetype)init {
-    if (self = [super init]) {
+    if (self = [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NSStringFromClass([INSTaskConfigurationDefaultCell class])]) {
         [self buildUI];
     }
     

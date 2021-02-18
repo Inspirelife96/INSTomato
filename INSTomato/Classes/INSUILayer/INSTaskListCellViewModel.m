@@ -9,6 +9,8 @@
 
 #import "INSTaskModel.h"
 
+#import "INSTomatoBundle.h"
+
 #import "UIImage+INS_ContentWithColor.h"
 #import "INSColorHelper.h"
 
@@ -19,7 +21,15 @@
         _taskModel = taskModel;
         _taskName = taskModel.name;
         _taskTomatoMinutes = [NSString stringWithFormat:@"%@分钟", taskModel.tomatoMinutes];
-        _taskColorImage = [[UIImage imageNamed:@"menu_slider_thumb_16x16_"] ins_contentWithColor:[INSColorHelper colorByName:taskModel.color]];
+        
+        UIImage *colorImage = nil;
+        if (@available(iOS 13.0, *)) {
+            colorImage = [UIImage imageNamed:@"menu_slider_thumb_16x16_" inBundle:[INSTomatoBundle bundle] withConfiguration:nil];
+        } else {
+            colorImage = [UIImage imageNamed:@"menu_slider_thumb_16x16_" inBundle:[INSTomatoBundle bundle] compatibleWithTraitCollection:nil];
+        }
+        
+        _taskColorImage = [colorImage ins_contentWithColor:[INSColorHelper colorByName:taskModel.color]];
     }
     
     return self;

@@ -109,7 +109,7 @@
     
     NSString *textContent = [INSDateHelper minutesFormatBySeconds:leftSeconds];
     
-    UIFont *textFont = [UIFont fontWithName:@"Avenir Next" size: TEXT_NAME_SIZE];
+    UIFont *textFont = [UIFont fontWithName:@"-" size: TEXT_NAME_SIZE];
     CGSize textSize = [textContent sizeWithAttributes:@{NSFontAttributeName:textFont}];
     CGRect textRect = CGRectMake(rect.size.width / 2 - textSize.width / 2,
                                  rect.size.height / 2 - textSize.height / 2,
@@ -130,12 +130,12 @@
     
     NSInteger fontSize = TEXT_NAME_SIZE;
     
-    UIFont *taskNameFont = [UIFont fontWithName:@"Avenir Next" size: fontSize];
+    UIFont *taskNameFont = [UIFont fontWithName:@"-" size: fontSize];
     CGSize taskNameSize = [taskOrRestName sizeWithAttributes:@{NSFontAttributeName:taskNameFont}];
     
     while (taskNameSize.width > (self.frame.size.width - 20)) {
         fontSize -= 2;
-        taskNameFont = [UIFont fontWithName:@"Avenir Next" size: fontSize];
+        taskNameFont = [UIFont fontWithName:@"-" size: fontSize];
         taskNameSize = [taskOrRestName sizeWithAttributes:@{NSFontAttributeName:taskNameFont}];
     }
     
@@ -155,7 +155,7 @@
     [taskOrRestName drawInRect:taskNameRect withAttributes:@{NSFontAttributeName:taskNameFont, NSForegroundColorAttributeName:FlatWhite, NSParagraphStyleAttributeName:textStyle}];
     
     NSString *dateToday = [INSDateHelper stringOfDayWithWeekDay:[NSDate date]];
-    UIFont *dateFont = [UIFont fontWithName:@"Avenir Next" size: TEXT_DATE_SIZE];
+    UIFont *dateFont = [UIFont fontWithName:@"-" size: TEXT_DATE_SIZE];
     CGSize dateSize = [dateToday sizeWithAttributes:@{NSFontAttributeName:dateFont}];
     
     CGFloat dateX = (rect.size.width - dateSize.width)/2;

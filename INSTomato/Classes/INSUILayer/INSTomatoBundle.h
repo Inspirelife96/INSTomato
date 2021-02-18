@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSBundle *)bundle;
 
++ (UIImage *)imageNamed:(NSString *)name;
+
++ (void)loadSpecialFont;
+
 @end
 
 NS_ASSUME_NONNULL_END

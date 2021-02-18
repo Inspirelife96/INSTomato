@@ -9,6 +9,8 @@
 
 #import "UIImage+INS_ContentWithColor.h"
 
+#import "INSTomatoBundle.h"
+
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
@@ -53,7 +55,7 @@
 - (UILabel *)colorNameLabel {
     if (!_colorNameLabel) {
         _colorNameLabel = [[UILabel alloc] init];
-        _colorNameLabel.textAlignment = NSTextAlignmentCenter;
+        _colorNameLabel.textAlignment = NSTextAlignmentLeft;
         _colorNameLabel.font = [UIFont fontWithName:@"Avenir Next" size:16];
         _colorNameLabel.textColor = FlatWhite;
         _colorNameLabel.text = self.colorName;
@@ -65,7 +67,7 @@
 - (UIImageView *)colorImageView {
     if (!_colorImageView) {
         _colorImageView = [[UIImageView alloc] init];
-        UIImage *iconImage = [UIImage imageNamed:@"menu_slider_thumb_16x16_"];
+        UIImage *iconImage = [INSTomatoBundle imageNamed:@"menu_slider_thumb_16x16_"];
         _colorImageView.image = [iconImage ins_contentWithColor:self.color];
     }
     

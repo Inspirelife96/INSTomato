@@ -10,14 +10,13 @@
 #import "INSTaskTablePersistence.h"
 #import "INSTaskModel.h"
 
+#import "INSTaskTableConfiguration.h"
 #import "INSTomatoTableManager.h"
 #import "INSPersistenceConstants.h"
 
 NSString *const kNotificationTaskTableSaved = @"task.table.saved";
 
 @interface INSTaskTableManager ()
-
-@property (strong, nonatomic) NSMutableArray *taskTableArray;
 
 @property (strong, nonatomic) NSMutableDictionary *taskTableDictionary;
 @property (strong, nonatomic) NSMutableDictionary *configurationDictionary;
@@ -39,12 +38,9 @@ static INSTaskTableManager *sharedInstance = nil;
     }
 }
 
-+ (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray {
++ (void)createTaskTableWithConfigration:(INSTaskTableConfiguration *)taskTableConfiguration {
+    //如果已经存在任务表，则不需要再重新创建了。
     if ([INSTaskTablePersistence readTaskTable]) {
-        return;
-    }
-    
-    if (!taskModelArray || taskModelArray.count <= 0) {
         return;
     }
     
@@ -53,6 +49,8 @@ static INSTaskTableManager *sharedInstance = nil;
     NSMutableDictionary *taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
     NSMutableDictionary *configurationDictionary = [taskTableDictionary[kTaskTableConfiguration] mutableCopy];
     NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
+    
+    NSArray *taskModelArray = taskTableConfiguration.taskModelArray;
     
     [taskModelArray enumerateObjectsUsingBlock:^(INSTaskModel * _Nonnull taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
@@ -64,11 +62,47 @@ static INSTaskTableManager *sharedInstance = nil;
     
     [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
     
+    [configurationDictionary setObject:taskTableConfiguration.isAddTaskEnabled forKey:kTaskTableConfigurationIsAddTaskEnabled];
+    [configurationDictionary setObject:taskTableConfiguration.taskTableTitle forKey:kTaskTableConfigurationTitle];
+    [configurationDictionary setObject:taskTableConfiguration.taskTableDescription forKey:kTaskTableConfigurationDescription];
+    [configurationDictionary setObject:taskTableConfiguration.taskTableIconData forKey:kTaskTableConfigurationIconData];
+    
     taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
     taskTableDictionary[kTaskTableCore] = coreDictionary;
     
     [INSTaskTablePersistence saveTaskTable:taskTableDictionary];
 }
+
+//+ (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray {
+//    if ([INSTaskTablePersistence readTaskTable]) {
+//        return;
+//    }
+//    
+//    if (!taskModelArray || taskModelArray.count <= 0) {
+//        return;
+//    }
+//    
+//    [INSTaskTablePersistence createTaskTable];
+//    
+//    NSMutableDictionary *taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
+//    NSMutableDictionary *configurationDictionary = [taskTableDictionary[kTaskTableConfiguration] mutableCopy];
+//    NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
+//    
+//    [taskModelArray enumerateObjectsUsingBlock:^(INSTaskModel * _Nonnull taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
+//        taskModel.identifier = identifier;
+//        [coreDictionary setObject:[taskModel convertToDictionary] forKey:identifier];
+//    }];
+//    
+//    NSNumber *maxRowId = [NSNumber numberWithInteger:(taskModelArray.count - 1)];
+//    
+//    [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
+//    
+//    taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
+//    taskTableDictionary[kTaskTableCore] = coreDictionary;
+//    
+//    [INSTaskTablePersistence saveTaskTable:taskTableDictionary];
+//}
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;

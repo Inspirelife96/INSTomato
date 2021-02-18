@@ -42,7 +42,7 @@
 - (void)buildUI {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //self.backgroundColor = ClearColor;
+    self.backgroundColor = ClearColor;
     self.textLabel.font = [UIFont fontWithName:@"Avenir Next" size:16];
     self.textLabel.textColor = FlatWhite;
     self.detailTextLabel.font = [UIFont fontWithName:@"Avenir Next" size:16];
@@ -55,5 +55,6 @@
     self.detailTextLabel.text = taskListCellVM.taskTomatoMinutes;
     self.imageView.image = taskListCellVM.taskColorImage;
 }
+
 
 @end

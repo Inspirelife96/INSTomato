@@ -13,6 +13,10 @@ NSString *const kTaskTableCore = @"core";
 
 NSString *const kTaskTableConfigurationMaxRowId = @"maxRowId";
 NSString *const kTaskTableConfigurationVersion = @"version";
+NSString *const kTaskTableConfigurationIsAddTaskEnabled = @"isAddTaskEnabled";
+NSString *const kTaskTableConfigurationTitle = @"title";
+NSString *const kTaskTableConfigurationDescription = @"description";
+NSString *const kTaskTableConfigurationIconData = @"icon";
 
 NSString *const kTaskTableCoreIdentifier = @"identifier";
 NSString *const kTaskTableCoreName = @"name";

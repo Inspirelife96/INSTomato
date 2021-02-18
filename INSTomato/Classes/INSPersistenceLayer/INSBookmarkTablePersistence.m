@@ -19,14 +19,7 @@ NSString *const kBookMarkTablePersistanceFile = @"bookmarkTable.plist";
 + (void)createBookmarkTable {
     NSDate *date = [NSDate dateWithTimeIntervalSinceNow:- (24 * 3600)];
     
-    UIImage *bookMarkImage = nil;
-    if (@available(iOS 13.0, *)) {
-        NSBundle *bundle = [INSTomatoBundle bundle];
-        
-        bookMarkImage = [UIImage imageNamed:@"default_book_mark_image_1080x1920.jpg" inBundle:[INSTomatoBundle bundle] withConfiguration:nil];
-    } else {
-        bookMarkImage = [UIImage imageNamed:@"default_book_mark_image_1080x1920.jpg" inBundle:[INSTomatoBundle bundle] compatibleWithTraitCollection:nil];
-    }
+    UIImage *bookMarkImage = [INSTomatoBundle imageNamed:@"default_book_mark_image_1080x1920.jpg"];
     
     NSData *imageData = UIImageJPEGRepresentation(bookMarkImage, 0.5);
     

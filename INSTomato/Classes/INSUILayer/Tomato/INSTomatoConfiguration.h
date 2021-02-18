@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, INSSupportedPluginType) {
     INSSupportedPluginTypeTask,
     INSSupportedPluginTypeStatistics,
     INSSupportedPluginTypeSetting,
-    INSSupportedPluginTypeStory,
+    INSSupportedPluginTypeBookmark,
     INSSupportedPluginTypeNone = 9999,
 };
 
@@ -22,7 +22,9 @@ typedef NS_ENUM(NSInteger, INSSupportedPluginType) {
 
 @property (nonatomic, assign) BOOL isAddTaskEnabled;
 
-@property (nonatomic, strong) UIImage *backgrondImage; //背景图片，如果为nil，则使用默认的bing图片
+@property (nonatomic, strong) UIImage *backgrondImage; // 背景图片，如果为nil，则使用默认的bing图片
+@property (nonatomic, strong) UIImage *shareCodeImage; // 仅分享页面用到，一个二维码，扫描后就可以跳转App下载，如果为nil，则为勤之时的二维码
+@property (nonatomic, strong) UIImage *appIconImage;   // 任务一览页面显示，如果为nil，则为勤之时图片
 
 @property (nonatomic, assign) INSSupportedPluginType topLeftPluginType;
 @property (nonatomic, assign) INSSupportedPluginType topRightPluginType;

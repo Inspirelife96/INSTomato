@@ -7,12 +7,17 @@
 
 #import "INSTaskListViewController.h"
 
+#import "INSTaskConfigurationViewController.h"
+
 #import "INSTaskListCell.h"
 #import "INSTaskListCellViewModel.h"
 #import "INSLogoConfiguration.h"
 #import "INSLogoView.h"
 
 #import "INSTaskTableManager.h"
+
+#import "INSTomatoBundle.h"
+#import "INSTaskModel.h"
 
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
@@ -76,21 +81,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    ILDTaskConfigurationViewController *configurationVC = [[ILDTaskConfigurationViewController alloc] init];
-//    configurationVC.configurationType = TaskConfigurationTypeModify;
-//    configurationVC.taskId = self.taskIds[indexPath.row];
-//    configurationVC.isAddTaskEnabled = self.isAddTaskEnabled;
-//
-//    [self.navigationController pushViewController:configurationVC animated:YES];
+    INSTaskListCellViewModel *taskListCellVM = self.taskListCellVMArray[indexPath.row];
+    
+    INSTaskConfigurationViewController *taskConfigurationVC = [[INSTaskConfigurationViewController alloc] initWithTaskModel:taskListCellVM.taskModel];
+    
+    // ToDo: 如果外部配置允许删除，则在这里需要做相应的判断
+    taskConfigurationVC.configurationType = INSTaskConfigurationTypeModifyOnly;
+
+    [self.navigationController pushViewController:taskConfigurationVC animated:YES];
 }
 
 #pragma mark - Event
 
 - (void)clickAddButton:(id)sender {
-//    ILDTaskConfigurationViewController *taskConfigurationVC = [[ILDTaskConfigurationViewController alloc] init];
-//    taskConfigurationVC.configurationType = TaskConfigurationTypeAdd;
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:taskConfigurationVC];
-//    [self presentViewController:nav animated:YES completion:nil];
+    INSTaskModel *taskModel = [[INSTaskModel alloc] initWithIdentifier:@"" name:@"请修改" color:@"赤色" music:@"纯然"];
+    
+    INSTaskConfigurationViewController *taskConfigurationVC = [[INSTaskConfigurationViewController alloc] initWithTaskModel:taskModel];
+    taskConfigurationVC.configurationType = INSTaskConfigurationTypeAdd;
+    UINavigationController *newNC = [[UINavigationController alloc] initWithRootViewController:taskConfigurationVC];
+    newNC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:newNC animated:YES completion:nil];
 }
 
 - (void)clickCloseButton:(id)sender {
@@ -153,7 +163,7 @@
 
 - (UIBarButtonItem *)closeBarButtonItem {
     if (!_closeBarButtonItem) {
-        _closeBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"global_close_icon_28x28_"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseButton:)];
+        _closeBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[INSTomatoBundle imageNamed:@"global_close_icon_28x28_"] style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseButton:)];
     }
     
     return _closeBarButtonItem;

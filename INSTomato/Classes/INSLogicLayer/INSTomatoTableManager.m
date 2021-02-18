@@ -91,7 +91,7 @@ static INSTomatoTableManager *sharedInstance = nil;
     NSString *tomatoRowId = [newRowIdNumber stringValue];
 
     // 添加番茄数据
-    [self.tomatoTableDictionary setObject:[tomatoModel convertToDictionary] forKey:tomatoRowId];
+    [self.coreDictionary setObject:[tomatoModel convertToDictionary] forKey:tomatoRowId];
 
     // 更新最大RowId
     self.configurationDictionary[kTomatoTableConfigurationMaxRowId] = newRowIdNumber;
@@ -328,8 +328,8 @@ static INSTomatoTableManager *sharedInstance = nil;
     self.tomatoTableDictionary[kTomatoTableConfiguration] = self.configurationDictionary;
     self.tomatoTableDictionary[kTomatoTableCore] = self.coreDictionary;
     self.tomatoTableDictionary[kTomatoTableTaskIndex] = self.taskIndexDictionary;
-    self.tomatoTableDictionary[kTomatoTableDayIndex] = self.hourIndexDictionary;
-    self.tomatoTableDictionary[kTomatoTableHourIndex] = self.dayIndexDictionary;
+    self.tomatoTableDictionary[kTomatoTableDayIndex] = self.dayIndexDictionary;
+    self.tomatoTableDictionary[kTomatoTableHourIndex] = self.hourIndexDictionary;
     self.tomatoTableDictionary[kTomatoTableWeekdayIndex] = self.weekdayIndexDictionary;
     
     [INSTomatoTablePersistence saveTomatoTable:self.tomatoTableDictionary];

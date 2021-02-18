@@ -9,9 +9,11 @@
 
 #import "INSTaskPageViewController.h"
 
+#import "INSBookmarkViewController.h"
+
 #import "INSTomatoConfiguration.h"
 
-//#import "ILDScreenshotImageManager.h"
+#import "INSCopyScreenManager.h"
 
 #import "INSNotificationConstants.h"
 
@@ -25,6 +27,7 @@
 
 
 #import "INSTaskListViewController.h"
+#import "INSStatisticsTodayViewController.h"
 
 #import "INSBookmarkTableManager.h"
 #import "INSBookmarkModel.h"
@@ -46,7 +49,7 @@
 // 四周的按钮
 @property(nonatomic, strong) UIButton *taskButton;
 @property(nonatomic, strong) UIButton *statisticsButton;
-@property(nonatomic, strong) UIButton *storyButton;
+@property(nonatomic, strong) UIButton *bookmarkButton;
 @property(nonatomic, strong) UIButton *settingButton;
 @property(nonatomic, strong) UIButton *closeButton;
 
@@ -102,8 +105,8 @@
         case INSSupportedPluginTypeSetting:
             return self.settingButton;
 
-        case INSSupportedPluginTypeStory:
-            return self.storyButton;
+        case INSSupportedPluginTypeBookmark:
+            return self.bookmarkButton;
             
         case INSSupportedPluginTypeNone:
             return nil;
@@ -206,9 +209,9 @@
         [self.view addSubview:self.bottomLeftButton];
         [self.bottomLeftButton mas_makeConstraints:^(MASConstraintMaker *make) {
             if (@available(iOS 11.0, *)) {
-                make.top.equalTo(self.view.mas_safeAreaLayoutGuideBottom).with.offset(-12);
+                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).with.offset(-12);
             } else {
-                make.top.equalTo(self.view.mas_bottom).with.offset(-12);
+                make.bottom.equalTo(self.view.mas_bottom).with.offset(-12);
             }
             make.left.equalTo(self.view.mas_left).with.offset(12);
             make.height.mas_equalTo(28);
@@ -220,9 +223,9 @@
         [self.view addSubview:self.bottomRightButton];
         [self.bottomRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
             if (@available(iOS 11.0, *)) {
-                make.top.equalTo(self.view.mas_safeAreaLayoutGuideBottom).with.offset(-12);
+                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).with.offset(-12);
             } else {
-                make.top.equalTo(self.view.mas_bottom).with.offset(-12);
+                make.bottom.equalTo(self.view.mas_bottom).with.offset(-12);
             }
             make.right.equalTo(self.view.mas_right).with.offset(-12);
             make.height.mas_equalTo(28);
@@ -360,12 +363,12 @@
     if (timerStatus == INSTomatoTimerStatusStop) {
         [self.taskButton setHidden:NO];
         [self.statisticsButton setHidden:NO];
-        [self.storyButton setHidden:NO];
+        [self.bookmarkButton setHidden:NO];
         [self.settingButton setHidden:NO];
     } else {
         [self.taskButton setHidden:YES];
         [self.statisticsButton setHidden:YES];
-        [self.storyButton setHidden:YES];
+        [self.bookmarkButton setHidden:YES];
         [self.settingButton setHidden:YES];
     }
 }
@@ -518,7 +521,7 @@
 #pragma mark - Event
 
 - (void)clickTaskButton:(id)sender {
-    [self copyScreen];
+    [[INSCopyScreenManager sharedInstance] copyScreen:self.view];
     
     INSTaskListViewController *taskListVC = [[INSTaskListViewController alloc] init];
     taskListVC.isAddTaskEnabled = self.tomatoConfiguration.isAddTaskEnabled;
@@ -528,22 +531,23 @@
 }
 
 - (void)clickStatisticsButton:(id)sender {
-    [self copyScreen];
+    [[INSCopyScreenManager sharedInstance] copyScreen:self.view];
     
-//    ILDStatisticsTodayViewController *statisticsTodayVC = [[ILDStatisticsTodayViewController alloc] init];
-//    UINavigationController *settingNC = [[UINavigationController alloc] initWithRootViewController:statisticsTodayVC];
-//    settingNC.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:settingNC animated:YES completion:nil];
+    INSStatisticsTodayViewController *statisticsTodayVC = [[INSStatisticsTodayViewController alloc] init];
+    UINavigationController *statisticsTodayNC = [[UINavigationController alloc] initWithRootViewController:statisticsTodayVC];
+    statisticsTodayNC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:statisticsTodayNC animated:YES completion:nil];
 }
 
-- (void)clickStoryButton:(id)sender {
-//    ILDStoryViewController *storyVC = [[ILDStoryViewController alloc] init];
-//    storyVC.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:storyVC animated:YES completion:nil];
+- (void)clickBookmarkButton:(id)sender {
+    INSBookmarkViewController *bookmarkVC = [[INSBookmarkViewController alloc] init];
+    bookmarkVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:bookmarkVC animated:YES completion:nil];
 }
 
 - (void)clickSettingButton:(id)sender {
-//    [self copyScreen];
+    [[INSCopyScreenManager sharedInstance] copyScreen:self.view];
+
 //
 //    ILDSettingViewController *settingVC = [[ILDSettingViewController alloc] init];
 //    UINavigationController *settingNC = [[UINavigationController alloc] initWithRootViewController:settingVC];
@@ -609,17 +613,6 @@
     [self gotoPage:YES];
 }
 
-- (void)copyScreen {
-//    CGRect rect = self.view.frame;
-//    UIGraphicsBeginImageContext(rect.size);
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    [self.view.layer renderInContext:context];
-//    UIImage *screenview = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//
-//    ILDScreenshotImageManager *screenshotImageManager = [ILDScreenshotImageManager sharedInstance];
-//    screenshotImageManager.screenshotImage = screenview;
-}
 
 #pragma mark - Getter and Setter
 
@@ -663,12 +656,7 @@
 - (UIButton *)taskButton {
     if (!_taskButton) {
         _taskButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        if (@available(iOS 13.0, *)) {
-            UIImage *taskButtonImage = [UIImage imageNamed:@"menu_task_28x28_" inBundle:[INSTomatoBundle bundle] withConfiguration:nil];
-            [_taskButton setImage:taskButtonImage forState:UIControlStateNormal];
-        } else {
-            // Fallback on earlier versions
-        }
+        [_taskButton setImage:[INSTomatoBundle imageNamed:@"menu_task_28x28_"] forState:UIControlStateNormal];
         [_taskButton addTarget:self action:@selector(clickTaskButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -678,27 +666,27 @@
 - (UIButton *)statisticsButton {
     if (!_statisticsButton) {
         _statisticsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_statisticsButton setBackgroundImage:[UIImage imageNamed:@"menu_statistics_28x28_"] forState:UIControlStateNormal];
+        [_statisticsButton setImage:[INSTomatoBundle imageNamed:@"menu_statistics_28x28_"] forState:UIControlStateNormal];
         [_statisticsButton addTarget:self action:@selector(clickStatisticsButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     return _statisticsButton;
 }
 
-- (UIButton *)storyButton {
-    if (!_storyButton) {
-        _storyButton = [[UIButton alloc] init];
-        [_storyButton setBackgroundImage:[UIImage imageNamed:@"menu_story_28x28_"] forState:UIControlStateNormal];
-        [_storyButton addTarget:self action:@selector(clickStoryButton:) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)bookmarkButton {
+    if (!_bookmarkButton) {
+        _bookmarkButton = [[UIButton alloc] init];
+        [_bookmarkButton setBackgroundImage:[INSTomatoBundle imageNamed:@"bookmark_icon_28x28_"] forState:UIControlStateNormal];
+        [_bookmarkButton addTarget:self action:@selector(clickBookmarkButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-    return _storyButton;
+    return _bookmarkButton;
 }
 
 - (UIButton *)settingButton {
     if (!_settingButton) {
         _settingButton = [[UIButton alloc] init];
-        [_settingButton setBackgroundImage:[UIImage imageNamed:@"menu_settings_26x26_"] forState:UIControlStateNormal];
+        [_settingButton setBackgroundImage:[INSTomatoBundle imageNamed:@"menu_settings_26x26_"] forState:UIControlStateNormal];
         [_settingButton addTarget:self action:@selector(clickSettingButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -809,7 +797,7 @@
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_closeButton setImage:[UIImage imageNamed:@"global_close_icon_28x28_"] forState:UIControlStateNormal];
+        [_closeButton setImage:[INSTomatoBundle imageNamed:@"global_close_icon_28x28_"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(clickCloseButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
