@@ -37,10 +37,15 @@ static INSBookmarkTableManager *sharedInstance = nil;
     [INSBookmarkTablePersistence createBookmarkTable];
 }
 
++ (void)resetBookmarkTable {
+    [INSBookmarkTablePersistence deleteBookmarkTable];
+    [INSBookmarkTableManager createBookmarkTable];
+}
+
 + (void)updateBookmarkTable {
     // 先判断是不是同一天
     NSDictionary *bookmarkTableDictionary = [INSBookmarkTablePersistence readBookmarkTable];
-    NSDate *bookmarkDate = bookmarkTableDictionary[kBookMarkDate];
+    NSDate *bookmarkDate = bookmarkTableDictionary[kBookMarkSavedDate];
     NSDate *today = [NSDate date];
 
     // 是，则什么都不做，今日图片已经更新完毕
@@ -95,7 +100,7 @@ static INSBookmarkTableManager *sharedInstance = nil;
 
 - (INSBookmarkModel *)prepareBookmarkModel {
     INSBookmarkModel *bookmarkModel = [[INSBookmarkModel alloc] init];
-    bookmarkModel.date = self.bookmarkTableDictionary[kBookMarkDate];
+    bookmarkModel.date = self.bookmarkTableDictionary[kBookMarkSavedDate];
     bookmarkModel.title = self.bookmarkTableDictionary[kBookMarkTitle];
     bookmarkModel.words = self.bookmarkTableDictionary[kBookMarkWords];
     bookmarkModel.image = [UIImage imageWithData:self.bookmarkTableDictionary[kBookMarkImageData]];

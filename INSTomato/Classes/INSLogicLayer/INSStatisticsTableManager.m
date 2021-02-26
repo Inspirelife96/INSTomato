@@ -1,27 +1,27 @@
 //
-//  INSTomatoTableManager.m
+//  INSStatisticsTableManager.m
 //  ChameleonFramework
 //
 //  Created by XueFeng Chen on 2021/1/28.
 //
 
-#import "INSTomatoTableManager.h"
+#import "INSStatisticsTableManager.h"
 
 #import "INSTaskTableManager.h"
 #import "INSStatisticsTodayModel.h"
 #import "INSStatisticsHistoryModel.h"
 #import "INSPieChartDataModel.h"
 
-#import "INSTomatoTablePersistence.h"
+#import "INSStatisticsTablePersistence.h"
 #import "INSPersistenceConstants.h"
 
 #import "INSTaskModel.h"
-#import "INSTomatoModel.h"
+#import "INSStatisticsModel.h"
 #import "INSDateHelper.h"
 
-@interface INSTomatoTableManager ()
+@interface INSStatisticsTableManager ()
 
-@property (strong, nonatomic) NSMutableDictionary *tomatoTableDictionary;
+@property (strong, nonatomic) NSMutableDictionary *statisticsTableDictionary;
 @property (strong, nonatomic) NSMutableDictionary *configurationDictionary;
 @property (strong, nonatomic) NSMutableDictionary *coreDictionary;
 @property (strong, nonatomic) NSMutableDictionary *taskIndexDictionary;
@@ -31,18 +31,23 @@
 
 @end
 
-@implementation INSTomatoTableManager
+@implementation INSStatisticsTableManager
 
-static INSTomatoTableManager *sharedInstance = nil;
+static INSStatisticsTableManager *sharedInstance = nil;
 
 #pragma mark - singleton init
 
-+ (void)createTomatoTable {
-    if ([INSTomatoTablePersistence readTomatoTable]) {
++ (void)createStatisticsTable {
+    if ([INSStatisticsTablePersistence readStatisticsTable]) {
         return;
     }
     
-    [INSTomatoTablePersistence createTomatoTable];
+    [INSStatisticsTablePersistence createStatisticsTable];
+}
+
++ (void)resetStatisticsTable {
+    [INSStatisticsTablePersistence deleteStatisticsTable];
+    [INSStatisticsTableManager createStatisticsTable];
 }
 
 + (instancetype)sharedInstance {
@@ -55,29 +60,29 @@ static INSTomatoTableManager *sharedInstance = nil;
 }
 
 + (id)allocWithZone:(struct _NSZone *)zone {
-    return [INSTomatoTableManager sharedInstance] ;
+    return [INSStatisticsTableManager sharedInstance] ;
 }
 
 - (id)copyWithZone:(struct _NSZone *)zone {
-    return [INSTomatoTableManager sharedInstance] ;
+    return [INSStatisticsTableManager sharedInstance] ;
 }
 
 - (instancetype)init {
     if (self = [super init]) {
         // 读取番茄数据
-        _tomatoTableDictionary = [[INSTomatoTablePersistence readTomatoTable] mutableCopy];
+        _statisticsTableDictionary = [[INSStatisticsTablePersistence readStatisticsTable] mutableCopy];
         
         // 设置配置
-        _configurationDictionary = [_tomatoTableDictionary[kTomatoTableConfiguration] mutableCopy];
+        _configurationDictionary = [_statisticsTableDictionary[kStatisticsTableConfiguration] mutableCopy];
         
         // 设置核心数据表
-        _coreDictionary = [_tomatoTableDictionary[kTomatoTableCore] mutableCopy];
+        _coreDictionary = [_statisticsTableDictionary[kStatisticsTableCore] mutableCopy];
         
         // 设置索引
-        _taskIndexDictionary = [_tomatoTableDictionary[kTomatoTableTaskIndex] mutableCopy];
-        _hourIndexDictionary = [_tomatoTableDictionary[kTomatoTableHourIndex] mutableCopy];
-        _dayIndexDictionary = [_tomatoTableDictionary[kTomatoTableDayIndex] mutableCopy];
-        _weekdayIndexDictionary = [_tomatoTableDictionary[kTomatoTableWeekdayIndex] mutableCopy];
+        _taskIndexDictionary = [_statisticsTableDictionary[kStatisticsTableTaskIndex] mutableCopy];
+        _hourIndexDictionary = [_statisticsTableDictionary[kStatisticsTableHourIndex] mutableCopy];
+        _dayIndexDictionary = [_statisticsTableDictionary[kStatisticsTableDayIndex] mutableCopy];
+        _weekdayIndexDictionary = [_statisticsTableDictionary[kStatisticsTableWeekdayIndex] mutableCopy];
     }
     
     return self;
@@ -85,16 +90,17 @@ static INSTomatoTableManager *sharedInstance = nil;
 
 #pragma mark - Public Method
 
-- (void)addTomato:(INSTomatoModel *)tomatoModel {
-    NSNumber *maxRowIdNumber = self.configurationDictionary[kTomatoTableConfigurationMaxRowId];
+- (void)addTomato:(INSStatisticsModel *)tomatoModel {
+    NSNumber *maxRowIdNumber = self.configurationDictionary[kStatisticsTableConfigurationMaxRowId];
     NSNumber *newRowIdNumber = [NSNumber numberWithInteger:([maxRowIdNumber integerValue] + 1)];
     NSString *tomatoRowId = [newRowIdNumber stringValue];
+    tomatoModel.identifier =tomatoRowId;
 
     // 添加番茄数据
     [self.coreDictionary setObject:[tomatoModel convertToDictionary] forKey:tomatoRowId];
 
     // 更新最大RowId
-    self.configurationDictionary[kTomatoTableConfigurationMaxRowId] = newRowIdNumber;
+    self.configurationDictionary[kStatisticsTableConfigurationMaxRowId] = newRowIdNumber;
 
     // 更新索引
     NSString *stringOfDay = [INSDateHelper stringOfDay:tomatoModel.startDate];
@@ -106,7 +112,7 @@ static INSTomatoTableManager *sharedInstance = nil;
     [self addTomatoRowId:tomatoRowId toIndexDictionary:self.hourIndexDictionary withIndexKey:stringOfHour];
     [self addTomatoRowId:tomatoRowId toIndexDictionary:self.weekdayIndexDictionary withIndexKey:stringOfWeekday];
     
-    [self saveTomatoTable];
+    [self saveStatisticsTable];
 }
 
 - (void)removeTomatoByTaskId:(NSString *)taskId {
@@ -118,12 +124,12 @@ static INSTomatoTableManager *sharedInstance = nil;
 
     // 删除番茄数据
     [self.coreDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *rowId, NSDictionary *tomatoDictionary, BOOL * _Nonnull stop) {
-        if ([tomatoDictionary[kTomatoTableCoreTaskId] isEqualToString:taskId]) {
+        if ([tomatoDictionary[kStatisticsTableCoreTaskIdentifier] isEqualToString:taskId]) {
             [self.coreDictionary removeObjectForKey:rowId];
         }
     }];
     
-    [self saveTomatoTable];
+    [self saveStatisticsTable];
 }
 
 - (void)addTomatoRowId:(NSString *)rowId toIndexDictionary:(NSMutableDictionary *)indexDictionary withIndexKey:(NSString *)indexKey {
@@ -148,7 +154,7 @@ static INSTomatoTableManager *sharedInstance = nil;
         [indexDictionary enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(NSString *key, NSMutableArray *rowIdArray, BOOL * _Nonnull stop) {
             [rowIdArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSString *rowId, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSDictionary *tomatoDictionary = self.coreDictionary[rowId];
-                if ([tomatoDictionary[kTomatoTableCoreTaskId] isEqualToString:taskId]) {
+                if ([tomatoDictionary[kStatisticsTableCoreTaskIdentifier] isEqualToString:taskId]) {
                     [rowIdArray removeObjectAtIndex:idx];
                 }
             }];
@@ -175,14 +181,14 @@ static INSTomatoTableManager *sharedInstance = nil;
     
     [tomatoRowIdArray enumerateObjectsUsingBlock:^(NSString *rowId, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDictionary *tomatoDictionary = self.coreDictionary[rowId];
-        NSInteger currentMinutes = [tomatoDictionary[kTomatoTableCoreTomatoMinutes] integerValue];
-        NSInteger currentBreakTimes = [tomatoDictionary[kTomatoTableCoreBreakTimes] integerValue];
+        NSInteger currentMinutes = [tomatoDictionary[kStatisticsTableCoreTomatoMinutes] integerValue];
+        NSInteger currentBreakTimes = [tomatoDictionary[kStatisticsTableCoreBreakTimes] integerValue];
         
         tomatoTimes++;
         tomatoMinutes += currentMinutes;
         tomatoQuality += 100 - 5 * currentBreakTimes;
 
-        INSTaskModel *taskModel = [[INSTaskTableManager sharedInstance] taskModelByTaskId:tomatoDictionary[kTomatoTableCoreTaskId]];
+        INSTaskModel *taskModel = [[INSTaskTableManager sharedInstance] taskModelByTaskId:tomatoDictionary[kStatisticsTableCoreTaskIdentifier]];
         INSPieChartDataModel *pieChartDataModel = [[INSPieChartDataModel alloc] init];
         pieChartDataModel.taskName = taskModel.name;
         pieChartDataModel.taskColor = taskModel.color;
@@ -314,7 +320,7 @@ static INSTomatoTableManager *sharedInstance = nil;
     
     [tomatoRowIdArray enumerateObjectsUsingBlock:^(NSString *rowId, NSUInteger idx, BOOL * _Nonnull stop) {
         NSDictionary *tomatoDictionary = self.coreDictionary[rowId];
-        NSInteger currentTime = [tomatoDictionary[kTomatoTableCoreTomatoMinutes] integerValue];
+        NSInteger currentTime = [tomatoDictionary[kStatisticsTableCoreTomatoMinutes] integerValue];
         totalTime += currentTime;
     }];
     
@@ -323,16 +329,16 @@ static INSTomatoTableManager *sharedInstance = nil;
 
 #pragma mark - Private Method
 
-- (void)saveTomatoTable {
+- (void)saveStatisticsTable {
     // update diligence data
-    self.tomatoTableDictionary[kTomatoTableConfiguration] = self.configurationDictionary;
-    self.tomatoTableDictionary[kTomatoTableCore] = self.coreDictionary;
-    self.tomatoTableDictionary[kTomatoTableTaskIndex] = self.taskIndexDictionary;
-    self.tomatoTableDictionary[kTomatoTableDayIndex] = self.dayIndexDictionary;
-    self.tomatoTableDictionary[kTomatoTableHourIndex] = self.hourIndexDictionary;
-    self.tomatoTableDictionary[kTomatoTableWeekdayIndex] = self.weekdayIndexDictionary;
+    self.statisticsTableDictionary[kStatisticsTableConfiguration] = self.configurationDictionary;
+    self.statisticsTableDictionary[kStatisticsTableCore] = self.coreDictionary;
+    self.statisticsTableDictionary[kStatisticsTableTaskIndex] = self.taskIndexDictionary;
+    self.statisticsTableDictionary[kStatisticsTableDayIndex] = self.dayIndexDictionary;
+    self.statisticsTableDictionary[kStatisticsTableHourIndex] = self.hourIndexDictionary;
+    self.statisticsTableDictionary[kStatisticsTableWeekdayIndex] = self.weekdayIndexDictionary;
     
-    [INSTomatoTablePersistence saveTomatoTable:self.tomatoTableDictionary];
+    [INSStatisticsTablePersistence saveStatisticsTable:self.statisticsTableDictionary];
 }
 
 @end

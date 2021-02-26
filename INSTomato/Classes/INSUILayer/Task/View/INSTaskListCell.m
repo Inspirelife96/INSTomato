@@ -9,6 +9,8 @@
 
 #import "INSTaskListCellViewModel.h"
 
+#import "INSTomatoBundle.h"
+
 #import <ChameleonFramework/Chameleon.h>
 
 @interface INSTaskListCell ()
@@ -41,7 +43,7 @@
 
 - (void)buildUI {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    self.accessoryView = [INSTomatoBundle accessoryView];
     self.backgroundColor = ClearColor;
     self.textLabel.font = [UIFont fontWithName:@"Avenir Next" size:16];
     self.textLabel.textColor = FlatWhite;

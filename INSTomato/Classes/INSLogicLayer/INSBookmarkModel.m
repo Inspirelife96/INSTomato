@@ -13,7 +13,7 @@
 
 - (NSDictionary *)toDictionary {
     NSDictionary *dictionary = @{
-        kBookMarkDate: self.date,
+        kBookMarkSavedDate: self.date,
         kBookMarkTitle: self.title,
         kBookMarkWords: self.words,
         kBookMarkImageData: UIImageJPEGRepresentation(self.image, 0.5)

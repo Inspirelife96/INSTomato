@@ -11,8 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface INSTaskListViewController : INSBaseViewController
 
-@property (nonatomic, assign) BOOL isAddTaskEnabled;
-
 @end
 
 NS_ASSUME_NONNULL_END

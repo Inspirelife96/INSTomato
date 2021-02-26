@@ -20,7 +20,7 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
-  - INSTomato (0.0.12):
+  - INSTomato (0.0.13):
     - AFNetworking (~> 4.0)
     - ChameleonFramework
     - Charts
@@ -51,7 +51,7 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
-  INSTomato: 5575b97fe7532e206ef26717aea60974fc924f5b
+  INSTomato: 6ea4004fed807f327363cb74df6a2f229fc526aa
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   PulsingHalo: 1a9c6b65a8e12ac9eee1627fc8476efcce8e1918
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6

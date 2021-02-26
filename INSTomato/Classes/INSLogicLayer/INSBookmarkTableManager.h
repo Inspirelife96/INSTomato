@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface INSBookmarkTableManager : NSObject
 
 + (void)createBookmarkTable;
++ (void)resetBookmarkTable;
 
 //
 + (void)updateBookmarkTable;

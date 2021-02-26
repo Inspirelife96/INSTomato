@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)createBookmarkTable;
 + (NSDictionary *)readBookmarkTable;
 + (void)saveBookmarkTable:(NSDictionary *)bookmarkTableDictionary;
++ (void)deleteBookmarkTable;
 
 @end
 

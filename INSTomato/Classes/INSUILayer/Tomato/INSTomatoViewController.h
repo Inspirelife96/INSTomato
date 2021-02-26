@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface INSTomatoViewController : UIViewController
 
-- (instancetype)initWithTomatoConfiguration:(INSTomatoConfiguration *)tomatoConfiguration;
+//- (instancetype)initWithTomatoConfiguration:(INSTomatoConfiguration *)tomatoConfiguration;
 
 @end
 

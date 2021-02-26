@@ -1,5 +1,5 @@
 //
-//  INSTomatoTableManager.h
+//  INSStatisticsTableManager.h
 //  ChameleonFramework
 //
 //  Created by XueFeng Chen on 2021/1/28.
@@ -9,16 +9,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class INSTomatoModel;
+@class INSStatisticsModel;
 @class INSStatisticsTodayModel;
 @class INSStatisticsHistoryModel;
 
-@interface INSTomatoTableManager : NSObject
+@interface INSStatisticsTableManager : NSObject
 
-+ (void)createTomatoTable;
++ (void)createStatisticsTable;
++ (void)resetStatisticsTable;
+
 + (instancetype)sharedInstance;
 
-- (void)addTomato:(INSTomatoModel *)tomatoModel;
+- (void)addTomato:(INSStatisticsModel *)tomatoModel;
 - (void)removeTomatoByTaskId:(NSString *)taskId;
 
 - (INSStatisticsTodayModel *)fetchStatisticsTodayModel;

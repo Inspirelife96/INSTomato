@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)createTaskTable;
 + (NSDictionary *)readTaskTable;
 + (void)saveTaskTable:(NSDictionary *)taskTableDictionary;
++ (void)deleteTaskTable;
 
 @end
 

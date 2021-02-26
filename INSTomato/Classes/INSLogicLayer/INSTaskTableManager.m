@@ -10,8 +10,8 @@
 #import "INSTaskTablePersistence.h"
 #import "INSTaskModel.h"
 
-#import "INSTaskTableConfiguration.h"
-#import "INSTomatoTableManager.h"
+//#import "INSTaskTableConfiguration.h"
+#import "INSStatisticsTableManager.h"
 #import "INSPersistenceConstants.h"
 
 NSString *const kNotificationTaskTableSaved = @"task.table.saved";
@@ -30,17 +30,58 @@ static INSTaskTableManager *sharedInstance = nil;
 
 #pragma mark - singleton init
 
-+ (BOOL)isTaskTableExists {
-    if ([INSTaskTablePersistence readTaskTable]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
+//+ (BOOL)isTaskTableExists {
+//    if ([INSTaskTablePersistence readTaskTable]) {
+//        return YES;
+//    } else {
+//        return NO;
+//    }
+//}
 
-+ (void)createTaskTableWithConfigration:(INSTaskTableConfiguration *)taskTableConfiguration {
-    //如果已经存在任务表，则不需要再重新创建了。
+//+ (void)createTaskTableWithConfigration:(INSTaskTableConfiguration *)taskTableConfiguration {
+//    //如果已经存在任务表，则不需要再重新创建了。
+//    if ([INSTaskTablePersistence readTaskTable]) {
+//        return;
+//    }
+//
+//    [INSTaskTablePersistence createTaskTable];
+//
+//    NSMutableDictionary *taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
+//    NSMutableDictionary *configurationDictionary = [taskTableDictionary[kTaskTableConfiguration] mutableCopy];
+//    NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
+//
+//    NSArray *taskModelArray = taskTableConfiguration.taskModelArray;
+//
+//    [taskModelArray enumerateObjectsUsingBlock:^(INSTaskModel * _Nonnull taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
+//        taskModel.identifier = identifier;
+//        [coreDictionary setObject:[taskModel convertToDictionary] forKey:identifier];
+//    }];
+//
+//    NSNumber *maxRowId = [NSNumber numberWithInteger:(taskModelArray.count - 1)];
+//
+//    [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
+//
+//    [configurationDictionary setObject:@(taskTableConfiguration.isAddTaskEnabled) forKey:kTaskTableConfigurationIsAddTaskEnabled];
+//    [configurationDictionary setObject:taskTableConfiguration.taskTableTitle forKey:kTaskTableConfigurationTitle];
+//    [configurationDictionary setObject:taskTableConfiguration.taskTableDescription forKey:kTaskTableConfigurationDescription];
+//
+//    NSData *iconData = UIImagePNGRepresentation(taskTableConfiguration.taskTableIcon);
+//    [configurationDictionary setObject:iconData forKey:kTaskTableConfigurationIconData];
+//
+//    taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
+//    taskTableDictionary[kTaskTableCore] = coreDictionary;
+//
+//    [INSTaskTablePersistence saveTaskTable:taskTableDictionary];
+//}
+
++ (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray {
     if ([INSTaskTablePersistence readTaskTable]) {
+        return;
+    }
+    
+    if (!taskModelArray || taskModelArray.count <= 0) {
+        NSAssert(taskModelArray && taskModelArray.count > 0 , @"任务列表内容不能为空");
         return;
     }
     
@@ -49,8 +90,6 @@ static INSTaskTableManager *sharedInstance = nil;
     NSMutableDictionary *taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
     NSMutableDictionary *configurationDictionary = [taskTableDictionary[kTaskTableConfiguration] mutableCopy];
     NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
-    
-    NSArray *taskModelArray = taskTableConfiguration.taskModelArray;
     
     [taskModelArray enumerateObjectsUsingBlock:^(INSTaskModel * _Nonnull taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
@@ -62,49 +101,16 @@ static INSTaskTableManager *sharedInstance = nil;
     
     [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
     
-    [configurationDictionary setObject:@(taskTableConfiguration.isAddTaskEnabled) forKey:kTaskTableConfigurationIsAddTaskEnabled];
-    [configurationDictionary setObject:taskTableConfiguration.taskTableTitle forKey:kTaskTableConfigurationTitle];
-    [configurationDictionary setObject:taskTableConfiguration.taskTableDescription forKey:kTaskTableConfigurationDescription];
-    
-    NSData *iconData = UIImagePNGRepresentation(taskTableConfiguration.taskTableIcon);
-    [configurationDictionary setObject:iconData forKey:kTaskTableConfigurationIconData];
-    
     taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
     taskTableDictionary[kTaskTableCore] = coreDictionary;
     
     [INSTaskTablePersistence saveTaskTable:taskTableDictionary];
 }
 
-//+ (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray {
-//    if ([INSTaskTablePersistence readTaskTable]) {
-//        return;
-//    }
-//    
-//    if (!taskModelArray || taskModelArray.count <= 0) {
-//        return;
-//    }
-//    
-//    [INSTaskTablePersistence createTaskTable];
-//    
-//    NSMutableDictionary *taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
-//    NSMutableDictionary *configurationDictionary = [taskTableDictionary[kTaskTableConfiguration] mutableCopy];
-//    NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
-//    
-//    [taskModelArray enumerateObjectsUsingBlock:^(INSTaskModel * _Nonnull taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
-//        taskModel.identifier = identifier;
-//        [coreDictionary setObject:[taskModel convertToDictionary] forKey:identifier];
-//    }];
-//    
-//    NSNumber *maxRowId = [NSNumber numberWithInteger:(taskModelArray.count - 1)];
-//    
-//    [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
-//    
-//    taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
-//    taskTableDictionary[kTaskTableCore] = coreDictionary;
-//    
-//    [INSTaskTablePersistence saveTaskTable:taskTableDictionary];
-//}
++ (void)resetTaskTable:(NSArray<INSTaskModel *> *)taskModelArray {
+    [INSTaskTablePersistence deleteTaskTable];
+    [INSTaskTableManager createTaskTable:taskModelArray];
+}
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
@@ -157,38 +163,38 @@ static INSTaskTableManager *sharedInstance = nil;
     NSString *taskRowId = [newRowIdNumber stringValue];
     
     taskModel.identifier = taskRowId;
-    self.taskTableDictionary[taskRowId] = [taskModel convertToDictionary];
+    self.coreDictionary[taskRowId] = [taskModel convertToDictionary];
     self.configurationDictionary[kTaskTableConfigurationMaxRowId] = newRowIdNumber;
     
     [self saveTaskTable];
 }
 
 - (void)updateTask:(NSString *)taskId taskModel:(INSTaskModel *)taskModel {
-    self.taskTableDictionary[taskId] = [taskModel convertToDictionary];
+    self.coreDictionary[taskId] = [taskModel convertToDictionary];
     [self saveTaskTable];
 }
 
 - (void)removeTask:(NSString *)taskId {
-    [self.taskTableDictionary removeObjectForKey:taskId];
+    [self.coreDictionary removeObjectForKey:taskId];
     [self saveTaskTable];
-    [[INSTomatoTableManager sharedInstance] removeTomatoByTaskId:taskId];
+    [[INSStatisticsTableManager sharedInstance] removeTomatoByTaskId:taskId];
 }
 
-- (BOOL)isAddTaskEnabled {
-    return [self.configurationDictionary[kTaskTableConfigurationIsAddTaskEnabled] boolValue];
-}
-
-- (NSString *)taskTableTitle {
-    return self.configurationDictionary[kTaskTableConfigurationTitle];
-}
-
-- (NSString *)taskTableDescription {
-    return self.configurationDictionary[kTaskTableConfigurationDescription];
-}
-
-- (UIImage *)taskTableIcon {
-    return [UIImage imageWithData:self.configurationDictionary[kTaskTableConfigurationIconData]];
-}
+//- (BOOL)isAddTaskEnabled {
+//    return [self.configurationDictionary[kTaskTableConfigurationIsAddTaskEnabled] boolValue];
+//}
+//
+//- (NSString *)taskTableTitle {
+//    return self.configurationDictionary[kTaskTableConfigurationTitle];
+//}
+//
+//- (NSString *)taskTableDescription {
+//    return self.configurationDictionary[kTaskTableConfigurationDescription];
+//}
+//
+//- (UIImage *)taskTableIcon {
+//    return [UIImage imageWithData:self.configurationDictionary[kTaskTableConfigurationIconData]];
+//}
 
 #pragma mark - Private Method
 

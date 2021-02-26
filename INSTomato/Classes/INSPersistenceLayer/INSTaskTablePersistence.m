@@ -20,9 +20,6 @@ NSString *const kTaskTablePersistanceFile = @"taskTable.plist";
                                 kTaskTableConfiguration:@{
                                         kTaskTableConfigurationMaxRowId:@0,
                                         kTaskTableConfigurationVersion:@"1.0",
-                                        kTaskTableConfigurationTitle:@"",
-                                        kTaskTableConfigurationDescription:@"",
-                                        kTaskTableConfigurationIconData:[[NSData alloc] init],
                                 },
                                 kTaskTableCore:@{}
                                 };
@@ -38,6 +35,12 @@ NSString *const kTaskTablePersistanceFile = @"taskTable.plist";
 + (void)saveTaskTable:(NSDictionary *)taskTableDictionary {
     NSString *taskTableFilePath = [INSPersistenceFilePathHelper persistenceFilePath:kTaskTablePersistanceFile];
     [taskTableDictionary writeToFile:taskTableFilePath atomically:YES];
+}
+
++ (void)deleteTaskTable {
+    NSString *taskTableFilePath = [INSPersistenceFilePathHelper persistenceFilePath:kTaskTablePersistanceFile];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:taskTableFilePath error:nil];
 }
 
 @end

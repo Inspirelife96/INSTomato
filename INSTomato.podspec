@@ -46,4 +46,5 @@ s.description      = <<-DESC
   s.dependency 'PulsingHalo'
   s.dependency 'SVProgressHUD'
   s.dependency 'AFNetworking', '~> 4.0'
+  s.dependency 'SCLAlertView-Objective-C'
 end

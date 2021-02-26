@@ -26,6 +26,14 @@
     }
 }
 
++ (UIImageView *)accessoryView {
+    UIImageView *accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 15, 15)];
+    accessoryView.contentMode = UIViewContentModeScaleAspectFit;
+    accessoryView.image = [INSTomatoBundle imageNamed:@"ins_disclosure_Indicator"];
+    
+    return accessoryView;
+}
+
 // 加载 叶根友蚕燕隶书 字体
 // 如果已经加载了，则直接返回。
 + (void)loadSpecialFont {

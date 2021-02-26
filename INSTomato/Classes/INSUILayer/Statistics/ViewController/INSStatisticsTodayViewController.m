@@ -17,7 +17,7 @@
 #import "INSPieChartDataModel.h"
 #import "INSPieChartDataViewModel.h"
 
-#import "INSTomatoTableManager.h"
+#import "INSStatisticsTableManager.h"
 
 #import "INSTomatoBundle.h"
 
@@ -304,7 +304,7 @@
 
 - (INSStatisticsTodayViewModel *)statisticsTodayVM {
     if (!_statisticsTodayVM) {
-        INSStatisticsTodayModel *statisticsTodayModel = [[INSTomatoTableManager sharedInstance] fetchStatisticsTodayModel];
+        INSStatisticsTodayModel *statisticsTodayModel = [[INSStatisticsTableManager sharedInstance] fetchStatisticsTodayModel];
         _statisticsTodayVM = [[INSStatisticsTodayViewModel alloc] initWithStatisticsTodayModel:statisticsTodayModel];
     }
     

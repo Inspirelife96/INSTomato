@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "INSTomato.h"
+
 @class INSTomatoClockView;
 
 NS_ASSUME_NONNULL_BEGIN

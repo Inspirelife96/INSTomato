@@ -25,6 +25,8 @@
 
 #import "INSTomatoClockView.h"
 
+#import "INSTomatoConfigurationTableManager.h"
+
 
 #import "INSTaskListViewController.h"
 #import "INSStatisticsTodayViewController.h"
@@ -75,7 +77,7 @@
 // 当前任务
 @property(nonatomic, strong) INSTaskModel *currentTaskModel;
 
-@property (nonatomic, strong) INSTomatoConfiguration *tomatoConfiguration;
+//@property (nonatomic, strong) INSTomatoConfiguration *tomatoConfiguration;
 
 @end
 
@@ -83,13 +85,13 @@
 
 #pragma mark - Life Cycle
 
-- (instancetype)initWithTomatoConfiguration:(INSTomatoConfiguration *)tomatoConfiguration {
-    if (self = [super init]) {
-        _tomatoConfiguration = tomatoConfiguration;
-    }
-    
-    return self;
-}
+//- (instancetype)initWithTomatoConfiguration:(INSTomatoConfiguration *)tomatoConfiguration {
+//    if (self = [super init]) {
+//        _tomatoConfiguration = tomatoConfiguration;
+//    }
+//
+//    return self;
+//}
 
 - (UIButton *)fetchPluginButtonByPluginType:(INSSupportedPluginType)pluginType {
     switch (pluginType) {
@@ -171,10 +173,10 @@
         make.width.mas_equalTo(screenWidth - 42 * 2);
     }];
     
-    _topLeftButton = [self fetchPluginButtonByPluginType:self.tomatoConfiguration.topLeftPluginType];
-    _topRightButton = [self fetchPluginButtonByPluginType:self.tomatoConfiguration.topRightPluginType];
-    _bottomLeftButton = [self fetchPluginButtonByPluginType:self.tomatoConfiguration.bottomLeftPluginType];
-    _bottomRightButton = [self fetchPluginButtonByPluginType:self.tomatoConfiguration.bottomRightPluginType];
+    _topLeftButton = [self fetchPluginButtonByPluginType:[[INSTomatoConfigurationTableManager sharedInstance] topLeftPluginType]];
+    _topRightButton = [self fetchPluginButtonByPluginType:[[INSTomatoConfigurationTableManager sharedInstance] topRightPluginType]];
+    _bottomLeftButton = [self fetchPluginButtonByPluginType:[[INSTomatoConfigurationTableManager sharedInstance] bottomLeftPluginType]];
+    _bottomRightButton = [self fetchPluginButtonByPluginType:[[INSTomatoConfigurationTableManager sharedInstance] bottomRightPluginType]];
 
     if (self.topLeftButton) {
         [self.view addSubview:self.topLeftButton];
@@ -522,7 +524,7 @@
     [[INSCopyScreenManager sharedInstance] copyScreen:self.view];
     
     INSTaskListViewController *taskListVC = [[INSTaskListViewController alloc] init];
-    taskListVC.isAddTaskEnabled = [[INSTaskTableManager sharedInstance] isAddTaskEnabled];
+    //taskListVC.isAddTaskEnabled = [[INSTaskTableManager sharedInstance] isAddTaskEnabled];
     UINavigationController *taskListNC = [[UINavigationController alloc] initWithRootViewController:taskListVC];
     taskListNC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:taskListNC animated:YES completion:nil];
@@ -554,6 +556,12 @@
 }
 
 - (void)clickCloseButton:(id)sender {
+    //如果当前就是rootVC，那这个按钮就没有什么用了，发出警告。
+    if (self == [UIApplication sharedApplication].keyWindow.rootViewController) {
+        NSLog(@"当前就是跟RootVC，不应该添加关闭按钮");
+        return;
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
     
     [[UINavigationBar appearance] setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];

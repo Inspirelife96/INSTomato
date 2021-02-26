@@ -12,9 +12,9 @@
 #import "INSNotificationConstants.h"
 
 #import "INSTaskModel.h"
-#import "INSTomatoModel.h"
+#import "INSStatisticsModel.h"
 
-#import "INSTomatoTableManager.h"
+#import "INSStatisticsTableManager.h"
 
 #define TIMER_INTERVAL 1
 
@@ -183,9 +183,9 @@ static INSTomatoTimer * _tomatoTimer = nil;
 }
 
 - (void)saveTomatoData {
-    INSTomatoModel *tomatoModel = [[INSTomatoModel alloc] initWithTaskId:self.taskModel.identifier startDate:self.startDate endDate:[NSDate date] breakTimes:[NSNumber numberWithInteger:self.breakTimes] tomatoMinutes:self.taskModel.tomatoMinutes];
+    INSStatisticsModel *tomatoModel = [[INSStatisticsModel alloc] initWithTaskId:self.taskModel.identifier startDate:self.startDate endDate:[NSDate date] breakTimes:[NSNumber numberWithInteger:self.breakTimes] tomatoMinutes:self.taskModel.tomatoMinutes];
     
-    [[INSTomatoTableManager sharedInstance] addTomato:tomatoModel];
+    [[INSStatisticsTableManager sharedInstance] addTomato:tomatoModel];
 }
 
 - (void)playSystemSound {

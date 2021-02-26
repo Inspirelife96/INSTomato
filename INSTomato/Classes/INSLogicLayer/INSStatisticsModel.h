@@ -1,5 +1,5 @@
 //
-//  INSTomatoModel.h
+//  INSStatisticsModel.h
 //  ChameleonFramework
 //
 //  Created by XueFeng Chen on 2021/1/28.
@@ -9,8 +9,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface INSTomatoModel : NSObject
+@interface INSStatisticsModel : NSObject
 
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *taskId;
 @property (nonatomic, copy) NSDate *startDate;
 @property (nonatomic, copy) NSDate *endDate;

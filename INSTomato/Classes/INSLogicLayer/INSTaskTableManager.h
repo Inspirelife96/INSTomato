@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class INSTaskModel;
-@class INSTaskTableConfiguration;
+//@class INSTaskTableConfiguration;
 
 // 任务表的增删改查，单例模式。APP仅维护一份内存数据，结合INSTaskTablePersistence进行持久化。
 
@@ -29,16 +29,16 @@ extern NSString *const kNotificationTaskTableSaved;
 @interface INSTaskTableManager : NSObject
 
 + (void)createTaskTable:(NSArray<INSTaskModel *> *)taskModelArray;
-+ (void)createTaskTableWithConfigration:(INSTaskTableConfiguration *)taskTableConfiguration;
++ (void)resetTaskTable:(NSArray<INSTaskModel *> *)taskModelArray;
 
 + (instancetype)sharedInstance;
 
 + (BOOL)isTaskTableExists;
 
-- (BOOL)isAddTaskEnabled;
-- (NSString *)taskTableTitle;
-- (NSString *)taskTableDescription;
-- (UIImage *)taskTableIcon;
+//- (BOOL)isAddTaskEnabled;
+//- (NSString *)taskTableTitle;
+//- (NSString *)taskTableDescription;
+//- (UIImage *)taskTableIcon;
 
 - (NSArray<NSString *> *)taskIds;
 - (INSTaskModel *)taskModelByTaskId:(NSString *)taskId;

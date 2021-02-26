@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIImage *)imageNamed:(NSString *)name;
 
++ (UIImageView *)accessoryView;
+
 + (void)loadSpecialFont;
 
 @end

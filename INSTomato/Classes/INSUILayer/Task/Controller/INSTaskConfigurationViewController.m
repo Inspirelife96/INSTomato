@@ -7,15 +7,15 @@
 
 #import "INSTaskConfigurationViewController.h"
 
-#import "INSTaskConfigurationDefaultCell.h"
-#import "INSTaskConfigurationSwitchCell.h"
-
 #import "INSTaskNameViewController.h"
 #import "INSColorPickerViewController.h"
 #import "INSTomatoMinutesViewController.h"
 #import "INSRestOptionsViewController.h"
 #import "INSMusicViewController.h"
 #import "INSAlertOptionsViewController.h"
+
+#import "INSTaskConfigurationDefaultCell.h"
+#import "INSTaskConfigurationSwitchCell.h"
 
 #import "INSTaskModel.h"
 
@@ -59,7 +59,7 @@
             break;
             
             // 修改并允许删除任务，左侧按钮保持为返回，右侧按钮为删除
-        case INSTaskConfigurationTypeModify:
+        case INSTaskConfigurationTypeModifyAndDelete:
             self.navigationItem.title = @"任务设置";
             self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
             break;
@@ -69,6 +69,8 @@
             self.navigationItem.title = @"任务设置";
             break;
     }
+    
+    self.taskModelCopy = [self.taskModel copy];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -207,7 +209,9 @@
 }
 
 - (void)clickBackBarButtonItem:(id)sender {
-    if (self.configurationType == INSTaskConfigurationTypeModifyOnly) {
+    if (self.configurationType == INSTaskConfigurationTypeAdd) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
         if ([self.taskModel.name isEqualToString:@""]) {
             UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"警告" message:@"任务名称不能为空，请设置" preferredStyle:UIAlertControllerStyleAlert];
             
@@ -219,11 +223,12 @@
             
             [self presentViewController:alertVC animated:YES completion:nil];
         } else {
-            [[INSTaskTableManager sharedInstance] updateTask:self.taskModel.identifier taskModel:self.taskModel];
+            if (![self.taskModelCopy isEqualToTaskModel:self.taskModel]) {
+                [[INSTaskTableManager sharedInstance] updateTask:self.taskModel.identifier taskModel:self.taskModel];
+            }
+            
             [super clickBackBarButtonItem:sender];
         }
-    } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -231,7 +236,6 @@
     [[INSTaskTableManager sharedInstance] addTask:self.taskModel];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 - (void)deleteTask:(id)sender {
     if ([[[INSTaskTableManager sharedInstance] taskIds] count] <= 1) {
@@ -282,7 +286,7 @@
     if (!_rightBarButtonItem) {
         if (self.configurationType == INSTaskConfigurationTypeAdd) {
             _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveTask:)];
-        } else if (self.configurationType == INSTaskConfigurationTypeModify){
+        } else if (self.configurationType == INSTaskConfigurationTypeModifyAndDelete){
             _rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(deleteTask:)];
             _rightBarButtonItem.tintColor = FlatRed;
         }

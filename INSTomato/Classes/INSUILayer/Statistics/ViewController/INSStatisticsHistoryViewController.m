@@ -12,7 +12,7 @@
 
 #import "INSStatisticsHistoryViewModel.h"
 
-#import "INSTomatoTableManager.h"
+#import "INSStatisticsTableManager.h"
 
 #import "INSTomatoBundle.h"
 
@@ -133,7 +133,7 @@ typedef NS_ENUM(NSInteger, INSChartMode) {
 
 - (INSStatisticsHistoryViewModel *)statisticsHistoryVM {
     if (!_statisticsHistoryVM) {
-        INSStatisticsHistoryModel *statisticsHistoryModel = [[INSTomatoTableManager sharedInstance] fetchStatisticsHistoryModel];
+        INSStatisticsHistoryModel *statisticsHistoryModel = [[INSStatisticsTableManager sharedInstance] fetchStatisticsHistoryModel];
         _statisticsHistoryVM = [[INSStatisticsHistoryViewModel alloc] initWithStatisticsHistoryModel:statisticsHistoryModel];
     }
     

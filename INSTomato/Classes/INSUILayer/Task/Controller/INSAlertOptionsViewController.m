@@ -67,6 +67,7 @@
     if (indexPath.row == 0) {
     } else  {
         INSAlertDateViewController *alertDateVC = [[INSAlertDateViewController alloc] initWithTaskModel:self.taskModel];
+        alertDateVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:alertDateVC animated:YES completion:nil];
     }
 }

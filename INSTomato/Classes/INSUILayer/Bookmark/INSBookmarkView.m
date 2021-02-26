@@ -11,7 +11,7 @@
 
 #import "INSDateHelper.h"
 
-#import "INSTomatoBundle.h"
+#import "INSTomatoConfigurationTableManager.h"
 
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
@@ -98,7 +98,7 @@
 - (UIImageView *)sharedLinkImageView {
     if (!_sharedLinkImageView) {
         _sharedLinkImageView = [[UIImageView alloc] init ];
-        _sharedLinkImageView.image = [INSTomatoBundle imageNamed:@"daycard_qrcode_50x50_"];
+        _sharedLinkImageView.image = [[INSTomatoConfigurationTableManager sharedInstance] sharedLinkImage];
     }
     
     return _sharedLinkImageView;

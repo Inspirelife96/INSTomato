@@ -6,25 +6,26 @@
 //
 
 #import "INSTaskListViewController.h"
-
 #import "INSTaskConfigurationViewController.h"
 
+#import "INSAppView.h"
 #import "INSTaskListCell.h"
+
+#import "INSTaskModel.h"
+
 #import "INSTaskListCellViewModel.h"
-#import "INSLogoConfiguration.h"
-#import "INSLogoView.h"
 
 #import "INSTaskTableManager.h"
+#import "INSTomatoConfigurationTableManager.h"
 
 #import "INSTomatoBundle.h"
-#import "INSTaskModel.h"
 
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
 @interface INSTaskListViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic, strong) INSLogoView *logoView;
+@property(nonatomic, strong) INSAppView *appView;
 @property(nonatomic, strong) UITableView *tableView;
 @property(nonatomic, strong) UIBarButtonItem *closeBarButtonItem;
 @property(nonatomic, strong) UIBarButtonItem *addBarButtonItem;
@@ -41,9 +42,12 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"任务一览";
-    self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
-    if (self.isAddTaskEnabled) {
-        self.navigationItem.rightBarButtonItem = self.addBarButtonItem;
+    
+    self.navigationItem.rightBarButtonItem = self.closeBarButtonItem;
+    
+    // 若番茄配置中，允许添加任务，则添加左上角的添加按钮
+    if ([[INSTomatoConfigurationTableManager sharedInstance] isAddTaskEnabled]) {
+        self.navigationItem.leftBarButtonItem = self.addBarButtonItem;
     }
 
     [self.view addSubview:self.tableView];
@@ -85,8 +89,13 @@
     
     INSTaskConfigurationViewController *taskConfigurationVC = [[INSTaskConfigurationViewController alloc] initWithTaskModel:taskListCellVM.taskModel];
     
-    // ToDo: 如果外部配置允许删除，则在这里需要做相应的判断
+    // 默认只允许修改
     taskConfigurationVC.configurationType = INSTaskConfigurationTypeModifyOnly;
+    
+    // 如果可以添加任务，那么修改为可以删除任务
+    if ([[INSTomatoConfigurationTableManager sharedInstance] isAddTaskEnabled]) {
+        taskConfigurationVC.configurationType = INSTaskConfigurationTypeModifyAndDelete;
+    }
 
     [self.navigationController pushViewController:taskConfigurationVC animated:YES];
 }
@@ -98,9 +107,9 @@
     
     INSTaskConfigurationViewController *taskConfigurationVC = [[INSTaskConfigurationViewController alloc] initWithTaskModel:taskModel];
     taskConfigurationVC.configurationType = INSTaskConfigurationTypeAdd;
-    UINavigationController *newNC = [[UINavigationController alloc] initWithRootViewController:taskConfigurationVC];
-    newNC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:newNC animated:YES completion:nil];
+    UINavigationController *taskConfigurationNC = [[UINavigationController alloc] initWithRootViewController:taskConfigurationVC];
+    taskConfigurationNC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:taskConfigurationNC animated:YES completion:nil];
 }
 
 - (void)clickCloseButton:(id)sender {
@@ -110,10 +119,6 @@
 #pragma mark - Private Method
 
 - (void)updateDataAndTableView {
-//    self.taskIds = [[ILDTaskDataCenter sharedInstance] taskIds];
-//
-//    [self.taskListTableView reloadData];
-    
     [self refreshTaskListCellVMArray];
     [self.tableView reloadData];
 }
@@ -128,8 +133,7 @@
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.separatorInset = UIEdgeInsetsMake(0, 12, 0, 12);
 
-        INSLogoConfiguration *logoConfiguration = [[INSLogoConfiguration alloc] init];
-        _tableView.tableHeaderView = [[INSLogoView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 225.0f) andLogoConfiguration:logoConfiguration];
+        _tableView.tableHeaderView = [[INSAppView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 225.0f)];
         
         [_tableView setBackgroundColor:ClearColor];
 
