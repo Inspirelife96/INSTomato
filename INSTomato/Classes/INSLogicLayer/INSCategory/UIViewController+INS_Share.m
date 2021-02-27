@@ -1,13 +1,17 @@
 //
-//  UIViewController+INS_AlertView.m
+//  UIViewController+INS_Share.m
 //  INSTomato-INSTomato
 //
 //  Created by XueFeng Chen on 2021/2/26.
 //
 
-#import "UIViewController+INS_AlertView.h"
+#import "UIViewController+INS_Share.h"
 
-@implementation UIViewController (INS_AlertView)
+//#import <SCLAlertView-Objective-C/SCLAlertView.h>
+
+@implementation UIViewController (INS_Share)
+
+
 
 - (void)shareWithText:(NSString *)text url:(NSURL *)url image:(UIImage *)image CompletionWithItemsHandler: (UIActivityViewControllerCompletionWithItemsHandler)completionWithItemsHandler {
     NSArray *activityItems = @[text, image, url];

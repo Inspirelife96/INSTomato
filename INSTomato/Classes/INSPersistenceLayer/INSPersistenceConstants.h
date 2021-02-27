@@ -144,7 +144,10 @@ extern NSString *const kTomatoConfigurationTableIconData;
 extern NSString *const kTomatoConfigurationTableBackgroundImageData;
 
 // 链接二维码，书签界面，链接二维码，默认为勤之时的二维码
-extern NSString *const kTomatoConfigurationTableSharedLinkImageData;
+extern NSString *const kTomatoConfigurationTablesharedCodeImageData;
+
+// 链接，书签界面，默认为勤之时的App链接
+extern NSString *const kTomatoConfigurationTablesharedUrlString;
 
 // 上左，上右，下左，下右四个角标的设置，默认分别为任务，关闭，统计，书签
 extern NSString *const kTomatoConfigurationTableTopLeftPluginType;

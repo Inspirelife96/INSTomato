@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, INSSupportedPluginType) {
     INSSupportedPluginTypeNone = 0,
-    INSSupportedPluginTypeTask,
     INSSupportedPluginTypeClose,
+    INSSupportedPluginTypeTask,
     INSSupportedPluginTypeStatistics,
     INSSupportedPluginTypeBookmark
 };
@@ -35,7 +35,9 @@ typedef NS_ENUM(NSInteger, INSSupportedPluginType) {
 
 @property (nonatomic, strong) UIImage *tomatoBackgroundImage;
 
-@property (nonatomic, strong) UIImage *sharedLinkImage;
+@property (nonatomic, strong) UIImage *sharedCodeImage;
+
+@property (nonatomic, strong) NSString *sharedUrlString;
 
 @property (nonatomic, assign) INSSupportedPluginType topLeftPluginType;
 

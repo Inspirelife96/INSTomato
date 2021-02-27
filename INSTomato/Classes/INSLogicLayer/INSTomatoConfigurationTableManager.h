@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)subTitle;
 - (UIImage *)icon;
 - (UIImage *)backgroundImage;
-- (UIImage *)sharedLinkImage;
+- (UIImage *)sharedCodeImage;
+- (NSURL *)sharedUrl;
 - (INSSupportedPluginType)topLeftPluginType;
 - (INSSupportedPluginType)topRightPluginType;
 - (INSSupportedPluginType)bottomLeftPluginType;

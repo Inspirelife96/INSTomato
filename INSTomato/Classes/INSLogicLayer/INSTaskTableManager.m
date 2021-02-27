@@ -207,4 +207,16 @@ static INSTaskTableManager *sharedInstance = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationTaskTableSaved object:nil];
 }
 
+- (BOOL)isTaskNameAlreadyExist:(NSString *)taskName identifier:(NSString *)identifier {
+    __block BOOL isTaskNameAlreadyExist = NO;
+
+    [self.coreDictionary enumerateKeysAndObjectsUsingBlock:^(NSString  * _Nonnull  taskIdentifier, NSDictionary * _Nonnull taskDictionary, BOOL * _Nonnull stop) {
+            if (![taskIdentifier isEqualToString:identifier] && [taskDictionary[kTaskTableCoreName] isEqualToString:taskName]) {
+                isTaskNameAlreadyExist =  YES;
+            }
+    }];
+    
+    return isTaskNameAlreadyExist;
+}
+
 @end

@@ -11,8 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (INS_Share)
 
-- (void)alertErrorWithTitle:(NSString *)title subTitle:(NSString *)subTtile;
-- (void)alertInfoWithTitle:(NSString *)title subTitle:(NSString *)subTtile;
+- (void)shareWithText:(NSString *)text url:(NSURL *)url image:(UIImage *)image CompletionWithItemsHandler: (UIActivityViewControllerCompletionWithItemsHandler)completionWithItemsHandler;
 
 @end
 

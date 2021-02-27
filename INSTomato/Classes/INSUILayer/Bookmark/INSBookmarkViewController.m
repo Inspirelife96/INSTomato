@@ -15,6 +15,8 @@
 
 #import "INSBookmarkTableManager.h"
 
+#import "UIViewController+INS_Share.h"
+
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
@@ -100,8 +102,10 @@
 }
 
 - (void)clickShareButton:(id)sender {
-//    UIImage *sharedImage = [self.sharedView il_viewToImage];
-//    [ILDShareSDKHelper shareMessage:self.storyModel.todaysTitle image:sharedImage onView:self.sharingButton];
+    NSURL *url = [NSURL URLWithString:@"http://itunes.apple.com/app/id1086303564"];
+    [self shareWithText:self.bookmarkModel.title url:url image:self.bookmarkModel.image CompletionWithItemsHandler:^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+            //
+    }];
 }
 
 #pragma mark - Getter and Setter

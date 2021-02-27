@@ -19,7 +19,7 @@
 @interface INSBookmarkView()
 
 @property (nonatomic, strong) UIImageView *bookMarkImageView;
-@property (nonatomic, strong) UIImageView *sharedLinkImageView;
+@property (nonatomic, strong) UIImageView *sharedCodeImageView;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *wordsLabel;
@@ -38,8 +38,8 @@
             make.edges.equalTo(self);
         }];
         
-        [self addSubview:self.sharedLinkImageView];
-        [self.sharedLinkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self addSubview:self.sharedCodeImageView];
+        [self.sharedCodeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(12);
             if (@available(iOS 11.0, *)) {
                 make.bottom.mas_equalTo(self.mas_safeAreaLayoutGuideBottom).with.offset(-8);
@@ -52,9 +52,9 @@
         
         [self addSubview:self.dateLabel];
         [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.sharedLinkImageView.mas_right).with.offset(12.0f);
+            make.left.equalTo(self.sharedCodeImageView.mas_right).with.offset(12.0f);
             make.right.equalTo(self).with.offset(-12.0f);
-            make.bottom.equalTo(self.sharedLinkImageView);
+            make.bottom.equalTo(self.sharedCodeImageView);
             make.height.mas_equalTo(44);
         }];
         
@@ -62,7 +62,7 @@
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.dateLabel);
             make.right.equalTo(self.dateLabel);
-            make.top.equalTo(self.sharedLinkImageView);
+            make.top.equalTo(self.sharedCodeImageView);
             make.height.mas_lessThanOrEqualTo(42.0f);
         }];
         
@@ -70,7 +70,7 @@
         [self.wordsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).with.offset(12.0f);
             make.right.equalTo(self).with.offset(-12.0f);
-            make.bottom.equalTo(self.sharedLinkImageView.mas_top).with.offset(-12.0f);
+            make.bottom.equalTo(self.sharedCodeImageView.mas_top).with.offset(-12.0f);
             make.height.mas_greaterThanOrEqualTo(21.0f);
         }];
     }
@@ -95,13 +95,13 @@
     return _bookMarkImageView;
 }
 
-- (UIImageView *)sharedLinkImageView {
-    if (!_sharedLinkImageView) {
-        _sharedLinkImageView = [[UIImageView alloc] init ];
-        _sharedLinkImageView.image = [[INSTomatoConfigurationTableManager sharedInstance] sharedLinkImage];
+- (UIImageView *)sharedCodeImageView {
+    if (!_sharedCodeImageView) {
+        _sharedCodeImageView = [[UIImageView alloc] init ];
+        _sharedCodeImageView.image = [[INSTomatoConfigurationTableManager sharedInstance] sharedCodeImage];
     }
     
-    return _sharedLinkImageView;
+    return _sharedCodeImageView;
 }
 
 - (UILabel *)dateLabel {

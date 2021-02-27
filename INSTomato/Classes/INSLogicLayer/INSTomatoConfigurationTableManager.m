@@ -44,9 +44,13 @@ static INSTomatoConfigurationTableManager *sharedInstance = nil;
         [tomatoConfigurationDictionary setValue:backgroundImageData forKey:kTomatoConfigurationTableBackgroundImageData];
     }
     
-    if (tomatoConfiguration.sharedLinkImage) {
-        NSData *sharedLinkImageData = UIImageJPEGRepresentation(tomatoConfiguration.sharedLinkImage, 0.5);
-        [tomatoConfigurationDictionary setValue:sharedLinkImageData forKey:kTomatoConfigurationTableBackgroundImageData];
+    if (tomatoConfiguration.sharedCodeImage) {
+        NSData *sharedCodeImageData = UIImageJPEGRepresentation(tomatoConfiguration.sharedCodeImage, 0.5);
+        [tomatoConfigurationDictionary setValue:sharedCodeImageData forKey:kTomatoConfigurationTablesharedCodeImageData];
+    }
+    
+    if (tomatoConfiguration.sharedUrlString) {
+        [tomatoConfigurationDictionary setValue:tomatoConfiguration.sharedUrlString forKey:kTomatoConfigurationTablesharedUrlString];
     }
     
     [tomatoConfigurationDictionary setValue:@(tomatoConfiguration.topLeftPluginType) forKey:kTomatoConfigurationTableTopLeftPluginType];
@@ -117,9 +121,13 @@ static INSTomatoConfigurationTableManager *sharedInstance = nil;
     return [UIImage imageWithData:backgroundImageData];
 }
 
-- (UIImage *)sharedLinkImage {
-    NSData *sharedLinkImageData = self.tomatoConfigurationDictionary[kTomatoConfigurationTableBackgroundImageData];
-    return [UIImage imageWithData:sharedLinkImageData];
+- (UIImage *)sharedCodeImage {
+    NSData *sharedCodeImageData = self.tomatoConfigurationDictionary[kTomatoConfigurationTablesharedCodeImageData];
+    return [UIImage imageWithData:sharedCodeImageData];
+}
+
+- (UIImage *)sharedUrlString {
+    return self.tomatoConfigurationDictionary[kTomatoConfigurationTablesharedUrlString];
 }
 
 - (INSSupportedPluginType)topLeftPluginType {

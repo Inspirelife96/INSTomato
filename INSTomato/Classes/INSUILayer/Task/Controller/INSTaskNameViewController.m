@@ -11,6 +11,10 @@
 
 #import "INSTomatoBundle.h"
 
+#import "INSTaskTableManager.h"
+
+#import "UIViewController+INS_AlertView.h"
+
 #import <Masonry/Masonry.h>
 #import <ChameleonFramework/Chameleon.h>
 
@@ -96,8 +100,15 @@
 }
 
 - (void)clickCloseButton:(id)sender {
-    self.taskModel.name = self.taskNameTextField.text;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([[INSTaskTableManager sharedInstance] isTaskNameAlreadyExist:self.taskNameTextField.text identifier:self.taskModel.identifier]) {
+        [self alertInfoWithTitle:@"通知" subTitle:@"任务名称已经存在，请重新取名！"];
+    } else if ([self.taskNameTextField.text isEqualToString:@""]) {
+        [self alertInfoWithTitle:@"通知" subTitle:@"任务名称不能为空"];
+    } else {
+        self.taskModel.name = self.taskNameTextField.text;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
 }
 
 #pragma mark - Getter and Setter

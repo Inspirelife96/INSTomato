@@ -43,11 +43,11 @@
     
     self.navigationItem.title = @"任务一览";
     
-    self.navigationItem.rightBarButtonItem = self.closeBarButtonItem;
+    self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
     
     // 若番茄配置中，允许添加任务，则添加左上角的添加按钮
     if ([[INSTomatoConfigurationTableManager sharedInstance] isAddTaskEnabled]) {
-        self.navigationItem.leftBarButtonItem = self.addBarButtonItem;
+        self.navigationItem.rightBarButtonItem = self.addBarButtonItem;
     }
 
     [self.view addSubview:self.tableView];

@@ -31,7 +31,8 @@
         _tomatoSubTitle = @"美好的励志时光";
         
         _tomatoIcon = [INSTomatoBundle imageNamed:@"iphone app 60"];
-        _sharedLinkImage = [INSTomatoBundle imageNamed:@"daycard_qrcode_50x50_"];
+        _sharedCodeImage = [INSTomatoBundle imageNamed:@"daycard_qrcode_50x50_"];
+        _sharedUrlString = @"http://itunes.apple.com/app/id1206687109";
         
         _tomatoBackgroundImage = nil;
         

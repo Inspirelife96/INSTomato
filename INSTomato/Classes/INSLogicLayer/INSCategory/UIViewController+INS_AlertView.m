@@ -1,13 +1,15 @@
 //
-//  UIViewController+INS_Share.m
+//  UIViewController+INS_AlertView.m
 //  INSTomato-INSTomato
 //
 //  Created by XueFeng Chen on 2021/2/26.
 //
 
-#import "UIViewController+INS_Share.h"
+#import "UIViewController+INS_AlertView.h"
 
-@implementation UIViewController (INS_Share)
+#import <SCLAlertView_Objective_C/SCLAlertView-Objective-C-umbrella.h>
+
+@implementation UIViewController (INS_AlertView)
 
 - (void)alertErrorWithTitle:(NSString *)title subTitle:(NSString *)subTtile {
     SCLAlertView *alert = [[SCLAlertView alloc] init];

@@ -25,7 +25,11 @@
 
 #import "INSTomatoBundle.h"
 
+#import "UIViewController+INS_AlertView.h"
+
 #import <ChameleonFramework/Chameleon.h>
+
+#import <SCLAlertView_Objective_C/SCLAlertView-Objective-C-umbrella.h>
 
 @interface INSTaskConfigurationViewController ()
 
@@ -210,18 +214,29 @@
 
 - (void)clickBackBarButtonItem:(id)sender {
     if (self.configurationType == INSTaskConfigurationTypeAdd) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+
+        alert.hideAnimationType = SCLAlertViewHideAnimationSimplyDisappear;
+
+        [alert addButton:@"放弃" actionBlock:^(void) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+
+        [alert showError:self title:@"警告" subTitle:@"该操作会放弃添加任务，所有当前的配置将会丢失，放弃吗？" closeButtonTitle:@"取消" duration:0.0f];
+        
     } else {
         if ([self.taskModel.name isEqualToString:@""]) {
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"警告" message:@"任务名称不能为空，请设置" preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                //
-            }];
-            
-            [alertVC addAction:cancelAction];
-            
-            [self presentViewController:alertVC animated:YES completion:nil];
+            [self alertInfoWithTitle:@"通知" subTitle:@"任务名称不能为空，请设置"];
+//
+//            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"警告" message:@"任务名称不能为空，请设置" preferredStyle:UIAlertControllerStyleAlert];
+//
+//            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+//                //
+//            }];
+//
+//            [alertVC addAction:cancelAction];
+//
+//            [self presentViewController:alertVC animated:YES completion:nil];
         } else {
             if (![self.taskModelCopy isEqualToTaskModel:self.taskModel]) {
                 [[INSTaskTableManager sharedInstance] updateTask:self.taskModel.identifier taskModel:self.taskModel];
@@ -233,36 +248,30 @@
 }
 
 - (void)saveTask:(id)sender {
-    [[INSTaskTableManager sharedInstance] addTask:self.taskModel];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.taskModel.name isEqualToString:@""]) {
+        [self alertInfoWithTitle:@"通知" subTitle:@"任务名称不能为空，请设置"];
+    } else if ([self.taskModel.name isEqualToString:@"请修改"]) {
+        [self alertInfoWithTitle:@"通知" subTitle:@"请修改任务名称"];
+    } else {
+        [[INSTaskTableManager sharedInstance] addTask:self.taskModel];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)deleteTask:(id)sender {
     if ([[[INSTaskTableManager sharedInstance] taskIds] count] <= 1) {
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"通知" message:@"这是最后一个任务，无法被删除" preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            //
-        }];
-        
-        [alertVC addAction:cancelAction];
-        
-        [self presentViewController:alertVC animated:YES completion:nil];
+        [self alertInfoWithTitle:@"通知" subTitle:@"这是最后一个任务，无法被删除"];
     } else {
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"警告" message:@"该操作会删除当前任务以及所有的和任务相关的统计记录，确认删除吗？" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+
+        alert.hideAnimationType = SCLAlertViewHideAnimationSimplyDisappear;
+
+        [alert addButton:@"删除" actionBlock:^(void) {
             [[INSTaskTableManager sharedInstance] removeTask:self.taskModel.identifier];
             [self.navigationController popViewControllerAnimated:YES];
         }];
-        
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            //
-        }];
-        
-        [alertVC addAction:cancelAction];
-        [alertVC addAction:okAction];
-        
-        [self presentViewController:alertVC animated:YES completion:nil];
+
+        [alert showError:self title:@"警告" subTitle:@"该操作会删除当前任务以及所有的和任务相关的统计记录，确认删除吗？" closeButtonTitle:@"取消" duration:0.0f];
     }
 }
 

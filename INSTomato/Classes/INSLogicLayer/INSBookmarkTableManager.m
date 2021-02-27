@@ -31,10 +31,12 @@ static INSBookmarkTableManager *sharedInstance = nil;
 
 + (void)createBookmarkTable {
     if ([INSBookmarkTablePersistence readBookmarkTable]) {
+        [INSBookmarkTableManager updateBookmarkTable];
         return;
     }
     
     [INSBookmarkTablePersistence createBookmarkTable];
+    [INSBookmarkTableManager updateBookmarkTable];
 }
 
 + (void)resetBookmarkTable {

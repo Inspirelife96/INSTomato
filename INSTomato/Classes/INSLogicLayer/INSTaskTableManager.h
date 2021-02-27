@@ -47,6 +47,9 @@ extern NSString *const kNotificationTaskTableSaved;
 - (void)removeTask:(NSString *)taskId;
 - (void)updateTask:(NSString *)taskId taskModel:(INSTaskModel *)taskModel;
 
+// identifer不同，名字相同，则返回YES。
+- (BOOL)isTaskNameAlreadyExist:(NSString *)taskName identifier:(NSString *)identifier;
+
 //- (NSString *)generateIdentifier;
 
 @end
