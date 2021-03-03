@@ -21,6 +21,13 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		7FE7214325ECDF95006AD1BE /* INSMusicHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE7214125ECDF95006AD1BE /* INSMusicHelper.m */; };
+		7FE7215125ECE7C6006AD1BE /* 云端.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7213C25ECDF43006AD1BE /* 云端.m4a */; };
+		7FE7215225ECE7C6006AD1BE /* 心灵.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7213B25ECDF42006AD1BE /* 心灵.m4a */; };
+		7FE7215325ECE7C6006AD1BE /* 星夜.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7213D25ECDF43006AD1BE /* 星夜.m4a */; };
+		7FE7215425ECE7C6006AD1BE /* 森林.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7213E25ECDF43006AD1BE /* 森林.m4a */; };
+		7FE7215525ECE7C6006AD1BE /* 纯然.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7213F25ECDF43006AD1BE /* 纯然.m4a */; };
+		7FE7215625ECE7C6006AD1BE /* 叶根友蚕燕隶书.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7214025ECDF48006AD1BE /* 叶根友蚕燕隶书.ttf */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		F46400A040FA734CCAD79BB2 /* Pods_INSTomato_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A615D8FDDDAFBB67036BB9 /* Pods_INSTomato_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +64,14 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7FE7213B25ECDF42006AD1BE /* 心灵.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "心灵.m4a"; sourceTree = "<group>"; };
+		7FE7213C25ECDF43006AD1BE /* 云端.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "云端.m4a"; sourceTree = "<group>"; };
+		7FE7213D25ECDF43006AD1BE /* 星夜.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "星夜.m4a"; sourceTree = "<group>"; };
+		7FE7213E25ECDF43006AD1BE /* 森林.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "森林.m4a"; sourceTree = "<group>"; };
+		7FE7213F25ECDF43006AD1BE /* 纯然.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "纯然.m4a"; sourceTree = "<group>"; };
+		7FE7214025ECDF48006AD1BE /* 叶根友蚕燕隶书.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "叶根友蚕燕隶书.ttf"; sourceTree = "<group>"; };
+		7FE7214125ECDF95006AD1BE /* INSMusicHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INSMusicHelper.m; sourceTree = "<group>"; };
+		7FE7214225ECDF95006AD1BE /* INSMusicHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INSMusicHelper.h; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		896B49850C74B987AC90135C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		8B617B9CA38AEC005F391052 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -129,8 +144,16 @@
 		6003F593195388D20070C39A /* Example for INSTomato */ = {
 			isa = PBXGroup;
 			children = (
+				7FE7213C25ECDF43006AD1BE /* 云端.m4a */,
+				7FE7213B25ECDF42006AD1BE /* 心灵.m4a */,
+				7FE7213D25ECDF43006AD1BE /* 星夜.m4a */,
+				7FE7213E25ECDF43006AD1BE /* 森林.m4a */,
+				7FE7213F25ECDF43006AD1BE /* 纯然.m4a */,
+				7FE7214025ECDF48006AD1BE /* 叶根友蚕燕隶书.ttf */,
 				6003F59C195388D20070C39A /* INSAppDelegate.h */,
 				6003F59D195388D20070C39A /* INSAppDelegate.m */,
+				7FE7214225ECDF95006AD1BE /* INSMusicHelper.h */,
+				7FE7214125ECDF95006AD1BE /* INSMusicHelper.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -272,6 +295,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FE7215125ECE7C6006AD1BE /* 云端.m4a in Resources */,
+				7FE7215225ECE7C6006AD1BE /* 心灵.m4a in Resources */,
+				7FE7215325ECE7C6006AD1BE /* 星夜.m4a in Resources */,
+				7FE7215425ECE7C6006AD1BE /* 森林.m4a in Resources */,
+				7FE7215525ECE7C6006AD1BE /* 纯然.m4a in Resources */,
+				7FE7215625ECE7C6006AD1BE /* 叶根友蚕燕隶书.ttf in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -373,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FE7214325ECDF95006AD1BE /* INSMusicHelper.m in Sources */,
 				6003F59E195388D20070C39A /* INSAppDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
