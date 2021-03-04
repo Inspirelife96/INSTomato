@@ -10,6 +10,8 @@
 
 #import "INSMusicHelper.h"
 
+#import "INSHomeViewController.h"
+
 #import <INSTomato/INSTomato-umbrella.h>
 
 #import <CoreText/CoreText.h>
@@ -49,13 +51,12 @@
     }]];
     
     
-    // 生成番茄视图
-    INSTomatoViewController *tomatoVC = [[INSTomatoViewController alloc] init];
-    
+
+    INSHomeViewController *homeVC = [[INSHomeViewController alloc] init];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = tomatoVC;
+    self.window.rootViewController = homeVC;
 
     [self.window makeKeyAndVisible];
     

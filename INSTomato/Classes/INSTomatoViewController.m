@@ -124,6 +124,8 @@
     
     [self updateButtonsUI];
     
+    [self updatePluginButtonUI];
+    
     [self updateTaskPageViewControllers];
     
     [self registerNotifications];
@@ -342,7 +344,8 @@
     [self updateProgress];
     [self endHalo];
     
-    if ([INSTomatoTimer sharedInstance].tomatoTimerMode == INSTomatoTimerModeWork) {
+    if ([INSTomatoTimer sharedInstance].tomatoTimerMode == INSTomatoTimerModeWork
+        && [INSTomatoTimer sharedInstance].tomatoTimerStatus == INSTomatoTimerStatusStop) {
         [self enablePageable];
     }
 }
@@ -363,8 +366,9 @@
 
 - (void)updatePluginButtonUI {
     INSTomatoTimerStatus timerStatus = [INSTomatoTimer sharedInstance].tomatoTimerStatus;
+    INSTomatoTimerMode timeMode = [INSTomatoTimer sharedInstance].tomatoTimerMode;
     
-    if (timerStatus == INSTomatoTimerStatusStop) {
+    if (timerStatus == INSTomatoTimerStatusStop && timeMode == INSTomatoTimerModeWork) {
         [self.taskButton setHidden:NO];
         [self.statisticsButton setHidden:NO];
         [self.bookmarkButton setHidden:NO];
@@ -506,9 +510,12 @@
     bounds.origin.y = 0;
     [self.taskPageView scrollRectToVisible:bounds animated:animated];
     
-    INSTaskModel *taskModel = [[INSTaskTableManager sharedInstance] taskModelByTaskId:self.taskIds[page]];
-    
-    [[INSTomatoTimer sharedInstance] updateTomatoTimerWithTaskModel:taskModel];
+    // 如果当前番茄时钟不在工作状态，则更新。
+    if ([INSTomatoTimer sharedInstance].tomatoTimerMode == INSTomatoTimerModeWork
+        && [INSTomatoTimer sharedInstance].tomatoTimerStatus == INSTomatoTimerStatusStop) {
+        INSTaskModel *taskModel = [[INSTaskTableManager sharedInstance] taskModelByTaskId:self.taskIds[page]];
+        [[INSTomatoTimer sharedInstance] updateTomatoTimerWithTaskModel:taskModel];
+    }
 }
 
 #pragma mark - Custom Delegate

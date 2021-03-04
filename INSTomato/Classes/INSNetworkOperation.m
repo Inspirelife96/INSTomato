@@ -14,7 +14,13 @@
 NSString *const kBingImageURL = @"http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
 NSString *const kBingImageFullPathFormat = @"http://www.bing.com%@%@";
 
-NSString *const kICIBAWordsURL = @"http://open.iciba.com/dsapi/";
+// 由于不是Https，不再使用
+// NSString *const kICIBAWordsURL = @"http://open.iciba.com/dsapi/";
+
+NSString *kHitokotoURL = @"https://v1.hitokoto.cn/";
+
+// 备选 扇贝
+// https://apiv3.shanbay.com/weapps/dailyquote/quote/
 
 NSString *const kBingImageURLImages = @"images";
 NSString *const kBingImageURLUrlBase = @"urlbase";
@@ -23,7 +29,7 @@ NSString *const kBingImageURLImageData = @"imageData";
 
 NSString *const kImageTypes = @"_1080x1920.jpg";
 
-NSString *const kICIBAWordsNote = @"note";
+NSString *const kHitokoto = @"hitokoto";
 
 @interface INSNetworkOperation ()
 
@@ -55,7 +61,7 @@ NSString *const kICIBAWordsNote = @"note";
 
 - (void)downloadBookmarkData:(void (^_Nullable)(INSBookmarkModel *bookmarkModel, NSError *_Nullable error))block {
     [self downloadBingImageDataDictionary];
-    [self downloadICIBAWords];
+    [self downloadHitokoto];
     
     dispatch_group_notify(self.downloadBookMarkDataDispatchGroup, dispatch_get_main_queue(), ^{
         block(self.bookmarkModel, self.error);
@@ -119,12 +125,12 @@ NSString *const kICIBAWordsNote = @"note";
     [dataTask resume];
 }
 
-- (void)downloadICIBAWords {
+- (void)downloadHitokoto {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    NSURL *URL = [NSURL URLWithString:kICIBAWordsURL];
+    NSURL *URL = [NSURL URLWithString:kHitokotoURL];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
     dispatch_group_enter(self.downloadBookMarkDataDispatchGroup);
@@ -134,9 +140,9 @@ NSString *const kICIBAWordsNote = @"note";
         } else {
             //NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
             
-            NSDictionary *ICIBADictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-            if (ICIBADictionary[kICIBAWordsNote]) {
-                self.bookmarkModel.words = ICIBADictionary[kICIBAWordsNote];
+            NSDictionary *hitokotoDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+            if (hitokotoDictionary[kHitokoto]) {
+                self.bookmarkModel.words = hitokotoDictionary[kHitokoto];
             }
         }
         

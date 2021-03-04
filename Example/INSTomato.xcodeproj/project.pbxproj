@@ -28,6 +28,7 @@
 		7FE7215425ECE7C6006AD1BE /* 森林.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7213E25ECDF43006AD1BE /* 森林.m4a */; };
 		7FE7215525ECE7C6006AD1BE /* 纯然.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7213F25ECDF43006AD1BE /* 纯然.m4a */; };
 		7FE7215625ECE7C6006AD1BE /* 叶根友蚕燕隶书.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FE7214025ECDF48006AD1BE /* 叶根友蚕燕隶书.ttf */; };
+		7FE7393625EFCFE6006AD1BE /* INSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FE7393525EFCFE5006AD1BE /* INSHomeViewController.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		F46400A040FA734CCAD79BB2 /* Pods_INSTomato_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A615D8FDDDAFBB67036BB9 /* Pods_INSTomato_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,8 @@
 		7FE7214025ECDF48006AD1BE /* 叶根友蚕燕隶书.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "叶根友蚕燕隶书.ttf"; sourceTree = "<group>"; };
 		7FE7214125ECDF95006AD1BE /* INSMusicHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INSMusicHelper.m; sourceTree = "<group>"; };
 		7FE7214225ECDF95006AD1BE /* INSMusicHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INSMusicHelper.h; sourceTree = "<group>"; };
+		7FE7393425EFCFE5006AD1BE /* INSHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INSHomeViewController.h; sourceTree = "<group>"; };
+		7FE7393525EFCFE5006AD1BE /* INSHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INSHomeViewController.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		896B49850C74B987AC90135C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		8B617B9CA38AEC005F391052 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				7FE7214025ECDF48006AD1BE /* 叶根友蚕燕隶书.ttf */,
 				6003F59C195388D20070C39A /* INSAppDelegate.h */,
 				6003F59D195388D20070C39A /* INSAppDelegate.m */,
+				7FE7393425EFCFE5006AD1BE /* INSHomeViewController.h */,
+				7FE7393525EFCFE5006AD1BE /* INSHomeViewController.m */,
 				7FE7214225ECDF95006AD1BE /* INSMusicHelper.h */,
 				7FE7214125ECDF95006AD1BE /* INSMusicHelper.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -402,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FE7393625EFCFE6006AD1BE /* INSHomeViewController.m in Sources */,
 				7FE7214325ECDF95006AD1BE /* INSMusicHelper.m in Sources */,
 				6003F59E195388D20070C39A /* INSAppDelegate.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
