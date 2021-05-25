@@ -58,6 +58,8 @@ extern NSString *const kTaskTableCoreIsAlertModeEnabled;
 // 推送提醒的时间
 extern NSString *const kTaskTableCoreAlertDate;
 
+extern NSString *const kTaskTableCoreSortId;
+
 #pragma mark - statistics table column
 
 // 统计表包括

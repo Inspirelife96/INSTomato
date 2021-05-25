@@ -27,7 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const kNotificationTaskTableSaved;
 
+//typedef NSArray *_Nonnull(^SyncFromServerBlock)(void);
+typedef void(^SyncTomatoTaskToServerBlock)(INSTaskModel *taskModel);
+
 @interface INSTaskTableManager : NSObject
+
+@property (nonatomic, copy) SyncTomatoTaskToServerBlock syncTomatoTaskToServerBlock;
 
 + (void)createTaskTable:(INSTomatoConfiguration *)configuration;
 + (void)resetTaskTable:(INSTomatoConfiguration *)configuration;

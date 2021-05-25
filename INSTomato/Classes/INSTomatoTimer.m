@@ -185,9 +185,13 @@ static INSTomatoTimer * _tomatoTimer = nil;
 }
 
 - (void)saveTomatoData {
-    INSStatisticsModel *tomatoModel = [[INSStatisticsModel alloc] initWithTaskId:self.taskModel.identifier startDate:self.startDate endDate:[NSDate date] breakTimes:[NSNumber numberWithInteger:self.breakTimes] tomatoMinutes:self.taskModel.tomatoMinutes];
+    INSStatisticsModel *statisticsModel = [[INSStatisticsModel alloc] initWithTaskId:self.taskModel.taskId startDate:self.startDate endDate:[NSDate date] breakTimes:[NSNumber numberWithInteger:self.breakTimes] tomatoMinutes:self.taskModel.tomatoMinutes];
     
-    [[INSStatisticsTableManager sharedInstance] addTomato:tomatoModel];
+    [[INSStatisticsTableManager sharedInstance] addStatistics:statisticsModel];
+    
+    if ([INSStatisticsTableManager sharedInstance].syncStatisticsToServerBlock) {
+        [INSStatisticsTableManager sharedInstance].syncStatisticsToServerBlock(statisticsModel);
+    }
 }
 
 - (void)playSystemSound {

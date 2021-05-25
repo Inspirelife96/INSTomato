@@ -88,39 +88,47 @@ static INSStatisticsTableManager *sharedInstance = nil;
     return self;
 }
 
+- (void)removeAll {
+    [self.coreDictionary removeAllObjects];
+    [self.taskIndexDictionary removeAllObjects];
+    [self.hourIndexDictionary removeAllObjects];
+    [self.dayIndexDictionary removeAllObjects];
+    [self.weekdayIndexDictionary removeAllObjects];
+}
+
 #pragma mark - Public Method
 
-- (void)addTomato:(INSStatisticsModel *)tomatoModel {
-    NSNumber *maxRowIdNumber = self.configurationDictionary[kStatisticsTableConfigurationMaxRowId];
-    NSNumber *newRowIdNumber = [NSNumber numberWithInteger:([maxRowIdNumber integerValue] + 1)];
-    NSString *tomatoRowId = [newRowIdNumber stringValue];
-    tomatoModel.identifier =tomatoRowId;
+- (void)addStatistics:(INSStatisticsModel *)statisticsModel {
+//    NSNumber *maxRowIdNumber = self.configurationDictionary[kStatisticsTableConfigurationMaxRowId];
+//    NSNumber *newRowIdNumber = [NSNumber numberWithInteger:([maxRowIdNumber integerValue] + 1)];
+//    NSString *tomatoRowId = [newRowIdNumber stringValue];
+//    tomatoModel.identifier =tomatoRowId;
 
     // 添加番茄数据
-    [self.coreDictionary setObject:[tomatoModel convertToDictionary] forKey:tomatoRowId];
+    [self.coreDictionary setObject:[statisticsModel convertToDictionary] forKey:statisticsModel.identifier];
 
     // 更新最大RowId
-    self.configurationDictionary[kStatisticsTableConfigurationMaxRowId] = newRowIdNumber;
+    // self.configurationDictionary[kStatisticsTableConfigurationMaxRowId] = newRowIdNumber;
 
     // 更新索引
-    NSString *stringOfDay = [INSDateHelper stringOfDay:tomatoModel.startDate];
-    NSString *stringOfHour = [INSDateHelper stringOfHour:tomatoModel.startDate];
-    NSString *stringOfWeekday = [INSDateHelper stringOfWeekday:tomatoModel.startDate];
+    NSString *stringOfDay = [INSDateHelper stringOfDay:statisticsModel.startDate];
+    NSString *stringOfHour = [INSDateHelper stringOfHour:statisticsModel.startDate];
+    NSString *stringOfWeekday = [INSDateHelper stringOfWeekday:statisticsModel.startDate];
     
-    [self addTomatoRowId:tomatoRowId toIndexDictionary:self.taskIndexDictionary withIndexKey:tomatoModel.taskId];
-    [self addTomatoRowId:tomatoRowId toIndexDictionary:self.dayIndexDictionary withIndexKey:stringOfDay];
-    [self addTomatoRowId:tomatoRowId toIndexDictionary:self.hourIndexDictionary withIndexKey:stringOfHour];
-    [self addTomatoRowId:tomatoRowId toIndexDictionary:self.weekdayIndexDictionary withIndexKey:stringOfWeekday];
+    [self _addStatisticsIdentifier:statisticsModel.identifier toIndexDictionary:self.taskIndexDictionary withIndexKey:statisticsModel.taskId];
+    [self _addStatisticsIdentifier:statisticsModel.identifier toIndexDictionary:self.dayIndexDictionary withIndexKey:stringOfDay];
+    [self _addStatisticsIdentifier:statisticsModel.identifier toIndexDictionary:self.hourIndexDictionary withIndexKey:stringOfHour];
+    [self _addStatisticsIdentifier:statisticsModel.identifier toIndexDictionary:self.weekdayIndexDictionary withIndexKey:stringOfWeekday];
     
     [self saveStatisticsTable];
 }
 
-- (void)removeTomatoByTaskId:(NSString *)taskId {
+- (void)removeStatisticsByTaskId:(NSString *)taskId {
     // 删除索引
-    [self removeTomatoRowIdsInIndexDictionary:self.taskIndexDictionary byTaskId:taskId];
-    [self removeTomatoRowIdsInIndexDictionary:self.hourIndexDictionary byTaskId:taskId];
-    [self removeTomatoRowIdsInIndexDictionary:self.dayIndexDictionary byTaskId:taskId];
-    [self removeTomatoRowIdsInIndexDictionary:self.weekdayIndexDictionary byTaskId:taskId];
+    [self removeStatisticsIdentifierInIndexDictionary:self.taskIndexDictionary byTaskId:taskId];
+    [self removeStatisticsIdentifierInIndexDictionary:self.hourIndexDictionary byTaskId:taskId];
+    [self removeStatisticsIdentifierInIndexDictionary:self.dayIndexDictionary byTaskId:taskId];
+    [self removeStatisticsIdentifierInIndexDictionary:self.weekdayIndexDictionary byTaskId:taskId];
 
     // 删除番茄数据
     [self.coreDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *rowId, NSDictionary *tomatoDictionary, BOOL * _Nonnull stop) {
@@ -132,7 +140,7 @@ static INSStatisticsTableManager *sharedInstance = nil;
     [self saveStatisticsTable];
 }
 
-- (void)addTomatoRowId:(NSString *)rowId toIndexDictionary:(NSMutableDictionary *)indexDictionary withIndexKey:(NSString *)indexKey {
+- (void)_addStatisticsIdentifier:(NSString *)rowId toIndexDictionary:(NSMutableDictionary *)indexDictionary withIndexKey:(NSString *)indexKey {
     NSMutableArray *tomatoRowIdArray = indexDictionary[indexKey];
     if (!tomatoRowIdArray) {
         tomatoRowIdArray = [[NSMutableArray alloc] init];
@@ -147,7 +155,7 @@ static INSStatisticsTableManager *sharedInstance = nil;
 // - 其他索引，例如dayIndx，格式是 日期：tomatoRowId数组，所以需要遍历所有的内容，查找tomatoRowId对应的taskId是否和需要删除的对象相同。
 // - 由于遍历外层是MutableDictionary，所以可以采用并发
 // - 由于遍历内层是MutableArray，删除的话，需要逆向遍历（NSEnumerationReverse），以保证不会因为删除而引起遍历崩溃。
-- (void)removeTomatoRowIdsInIndexDictionary:(NSMutableDictionary *)indexDictionary byTaskId:(NSString *)taskId {
+- (void)removeStatisticsIdentifierInIndexDictionary:(NSMutableDictionary *)indexDictionary byTaskId:(NSString *)taskId {
     if (indexDictionary == self.taskIndexDictionary) {
         [self.taskIndexDictionary removeObjectForKey:taskId];
     } else {

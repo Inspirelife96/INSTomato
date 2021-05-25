@@ -13,15 +13,20 @@ NS_ASSUME_NONNULL_BEGIN
 @class INSStatisticsTodayModel;
 @class INSStatisticsHistoryModel;
 
+typedef void(^SyncStatisticsToServerBlock)(INSStatisticsModel *statisticsModel);
+
 @interface INSStatisticsTableManager : NSObject
+
+@property (nonatomic, copy) SyncStatisticsToServerBlock syncStatisticsToServerBlock;
 
 + (void)createStatisticsTable;
 + (void)resetStatisticsTable;
 
 + (instancetype)sharedInstance;
 
-- (void)addTomato:(INSStatisticsModel *)tomatoModel;
-- (void)removeTomatoByTaskId:(NSString *)taskId;
+- (void)removeAll;
+- (void)removeStatisticsByTaskId:(NSString *)taskId;
+- (void)addStatistics:(INSStatisticsModel *)statisticsModel;
 
 - (INSStatisticsTodayModel *)fetchStatisticsTodayModel;
 - (INSStatisticsHistoryModel *)fetchStatisticsHistoryModel;

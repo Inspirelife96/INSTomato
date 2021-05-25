@@ -245,7 +245,7 @@
 //            [self presentViewController:alertVC animated:YES completion:nil];
         } else {
             if (![self.taskModelCopy isEqualToTaskModel:self.taskModel]) {
-                [[INSTaskTableManager sharedInstance] updateTask:self.taskModel.identifier taskModel:self.taskModel];
+                [[INSTaskTableManager sharedInstance] updateTask:self.taskModel.taskId taskModel:self.taskModel];
             }
             
             [super clickBackBarButtonItem:sender];
@@ -273,7 +273,7 @@
         alert.hideAnimationType = SCLAlertViewHideAnimationSimplyDisappear;
 
         [alert addButton:@"删除" actionBlock:^(void) {
-            [[INSTaskTableManager sharedInstance] removeTask:self.taskModel.identifier];
+            [[INSTaskTableManager sharedInstance] removeTask:self.taskModel.taskId];
             [self.navigationController popViewControllerAnimated:YES];
         }];
 

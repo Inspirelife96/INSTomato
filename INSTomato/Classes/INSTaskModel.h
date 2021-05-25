@@ -57,7 +57,7 @@ typedef NS_ENUM(NSInteger, INSSupportedRestMinutes) {
 
 @interface INSTaskModel : NSObject
 
-@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *taskId;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *color;
 @property (nonatomic, copy) NSString *music;
@@ -68,14 +68,13 @@ typedef NS_ENUM(NSInteger, INSSupportedRestMinutes) {
 @property (nonatomic, assign) BOOL isMusicModeEnabled;
 @property (nonatomic, assign) BOOL isAlertModeEnabled;
 @property (nonatomic, strong) NSDate *alertDate;
+@property (nonatomic, strong) NSString *sortId;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 - (instancetype)initWithTaskName:(NSString *)name;
 
 - (instancetype)initWithTaskName:(NSString *)name colorEnum:(INSSupportedColor)colorEnum;
-
-- (instancetype)initWithTaskName:(NSString *)name colorEnum:(INSSupportedColor)colorEnum tomatoMinutesEnum:(INSSupportedTomatoMinutes)tomatoMinutesEnum restMinutesEnum:(INSSupportedRestMinutes)restMinutesEnum NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)initWithTaskName:(NSString *)name musicName:(NSString *)musicName;
 

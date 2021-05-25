@@ -28,6 +28,7 @@ NSString *const kTaskTableCoreIsRestModeEnabled = @"isRestModeEnabled";
 NSString *const kTaskTableCoreIsMusicModeEnabled = @"isMusicModeEnabled";
 NSString *const kTaskTableCoreIsAlertModeEnabled = @"isAlertModeEnabled";
 NSString *const kTaskTableCoreAlertDate = @"alertDate";
+NSString *const kTaskTableCoreSortId = @"sortId";
 
 #pragma mark - tomato table column
 

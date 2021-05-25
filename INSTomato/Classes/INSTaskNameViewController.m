@@ -100,7 +100,7 @@
 }
 
 - (void)clickCloseButton:(id)sender {
-    if ([[INSTaskTableManager sharedInstance] isTaskNameAlreadyExist:self.taskNameTextField.text identifier:self.taskModel.identifier]) {
+    if ([[INSTaskTableManager sharedInstance] isTaskNameAlreadyExist:self.taskNameTextField.text identifier:self.taskModel.taskId]) {
         [self alertInfoWithTitle:@"通知" subTitle:@"任务名称已经存在，请重新取名！"];
     } else if ([self.taskNameTextField.text isEqualToString:@""]) {
         [self alertInfoWithTitle:@"通知" subTitle:@"任务名称不能为空"];

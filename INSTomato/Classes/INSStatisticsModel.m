@@ -17,7 +17,7 @@
                     breakTimes:(NSNumber *)breakTimes
                  tomatoMinutes:(NSNumber *)tomatoMinutes {
     if (self = [super init]) {
-        _identifier = @"";
+        _identifier =  [[NSUUID UUID] UUIDString];
         _taskId = taskId;
         _startDate = startDate;
         _endDate = endDate;

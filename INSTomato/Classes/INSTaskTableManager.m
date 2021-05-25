@@ -97,8 +97,8 @@ static INSTaskTableManager *sharedInstance = nil;
     NSMutableDictionary *coreDictionary = [taskTableDictionary[kTaskTableCore] mutableCopy];
     
     [taskModelArray enumerateObjectsUsingBlock:^(INSTaskModel * _Nonnull taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
-        taskModel.identifier = identifier;
+//        NSString *identifier = [NSString stringWithFormat:@"%ld", idx];
+//        taskModel.identifier = identifier;
         
         if (configuration.isMusicOptionEnabled) {
             if ([taskModel.music isEqualToString:@""]) {
@@ -106,13 +106,13 @@ static INSTaskTableManager *sharedInstance = nil;
                 taskModel.isMusicModeEnabled = YES;
             }
         }
-        
-        [coreDictionary setObject:[taskModel convertToDictionary] forKey:identifier];
+                
+        [coreDictionary setObject:[taskModel convertToDictionary] forKey:taskModel.taskId];
     }];
     
-    NSNumber *maxRowId = [NSNumber numberWithInteger:(taskModelArray.count - 1)];
-    
-    [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
+//    NSNumber *maxRowId = [NSNumber numberWithInteger:(taskModelArray.count - 1)];
+//
+//    [configurationDictionary setObject:maxRowId forKey:kTaskTableConfigurationMaxRowId];
     
     taskTableDictionary[kTaskTableConfiguration] = configurationDictionary;
     taskTableDictionary[kTaskTableCore] = coreDictionary;
@@ -147,6 +147,8 @@ static INSTaskTableManager *sharedInstance = nil;
         _taskTableDictionary = [[INSTaskTablePersistence readTaskTable] mutableCopy];
         _configurationDictionary = [_taskTableDictionary[kTaskTableConfiguration] mutableCopy];
         _coreDictionary = [_taskTableDictionary[kTaskTableCore] mutableCopy];
+        
+        _syncTomatoTaskToServerBlock = nil;
     }
     
     return self;
@@ -156,13 +158,13 @@ static INSTaskTableManager *sharedInstance = nil;
 
 - (NSArray *)taskIds {
     return [[self.coreDictionary allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        NSInteger taskId1 = [(NSString *)obj1 integerValue];
-        NSInteger taskId2 = [(NSString *)obj2 integerValue];
-        if (taskId1 < taskId2){
-            return NSOrderedAscending;
-        } else {
-            return NSOrderedDescending;
-        }
+        NSDictionary *task1Dictionary = self.coreDictionary[obj1];
+        NSDictionary *task2Dictionary = self.coreDictionary[obj2];
+        
+        NSString *task1SortId = task1Dictionary[kTaskTableCoreSortId];
+        NSString *task2SortId = task2Dictionary[kTaskTableCoreSortId];
+        
+        return [task1SortId compare:task2SortId];
     }];
 }
 
@@ -176,7 +178,7 @@ static INSTaskTableManager *sharedInstance = nil;
     __block NSInteger indexOfTask = -1;
     
     [taskIds enumerateObjectsUsingBlock:^(NSString  *_Nonnull taskId, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([taskModel.identifier isEqualToString:taskId]) {
+        if ([taskModel.taskId isEqualToString:taskId]) {
             indexOfTask = idx;
         }
     }];
@@ -185,16 +187,20 @@ static INSTaskTableManager *sharedInstance = nil;
 }
 
 - (void)addTask:(INSTaskModel *)taskModel {
-    NSNumber *maxRowIdNumber = self.configurationDictionary[kTaskTableConfigurationMaxRowId];
-    NSNumber *newRowIdNumber = [NSNumber numberWithInteger:([maxRowIdNumber integerValue] + 1)];
-    NSString *taskRowId = [newRowIdNumber stringValue];
+//    NSNumber *maxRowIdNumber = self.configurationDictionary[kTaskTableConfigurationMaxRowId];
+//    NSNumber *newRowIdNumber = [NSNumber numberWithInteger:([maxRowIdNumber integerValue] + 1)];
+//    NSString *taskRowId = [newRowIdNumber stringValue];
+//
+//    taskModel.identifier = taskRowId;
     
-    taskModel.identifier = taskRowId;
-    
-    self.coreDictionary[taskRowId] = [taskModel convertToDictionary];
-    self.configurationDictionary[kTaskTableConfigurationMaxRowId] = newRowIdNumber;
+    self.coreDictionary[taskModel.taskId] = [taskModel convertToDictionary];
+    //self.configurationDictionary[kTaskTableConfigurationMaxRowId] = newRowIdNumber;
     
     [self saveTaskTable];
+    
+    if (self.syncTomatoTaskToServerBlock) {
+        self.syncTomatoTaskToServerBlock(taskModel);
+    }
 }
 
 - (void)updateTask:(NSString *)taskId taskModel:(INSTaskModel *)taskModel {
@@ -205,7 +211,7 @@ static INSTaskTableManager *sharedInstance = nil;
 - (void)removeTask:(NSString *)taskId {
     [self.coreDictionary removeObjectForKey:taskId];
     [self saveTaskTable];
-    [[INSStatisticsTableManager sharedInstance] removeTomatoByTaskId:taskId];
+    [[INSStatisticsTableManager sharedInstance] removeStatisticsByTaskId:taskId];
 }
 
 //- (BOOL)isAddTaskEnabled {

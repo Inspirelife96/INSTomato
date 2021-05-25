@@ -13,7 +13,6 @@
 
 @implementation INSTaskModel
 
-
 - (instancetype)initWithTaskName:(NSString *)name {
     return [self initWithTaskName:name musicName:@"" colorEnum:INSSupportedColorRed tomatoMinutesEnum:INSSupportedTomatoMinutes25 restMinutesEnum:INSSupportedRestMinutes5];
 }
@@ -32,7 +31,7 @@
 
 - (instancetype)initWithTaskName:(NSString *)name musicName:(NSString *)musicName colorEnum:(INSSupportedColor)colorEnum tomatoMinutesEnum:(INSSupportedTomatoMinutes)tomatoMinutesEnum restMinutesEnum:(INSSupportedRestMinutes)restMinutesEnum {
     if (self = [super init]) {
-        self.identifier = @"";
+        self.taskId = [[NSUUID UUID] UUIDString];
         self.name = name;
         self.color = [INSColorHelper colorNameList][colorEnum];
         self.music = musicName;
@@ -49,32 +48,20 @@
         
         self.isAlertModeEnabled = NO;
         self.alertDate = [NSDate dateWithTimeIntervalSince1970:10 * 3600];
+        
+        NSDate *date = [NSDate date];
+        
+        NSTimeInterval timeInterval = [date timeIntervalSince1970] * 1000000;
+        
+        self.sortId = [NSString stringWithFormat:@"%llu", (long long unsigned)timeInterval];
     }
     
     return self;
 }
 
-//- (instancetype)initWithIdentifier:(NSString *)identifier name:(NSString *)name color:(NSString *)color music:(NSString *)music {
-//    if (self = [super init]) {
-//        self.identifier = identifier;
-//        self.name = name;
-//        self.color = color;
-//        self.music = music;
-//        self.tomatoMinutes = @25;
-//        self.restMinutes = @5;
-//        self.isFocusModeEnabled = NO;
-//        self.isRestModeEnabled = YES;
-//        self.isMusicModeEnabled = YES;
-//        self.isAlertModeEnabled = NO;
-//        self.alertDate = [NSDate dateWithTimeIntervalSince1970:10 * 3600];
-//    }
-//
-//    return self;
-//}
-
 - (instancetype)initWithTaskDictionary:(NSDictionary *)taskDictionary {
     if (self = [super init]) {
-        self.identifier = taskDictionary[kTaskTableCoreIdentifier];
+        self.taskId = taskDictionary[kTaskTableCoreIdentifier];
         self.name = taskDictionary[kTaskTableCoreName];
         self.color = taskDictionary[kTaskTableCoreColor];
         self.music = taskDictionary[kTaskTableCoreMusic];
@@ -84,6 +71,7 @@
         self.isMusicModeEnabled = [taskDictionary[kTaskTableCoreIsMusicModeEnabled] boolValue];
         self.isAlertModeEnabled = [taskDictionary[kTaskTableCoreIsAlertModeEnabled] boolValue];
         self.alertDate = taskDictionary[kTaskTableCoreAlertDate];
+        self.sortId = taskDictionary[kTaskTableCoreSortId];
     }
     
     return self;
@@ -91,7 +79,7 @@
 
 - (NSDictionary *)convertToDictionary {
     NSDictionary *taskDictionary = @{
-        kTaskTableCoreIdentifier: self.identifier,
+        kTaskTableCoreIdentifier: self.taskId,
         kTaskTableCoreName: self.name,
         kTaskTableCoreColor: self.color,
         kTaskTableCoreMusic: self.music,
@@ -100,7 +88,8 @@
         kTaskTableCoreIsRestModeEnabled: [NSNumber numberWithBool:self.isRestModeEnabled],
         kTaskTableCoreIsMusicModeEnabled: [NSNumber numberWithBool:self.isMusicModeEnabled],
         kTaskTableCoreIsAlertModeEnabled: [NSNumber numberWithBool:self.isAlertModeEnabled],
-        kTaskTableCoreAlertDate: self.alertDate
+        kTaskTableCoreAlertDate: self.alertDate,
+        kTaskTableCoreSortId: self.sortId
     };
     
     return taskDictionary;
@@ -108,7 +97,7 @@
 
 - (instancetype)copyWithZone:(NSZone *)zone {
     INSTaskModel *taskModel = [[[self class] allocWithZone:zone] init];
-    taskModel.identifier = [self.identifier copy];
+    taskModel.taskId = [self.taskId copy];
     taskModel.name = [self.name copy];
     taskModel.color = [self.color copy];
     taskModel.music = [self.music copy];
@@ -119,6 +108,7 @@
     taskModel.isMusicModeEnabled = self.isMusicModeEnabled;
     taskModel.isAlertModeEnabled = self.isAlertModeEnabled;
     taskModel.alertDate = [self.alertDate copy];
+    taskModel.sortId = [self.sortId copy];
     
     return taskModel;
 }
@@ -128,7 +118,7 @@
         return YES;
     }
     
-    if ([self.identifier isEqualToString:taskModel.identifier] &&
+    if ([self.taskId isEqualToString:taskModel.taskId] &&
         [self.name isEqualToString:taskModel.name] &&
         [self.color isEqualToString:taskModel.color] &&
         [self.music isEqualToString:taskModel.music] &&
@@ -138,7 +128,8 @@
         self.isRestModeEnabled == taskModel.isRestModeEnabled &&
         self.isMusicModeEnabled == taskModel.isMusicModeEnabled &&
         self.isAlertModeEnabled == taskModel.isAlertModeEnabled &&
-        [self.alertDate isEqualToDate:taskModel.alertDate]) {
+        [self.alertDate isEqualToDate:taskModel.alertDate] &&
+        [self.sortId isEqualToString:taskModel.sortId]) {
         return YES;
     }
     
