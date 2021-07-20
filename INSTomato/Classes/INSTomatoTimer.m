@@ -16,6 +16,7 @@
 #import "INSTomatoConfigurationTableManager.h"
 
 #define TIMER_INTERVAL 1
+#define SECONDS_PER_MINUTE 60
 
 @implementation INSTomatoTimer
 
@@ -42,7 +43,7 @@ static INSTomatoTimer * _tomatoTimer = nil;
     _tomatoTimer.tomatoTimerStatus = INSTomatoTimerStatusStop;
     _tomatoTimer.tomatoTimerMode = INSTomatoTimerModeWork;
     
-    _tomatoTimer.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * 1;
+    _tomatoTimer.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
     _tomatoTimer.leftSeconds = _tomatoTimer.totalSeconds;
     _tomatoTimer.breakTimes = 0;
     
@@ -112,7 +113,7 @@ static INSTomatoTimer * _tomatoTimer = nil;
     
     self.tomatoTimerStatus = INSTomatoTimerStatusStop;
     self.tomatoTimerMode = INSTomatoTimerModeWork;
-    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * 1;
+    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
     self.leftSeconds = _tomatoTimer.totalSeconds;
     _breakTimes = 0;
     
@@ -128,7 +129,7 @@ static INSTomatoTimer * _tomatoTimer = nil;
     
     self.tomatoTimerStatus = INSTomatoTimerStatusStop;
     self.tomatoTimerMode = INSTomatoTimerModeWork;
-    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * 1;
+    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
     self.leftSeconds = self.totalSeconds;
     _breakTimes = 0;
     
@@ -168,14 +169,14 @@ static INSTomatoTimer * _tomatoTimer = nil;
             
             if (self.taskModel.isRestModeEnabled) {
                 _tomatoTimerMode = INSTomatoTimerModeRest;
-                _totalSeconds = [self.taskModel.restMinutes integerValue] * 1;;
+                _totalSeconds = [self.taskModel.restMinutes integerValue] * SECONDS_PER_MINUTE;
             } else {
                 _tomatoTimerMode = INSTomatoTimerModeWork;
-                _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * 1;;
+                _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;;
             }
         } else {
             _tomatoTimerMode = INSTomatoTimerModeWork;
-            _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * 1;
+            _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
         }
 
         _leftSeconds = self.totalSeconds;

@@ -98,7 +98,9 @@
     
     INSStatisticsHistoryModel *statisticsHistoryModel = self.statisticsHistoryVM.statisticsHistoryModel;
     
-    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"勤之时"];
+    NSString *title = [[INSTomatoConfigurationTableManager sharedInstance] title];
+    
+    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:title];
     
     if ([statisticsHistoryModel.pieChartDataModelArray count] > 0) {
         for (int i = 0; i < [statisticsHistoryModel.pieChartDataModelArray count]; i++) {

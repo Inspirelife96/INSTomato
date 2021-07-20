@@ -161,10 +161,11 @@
     NSMutableArray *values = [[NSMutableArray alloc] init];
     NSMutableArray *colors = [[NSMutableArray alloc] init];
     
-    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"勤之时"];
+    NSString *title = [[INSTomatoConfigurationTableManager sharedInstance] title];
+    
+    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:title];
     
     INSStatisticsTodayModel *statisticsTodayModel = self.statisticsTodayVM.statisticsTodayModel;
-    
     
     if ([statisticsTodayModel.pieChartDataModelArray count] > 0) {
         for (int i = 0; i < [statisticsTodayModel.pieChartDataModelArray count]; i++) {

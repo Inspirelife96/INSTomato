@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'INSTomato'
-  s.version          = '0.0.22'
+  s.version          = '0.0.23'
   s.summary          = '番茄时钟'
 
 # This description is used to generate tags and improve search results.

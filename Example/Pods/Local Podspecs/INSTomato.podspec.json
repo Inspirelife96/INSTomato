@@ -1,6 +1,6 @@
 {
   "name": "INSTomato",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "summary": "番茄时钟",
   "description": "番茄时钟的具体说明：",
   "homepage": "https://github.com/Inspirelife96/INSTomato",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/Inspirelife96/INSTomato.git",
-    "tag": "0.0.21"
+    "tag": "0.0.22"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "13.0"
   },
   "source_files": "INSTomato/Classes/**/*",
   "swift_versions": "4.0",
