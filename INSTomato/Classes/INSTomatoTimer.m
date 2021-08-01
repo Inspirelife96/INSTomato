@@ -33,6 +33,7 @@ static INSTomatoTimer * _tomatoTimer = nil;
         
         _tomatoTimer.tomatoTimerStatus = INSTomatoTimerStatusStop;
         _tomatoTimer.tomatoTimerMode = INSTomatoTimerModeWork;
+        _tomatoTimer.secondsPerMinute = [INSTomatoConfigurationTableManager sharedInstance].secondsPerMinute;
     });
     return _tomatoTimer;
 }
@@ -43,7 +44,7 @@ static INSTomatoTimer * _tomatoTimer = nil;
     _tomatoTimer.tomatoTimerStatus = INSTomatoTimerStatusStop;
     _tomatoTimer.tomatoTimerMode = INSTomatoTimerModeWork;
     
-    _tomatoTimer.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
+    _tomatoTimer.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * self.secondsPerMinute;
     _tomatoTimer.leftSeconds = _tomatoTimer.totalSeconds;
     _tomatoTimer.breakTimes = 0;
     

@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign) INSTomatoTimerStatus tomatoTimerStatus;
 @property(nonatomic, assign) INSTomatoTimerMode tomatoTimerMode;
 
+@property(nonatomic, assign) NSInteger secondsPerMinute;
+
 + (instancetype)sharedInstance;
 
 - (void)startTimer;

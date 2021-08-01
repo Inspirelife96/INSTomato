@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (INSSupportedPluginType)topRightPluginType;
 - (INSSupportedPluginType)bottomLeftPluginType;
 - (INSSupportedPluginType)bottomRightPluginType;
+- (NSInteger)secondsPerMinute;
 
 - (INSTaskModel *)activedTask;
 

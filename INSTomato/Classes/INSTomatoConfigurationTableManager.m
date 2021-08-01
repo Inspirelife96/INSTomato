@@ -83,6 +83,8 @@ static INSTomatoConfigurationTableManager *sharedInstance = nil;
     [tomatoConfigurationDictionary setValue:tomatoConfiguration.musicNameArray forKey:kTomatoConfigurationTableMusicNameArray];
     [tomatoConfigurationDictionary setValue:tomatoConfiguration.musicUrlPathArray forKey:kTomatoConfigurationTableMusicUrlPathArray];
     
+    [tomatoConfigurationDictionary setValue:@(tomatoConfiguration.secondsPerMinute) forKey:kTomatoConfigurationTableSecondsPerMinute];
+    
     [INSTomatoConfigurationTablePersistence saveTomatoConfigurationTable:tomatoConfigurationDictionary];
 }
 
@@ -205,6 +207,10 @@ static INSTomatoConfigurationTableManager *sharedInstance = nil;
 
 - (INSSupportedPluginType)bottomRightPluginType {
     return [self.tomatoConfigurationDictionary[kTomatoConfigurationTableBottomRightPluginType] integerValue];
+}
+
+- (NSInteger)secondsPerMinute {
+    return [self.tomatoConfigurationDictionary[kTomatoConfigurationTableSecondsPerMinute] integerValue];
 }
 
 - (BOOL)isSpecialFontOptionEnabled {

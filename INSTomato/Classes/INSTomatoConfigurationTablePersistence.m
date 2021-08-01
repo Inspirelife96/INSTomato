@@ -36,6 +36,7 @@ NSString *const kTomatoConfigurationTablePersistenceFile = @"tamatoConfiguration
         kTomatoConfigurationTableIsMusicOptionEnabled:@(NO),
         kTomatoConfigurationTableMusicNameArray:@[],
         kTomatoConfigurationTableMusicUrlPathArray:@[],
+        kTomatoConfigurationTableSecondsPerMinute:@(60),
     };
     
     [INSTomatoConfigurationTablePersistence saveTomatoConfigurationTable:tomatoConfigurationTableDictionary];

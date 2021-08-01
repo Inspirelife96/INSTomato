@@ -170,4 +170,7 @@ extern NSString *const kTomatoConfigurationTableIsMusicOptionEnabled;
 extern NSString *const kTomatoConfigurationTableMusicNameArray;
 extern NSString *const kTomatoConfigurationTableMusicUrlPathArray;
 
+// debug only
+extern NSString *const kTomatoConfigurationTableSecondsPerMinute;
+
 #endif /* INSPersistenceConstants_h */

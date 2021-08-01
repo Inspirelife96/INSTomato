@@ -62,6 +62,8 @@ typedef NS_ENUM(NSInteger, INSSupportedPluginType) {
 
 @property (nonatomic, readonly, strong) NSArray *musicUrlPathArray;
 
+@property (nonatomic, assign) NSInteger secondsPerMinute; // 这个字段最终应该为60，为了测试方便，可调整为1.
+
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
 

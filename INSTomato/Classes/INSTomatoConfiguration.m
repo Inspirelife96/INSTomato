@@ -63,6 +63,8 @@
         _isMusicOptionEnabled = NO;
         _musicNameArray = @[];
         _musicUrlPathArray = @[];
+        
+        _secondsPerMinute = 60;
     }
     
     return self;

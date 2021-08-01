@@ -48,6 +48,7 @@
         tomatoConfiguration.topRightPluginType = INSSupportedPluginTypeTask;
         tomatoConfiguration.bottomLeftPluginType = INSSupportedPluginTypeBookmark;
         tomatoConfiguration.bottomRightPluginType = INSSupportedPluginTypeStatistics;
+        tomatoConfiguration.secondsPerMinute = 60;
     }]];
     
     

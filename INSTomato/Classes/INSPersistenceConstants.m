@@ -79,3 +79,4 @@ NSString *const kTomatoConfigurationTableSpecialFontResourcePath = @"specialFont
 NSString *const kTomatoConfigurationTableIsMusicOptionEnabled = @"isMusicOptionEnabled";
 NSString *const kTomatoConfigurationTableMusicNameArray = @"musicNameArray";
 NSString *const kTomatoConfigurationTableMusicUrlPathArray = @"musicUrlPathArray";
+NSString *const kTomatoConfigurationTableSecondsPerMinute = @"secondsPerMinute";
