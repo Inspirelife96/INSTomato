@@ -114,7 +114,7 @@ static INSTomatoTimer * _tomatoTimer = nil;
     
     self.tomatoTimerStatus = INSTomatoTimerStatusStop;
     self.tomatoTimerMode = INSTomatoTimerModeWork;
-    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
+    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * self.secondsPerMinute;
     self.leftSeconds = _tomatoTimer.totalSeconds;
     _breakTimes = 0;
     
@@ -130,7 +130,7 @@ static INSTomatoTimer * _tomatoTimer = nil;
     
     self.tomatoTimerStatus = INSTomatoTimerStatusStop;
     self.tomatoTimerMode = INSTomatoTimerModeWork;
-    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
+    self.totalSeconds = [self.taskModel.tomatoMinutes integerValue] * self.secondsPerMinute;
     self.leftSeconds = self.totalSeconds;
     _breakTimes = 0;
     
@@ -170,14 +170,14 @@ static INSTomatoTimer * _tomatoTimer = nil;
             
             if (self.taskModel.isRestModeEnabled) {
                 _tomatoTimerMode = INSTomatoTimerModeRest;
-                _totalSeconds = [self.taskModel.restMinutes integerValue] * SECONDS_PER_MINUTE;
+                _totalSeconds = [self.taskModel.restMinutes integerValue] * self.secondsPerMinute;
             } else {
                 _tomatoTimerMode = INSTomatoTimerModeWork;
-                _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;;
+                _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * self.secondsPerMinute;
             }
         } else {
             _tomatoTimerMode = INSTomatoTimerModeWork;
-            _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * SECONDS_PER_MINUTE;
+            _totalSeconds = [self.taskModel.tomatoMinutes integerValue] * self.secondsPerMinute;
         }
 
         _leftSeconds = self.totalSeconds;
@@ -197,19 +197,21 @@ static INSTomatoTimer * _tomatoTimer = nil;
 }
 
 - (void)playSystemSound {
-    SystemSoundID sound = kSystemSoundID_Vibrate;
+//    SystemSoundID sound = kSystemSoundID_Vibrate;
+//    
+//    //这里使用在上面那个网址找到的铃声，注意格式
+//    NSString *path = [NSString stringWithFormat:@"/System/Library/Audio/UISounds/%@.%@",@"sms-received3",@"caf"];
+//    if (path) {
+//        OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path],&sound);
+//        if (error != kAudioServicesNoError) {
+//            sound = 0;
+//        }
+//    }
     
-    //这里使用在上面那个网址找到的铃声，注意格式
-    NSString *path = [NSString stringWithFormat:@"/System/Library/Audio/UISounds/%@.%@",@"new-mail",@"caf"];
-    if (path) {
-        OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path],&sound);
-        if (error != kAudioServicesNoError) {
-            sound = 0;
-        }
-    }
-    
-    AudioServicesPlaySystemSound(sound);//播放声音
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//静音模式下震动
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        AudioServicesPlaySystemSound(1007);//播放声音
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);//静音模式下震动
+    });
 }
 
 @end

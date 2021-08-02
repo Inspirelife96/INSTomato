@@ -42,6 +42,8 @@ typedef NS_ENUM(NSInteger, INSSupportedPluginType) {
 
 @property (nonatomic, strong) NSString *sharedUrlString;
 
+@property (nonatomic, strong) NSString *sharedTitle;
+
 @property (nonatomic, assign) INSSupportedPluginType topLeftPluginType;
 
 @property (nonatomic, assign) INSSupportedPluginType topRightPluginType;

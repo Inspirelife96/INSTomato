@@ -46,6 +46,7 @@
         _tomatoIcon = [INSTomatoBundle imageNamed:@"ins_appicon_default"];
         _sharedCodeImage = [INSTomatoBundle imageNamed:@"ins_sharedlink_qrcode"];
         _sharedUrlString = @"http://itunes.apple.com/app/id1206687109";
+        _sharedTitle = @"我正在使用勤之时进行专注训练，欢迎加入！";
         
         _tomatoBackgroundImage = nil;
         

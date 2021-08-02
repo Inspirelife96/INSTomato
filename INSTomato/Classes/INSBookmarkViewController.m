@@ -14,6 +14,8 @@
 #import "INSTomatoBundle.h"
 
 #import "INSBookmarkTableManager.h"
+#import "INSTomatoConfigurationTableManager.h"
+#import "INSTomatoConfiguration.h"
 
 #import "UIViewController+INS_Share.h"
 
@@ -102,8 +104,9 @@
 }
 
 - (void)clickShareButton:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://itunes.apple.com/app/id1086303564"];
-    [self shareWithText:self.bookmarkModel.title url:url image:self.bookmarkModel.image CompletionWithItemsHandler:^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
+    NSURL *url = [NSURL URLWithString:[INSTomatoConfigurationTableManager sharedInstance].sharedUrlString];
+    NSString *title = [INSTomatoConfigurationTableManager sharedInstance].sharedTitle;
+    [self shareWithText:title url:url image:self.bookmarkModel.image CompletionWithItemsHandler:^(UIActivityType  _Nullable activityType, BOOL completed, NSArray * _Nullable returnedItems, NSError * _Nullable activityError) {
             //
     }];
 }

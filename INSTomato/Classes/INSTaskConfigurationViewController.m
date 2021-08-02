@@ -89,9 +89,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([[INSTomatoConfigurationTableManager sharedInstance] isMusicOptionEnabled]) {
-        return 4;
-    } else {
         return 3;
+    } else {
+        return 4;
     }
 }
 
@@ -100,8 +100,8 @@
         return 2;
     } else if (section == 1) {
         return 3;
-    } else if (section == 2){
-        return 1;
+//    } else if (section == 2){
+//        return 1;
     } else {
         return 2;
     }
@@ -127,8 +127,8 @@
             [self.focusModeCell.configurationSwitch setOn:self.taskModel.isFocusModeEnabled];
             return self.focusModeCell;
         }
-    } else if (indexPath.section == 2) {
-        return self.alertOptionsCell;
+//    } else if (indexPath.section == 2) {
+//        return self.alertOptionsCell;
     } else {
         if (indexPath.row == 0) {
             self.musicCell.detailTextLabel.text = self.taskModel.music;
@@ -163,10 +163,10 @@
         } else {
             // do nothing
         }
-    } else if (indexPath.section == 2) {
-        INSAlertOptionsViewController *alertOptionVC = [[INSAlertOptionsViewController alloc] initWithTaskModel:self.taskModel];
-        alertOptionVC.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self.navigationController pushViewController:alertOptionVC animated:YES];
+//    } else if (indexPath.section == 2) {
+//        INSAlertOptionsViewController *alertOptionVC = [[INSAlertOptionsViewController alloc] initWithTaskModel:self.taskModel];
+//        alertOptionVC.modalPresentationStyle = UIModalPresentationFullScreen;
+//        [self.navigationController pushViewController:alertOptionVC animated:YES];
     } else {
         if (indexPath.row == 0) {
             INSMusicViewController *musicVC = [[INSMusicViewController alloc] initWithTaskModel:self.taskModel];
@@ -186,8 +186,8 @@
         headerLabel.text = @"任务设置";
     } else if (section == 1) {
         headerLabel.text = @"专注设置";
-    } else if (section == 2) {
-        headerLabel.text = @"闹铃设置";
+//    } else if (section == 2) {
+//        headerLabel.text = @"闹铃设置";
     } else {
         headerLabel.text = @"白噪音设置";
     }

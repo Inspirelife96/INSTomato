@@ -132,7 +132,7 @@
 }
 
 - (void)registerNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tomatoTimerStart) name:kNotificationTomatoTimerStart object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tomatoTimerCancel) name:kNotificationTomatoTimerCancel object:nil];
@@ -322,6 +322,7 @@
     [self updateButtonsUI];
     [self updatePluginButtonUI];
     [self updateProgress];
+    [self endHalo];
     [self enablePageable];
 }
 
@@ -446,7 +447,7 @@
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationTomatoTimerStart object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationTomatoTimerCancel object:nil];
@@ -523,11 +524,11 @@
 
 #pragma mark - Notifications / KVOs
 
-- (void)applicationWillEnterBackground:(NSNotification *)notification {
-    if (self.currentTaskModel.isFocusModeEnabled) {
-        [[INSTomatoTimer sharedInstance] cancelTimer];
-    }
-}
+//- (void)applicationWillEnterBackground:(NSNotification *)notification {
+//    if (self.currentTaskModel.isFocusModeEnabled) {
+//        [[INSTomatoTimer sharedInstance] cancelTimer];
+//    }
+//}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
 //    ILDStoryModel *storyModel = [[ILDStoryDataCenter sharedInstance] prepareStoryModel];

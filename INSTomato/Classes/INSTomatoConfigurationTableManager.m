@@ -68,6 +68,9 @@ static INSTomatoConfigurationTableManager *sharedInstance = nil;
         [tomatoConfigurationDictionary setValue:tomatoConfiguration.sharedUrlString forKey:kTomatoConfigurationTablesharedUrlString];
     }
     
+    if (tomatoConfiguration.sharedTitle) {
+        [tomatoConfigurationDictionary setValue:tomatoConfiguration.sharedTitle forKey:kTomatoConfigurationTablesharedTitle];
+    }
     [tomatoConfigurationDictionary setValue:@(tomatoConfiguration.topLeftPluginType) forKey:kTomatoConfigurationTableTopLeftPluginType];
     [tomatoConfigurationDictionary setValue:@(tomatoConfiguration.topRightPluginType) forKey:kTomatoConfigurationTableTopRightPluginType];
     [tomatoConfigurationDictionary setValue:@(tomatoConfiguration.bottomLeftPluginType) forKey:kTomatoConfigurationTableBottomLeftPluginType];
@@ -189,8 +192,12 @@ static INSTomatoConfigurationTableManager *sharedInstance = nil;
     return [UIImage imageWithData:sharedCodeImageData];
 }
 
-- (UIImage *)sharedUrlString {
+- (NSString *)sharedUrlString {
     return self.tomatoConfigurationDictionary[kTomatoConfigurationTablesharedUrlString];
+}
+
+- (NSString *)sharedTitle {
+    return self.tomatoConfigurationDictionary[kTomatoConfigurationTablesharedTitle];
 }
 
 - (INSSupportedPluginType)topLeftPluginType {

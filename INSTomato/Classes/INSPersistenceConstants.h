@@ -49,6 +49,9 @@ extern NSString *const kTaskTableCoreRestMinutes;
 // 休息模式是否打开，YES状态下，番茄完成后会自动切换为休息状态
 extern NSString *const kTaskTableCoreIsRestModeEnabled;
 
+// 专注模式是否打开，YES状态下，最小化应用会中断专注
+extern NSString *const kTaskTableCoreIsFocusModeEnabled;
+
 // 音乐是否打开，YES状态下，激活番茄会播放音乐
 extern NSString *const kTaskTableCoreIsMusicModeEnabled;
 
@@ -150,6 +153,9 @@ extern NSString *const kTomatoConfigurationTablesharedCodeImageData;
 
 // 链接，书签界面，默认为勤之时的App链接
 extern NSString *const kTomatoConfigurationTablesharedUrlString;
+
+// 分享提示内容，书签界面，默认为勤之时
+extern NSString *const kTomatoConfigurationTablesharedTitle;
 
 // 上左，上右，下左，下右四个角标的设置，默认分别为任务，关闭，统计，书签
 extern NSString *const kTomatoConfigurationTableTopLeftPluginType;

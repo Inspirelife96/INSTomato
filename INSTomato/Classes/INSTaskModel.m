@@ -68,6 +68,7 @@
         self.tomatoMinutes = taskDictionary[kTaskTableCoreTomatoMinutes];
         self.restMinutes = taskDictionary[kTaskTableCoreRestMinutes];
         self.isRestModeEnabled = [taskDictionary[kTaskTableCoreIsRestModeEnabled] boolValue];
+        self.isFocusModeEnabled = [taskDictionary[kTaskTableCoreIsFocusModeEnabled] boolValue];
         self.isMusicModeEnabled = [taskDictionary[kTaskTableCoreIsMusicModeEnabled] boolValue];
         self.isAlertModeEnabled = [taskDictionary[kTaskTableCoreIsAlertModeEnabled] boolValue];
         self.alertDate = taskDictionary[kTaskTableCoreAlertDate];
@@ -86,6 +87,7 @@
         kTaskTableCoreTomatoMinutes: self.tomatoMinutes,
         kTaskTableCoreRestMinutes: self.restMinutes,
         kTaskTableCoreIsRestModeEnabled: [NSNumber numberWithBool:self.isRestModeEnabled],
+        kTaskTableCoreIsFocusModeEnabled: [NSNumber numberWithBool:self.isFocusModeEnabled],
         kTaskTableCoreIsMusicModeEnabled: [NSNumber numberWithBool:self.isMusicModeEnabled],
         kTaskTableCoreIsAlertModeEnabled: [NSNumber numberWithBool:self.isAlertModeEnabled],
         kTaskTableCoreAlertDate: self.alertDate,

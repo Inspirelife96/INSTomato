@@ -189,9 +189,11 @@
 
 // 删除动态脉冲
 - (void)endHalo {
-    [self.halo stop];
-    [self.halo removeFromSuperlayer];
-    self.halo = nil;
+    if (self.halo) {
+        [self.halo stop];
+        [self.halo removeFromSuperlayer];
+        self.halo = nil;
+    }
 }
 
 - (void)updateProgress {

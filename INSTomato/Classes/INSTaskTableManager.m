@@ -199,13 +199,21 @@ static INSTaskTableManager *sharedInstance = nil;
     [self saveTaskTable];
     
     if (self.syncTomatoTaskToServerBlock) {
-        self.syncTomatoTaskToServerBlock(taskModel);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            self.syncTomatoTaskToServerBlock(taskModel);
+        });
     }
 }
 
 - (void)updateTask:(NSString *)taskId taskModel:(INSTaskModel *)taskModel {
     self.coreDictionary[taskId] = [taskModel convertToDictionary];
     [self saveTaskTable];
+    
+    if (self.syncTomatoTaskToServerBlock) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            self.syncTomatoTaskToServerBlock(taskModel);
+        });
+    }
 }
 
 - (void)removeTask:(NSString *)taskId {
