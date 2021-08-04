@@ -24,6 +24,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor redColor];
+    self.view.frame = CGRectMake(20, 100, 300, 300);
+    
     [self.view addSubview:self.tomatoButton];
     
     [self.tomatoButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -31,6 +34,12 @@
         make.width.mas_equalTo(64.0f);
         make.height.mas_equalTo(64.0f);
     }];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    NSLog(@"viewWillLayoutSubviews called");
 }
 
 - (void)clickTomatoButton:(id)sender {
