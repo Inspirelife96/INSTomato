@@ -50,6 +50,7 @@ typedef void(^SyncTomatoTaskToServerBlock)(INSTaskModel *taskModel);
 - (INSTaskModel *)taskModelByTaskId:(NSString *)taskId;
 - (NSInteger)indexOfTask:(INSTaskModel *)taskModel;
 
+- (void)addTaskToLocal:(INSTaskModel *)taskModel;
 - (void)addTask:(INSTaskModel *)taskModel;
 - (void)removeTask:(NSString *)taskId;
 - (void)updateTask:(NSString *)taskId taskModel:(INSTaskModel *)taskModel;

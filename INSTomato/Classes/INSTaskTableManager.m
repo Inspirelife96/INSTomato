@@ -186,6 +186,12 @@ static INSTaskTableManager *sharedInstance = nil;
     return indexOfTask;
 }
 
+- (void)addTaskToLocal:(INSTaskModel *)taskModel {
+    self.coreDictionary[taskModel.taskId] = [taskModel convertToDictionary];
+    
+    [self saveTaskTable];
+}
+
 - (void)addTask:(INSTaskModel *)taskModel {
 //    NSNumber *maxRowIdNumber = self.configurationDictionary[kTaskTableConfigurationMaxRowId];
 //    NSNumber *newRowIdNumber = [NSNumber numberWithInteger:([maxRowIdNumber integerValue] + 1)];
