@@ -17,7 +17,7 @@ typedef void(^SyncStatisticsToServerBlock)(INSStatisticsModel *statisticsModel);
 
 @interface INSStatisticsTableManager : NSObject
 
-@property (nonatomic, copy) SyncStatisticsToServerBlock syncStatisticsToServerBlock;
+@property (nonatomic, copy) __nullable SyncStatisticsToServerBlock syncStatisticsToServerBlock;
 
 + (void)createStatisticsTable;
 + (void)resetStatisticsTable;

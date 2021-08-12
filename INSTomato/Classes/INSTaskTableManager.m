@@ -228,6 +228,13 @@ static INSTaskTableManager *sharedInstance = nil;
     [[INSStatisticsTableManager sharedInstance] removeStatisticsByTaskId:taskId];
 }
 
+- (void)removeAll {
+    NSArray *taskIdsInLocal = [[INSTaskTableManager sharedInstance] taskIds];
+    [taskIdsInLocal enumerateObjectsUsingBlock:^(NSString *  _Nonnull taskId, NSUInteger idx, BOOL * _Nonnull stop) {
+        [[INSTaskTableManager sharedInstance] removeTask:taskId];
+    }];
+}
+
 //- (BOOL)isAddTaskEnabled {
 //    return [self.configurationDictionary[kTaskTableConfigurationIsAddTaskEnabled] boolValue];
 //}

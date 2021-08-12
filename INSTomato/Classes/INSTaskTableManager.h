@@ -32,7 +32,7 @@ typedef void(^SyncTomatoTaskToServerBlock)(INSTaskModel *taskModel);
 
 @interface INSTaskTableManager : NSObject
 
-@property (nonatomic, copy) SyncTomatoTaskToServerBlock syncTomatoTaskToServerBlock;
+@property (nonatomic, copy) __nullable SyncTomatoTaskToServerBlock syncTomatoTaskToServerBlock;
 
 + (void)createTaskTable:(INSTomatoConfiguration *)configuration;
 + (void)resetTaskTable:(INSTomatoConfiguration *)configuration;
@@ -53,6 +53,7 @@ typedef void(^SyncTomatoTaskToServerBlock)(INSTaskModel *taskModel);
 - (void)addTaskToLocal:(INSTaskModel *)taskModel;
 - (void)addTask:(INSTaskModel *)taskModel;
 - (void)removeTask:(NSString *)taskId;
+- (void)removeAll;
 - (void)updateTask:(NSString *)taskId taskModel:(INSTaskModel *)taskModel;
 
 // identifer不同，名字相同，则返回YES。

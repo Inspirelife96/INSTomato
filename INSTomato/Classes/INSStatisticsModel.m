@@ -30,7 +30,7 @@
 
 - (instancetype)initWithTomatoDictionary:(NSDictionary *)tomatoDictionary {
     if (self = [super init]) {
-        self.identifier = tomatoDictionary[kStatisticsTableCoreIdentifier],
+        self.identifier = tomatoDictionary[kStatisticsTableCoreIdentifier];
         self.taskId = tomatoDictionary[kStatisticsTableCoreTaskIdentifier];
         self.startDate = tomatoDictionary[kStatisticsTableCoreStartDate];
         self.endDate = tomatoDictionary[kStatisticsTableCoreEndDate];
