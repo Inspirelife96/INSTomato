@@ -34,7 +34,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSInteger selectedIndex = [self.musicNameArray indexOfObject:self.taskModel.music];
+    NSUInteger selectedIndex = [self.musicNameArray indexOfObject:self.taskModel.music];
+    
+    if (selectedIndex == NSNotFound) {
+        selectedIndex = 0;
+    }
+    
     [self.pickerView selectRow:selectedIndex inComponent:0 animated:YES];
     [self playMusic:selectedIndex];
 }

@@ -247,9 +247,13 @@ static INSTomatoConfigurationTableManager *sharedInstance = nil;
 - (NSURL *)musicUrlForMusicName:(NSString *)musicName {
     NSArray *musicArray = self.tomatoConfigurationDictionary[kTomatoConfigurationTableMusicNameArray];
     NSArray *musicUrlPathArray = self.tomatoConfigurationDictionary[kTomatoConfigurationTableMusicUrlPathArray];
-    NSInteger index = [musicArray indexOfObject:musicName];
+    NSUInteger index = [musicArray indexOfObject:musicName];
 
-    if (index >= 0) {
+    if (index == NSNotFound) {
+        if (musicUrlPathArray && musicUrlPathArray.count > 0) {
+            return [NSURL fileURLWithPath: musicUrlPathArray[0]];
+        }
+    } else {
         return [NSURL fileURLWithPath: musicUrlPathArray[index]];
     }
 
